@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  gateway:
+    image: traefik:latest
+    command:
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+
+  backend:
+    image: node:latest
+    command:
+    volumes:
+      - .:/srv/backend:rw
+    working_dir: /srv/backend
+
+  frontend:
+    image: node:latest
+    command:
+    volumes:
+      - .:/srv/frontend:rw
+    working_dir: /srv/frontend
