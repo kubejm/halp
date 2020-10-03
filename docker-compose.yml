@@ -1,24 +1,31 @@
 version: '3'
 
 services:
-  gateway:
-    image: traefik:latest
-    command:
+  reverse-proxy:
+    image: traefik:v2.3
+    command: --api.insecure=true --providers.docker
     ports:
       - 80:80
-      - 443:443
+      - 8080:8080
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
   backend:
-    image: node:latest
-    command:
+    image: node:14.12.0
+    expose:
+      - 4000
+    command: yarn workspace backend dev
     volumes:
-      - .:/srv/backend:rw
-    working_dir: /srv/backend
+      - .:/opt/app/backend:rw
+    working_dir: /opt/app/backend
 
   frontend:
-    image: node:latest
-    command:
+    image: node:14.12.0
+    expose:
+      - 3000
+    command: yarn workspace frontend dev
     volumes:
-      - .:/srv/frontend:rw
-    working_dir: /srv/frontend
+      - .:/opt/app/frontend:rw
+    working_dir: /opt/app/frontend
+    labels:
+      - traefik.http.routers.frontend.rule=Host(`status-page.localhost`)
