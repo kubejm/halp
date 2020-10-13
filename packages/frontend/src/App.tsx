@@ -1,9 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Layout } from './components';
+import { Home } from './pages';
 
 export default function App() {
   return (
-    <div>
-      <h1>Test</h1>
-    </div>
+    <Router>
+      <Layout>
+        <Route exact path="/" component={Home} />
+      </Layout>
+    </Router>
   );
 }
