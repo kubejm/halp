@@ -19,7 +19,7 @@ services:
       - .:/opt/app/backend:rw
     working_dir: /opt/app/backend
     labels:
-      - "traefik.http.routers.backend.rule=Host(`newsletter.localhost`) && PathPrefix(`/graphql`)"
+      - "traefik.http.routers.backend.rule=Host(`halp.localhost`) && PathPrefix(`/graphql`)"
 
   frontend:
     image: node:14.12.0
@@ -30,4 +30,4 @@ services:
       - .:/opt/app/frontend:rw
     working_dir: /opt/app/frontend
     labels:
-      - "traefik.http.routers.frontend.rule=Host(`newsletter.localhost`)"
+      - "traefik.http.routers.frontend.rule=Host(`halp.localhost`)"
