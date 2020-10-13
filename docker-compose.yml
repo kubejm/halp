@@ -24,7 +24,7 @@ services:
   frontend:
     image: node:14.12.0
     expose:
-      - 3000
+      - 80
     command: yarn workspace frontend dev
     volumes:
       - .:/opt/app/frontend:rw
