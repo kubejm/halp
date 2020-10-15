@@ -6,7 +6,7 @@ interface Props {
 
 function Logo() {
   return (
-    <div className="text-white">Halp!</div>
+    <div className="flex-shrink-0 text-white text-lg font-bold">Halp!</div>
   );
 }
 
