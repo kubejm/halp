@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { QuestionList } from '../components';
+
 export default function Home() {
   return (
     <>
-      <h1>Blah</h1>
+      <QuestionList />
     </>
   );
 }

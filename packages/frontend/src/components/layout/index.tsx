@@ -22,7 +22,9 @@ export default function Layout({ children }: Props) {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <Header />
-      {children}
+      <div className="max-w-2xl w-full mx-auto">
+        {children}
+      </div>
     </div>
   );
 }
