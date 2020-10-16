@@ -20,7 +20,7 @@ function QuestionSummary() {
       <div className="flex justify-between flex-wrap pl-4">
         <div className="min-w-full text-lg pb-2">How do I undo the most recent local commits in Git?</div>
         <div className="min-w-full text-sm text-gray-700 pb-2">I accidentally committed the wrong files to Git, but I haven't pushed the commit to the server yet. How can I undo those commits from the local repository?</div>
-        <div className="flex flex-row items-start text-xs">
+        <div className="flex flex-row items-start text-xs pb-2">
           <div className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1">git</div>
           <div className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1">git</div>
           <div className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1">git</div>
