@@ -12,7 +12,7 @@ function Logo() {
 
 function Header() {
   return (
-    <nav className="flex items-center justify-between bg-purple-800 px-8 h-16">
+    <nav className="flex items-center justify-between bg-purple-800 border-b-4 border-purple-400 px-8 h-16">
       <Logo />
     </nav>
   );
