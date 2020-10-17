@@ -1,5 +1,6 @@
-import { Query, Resolver } from 'type-graphql';
+import { Ctx, Query, Resolver } from 'type-graphql';
 import { Question } from '../entities';
+import { Context } from '../types';
 
 const questions =
 [
@@ -35,10 +36,10 @@ const questions =
   }
 ];
 
-@Resolver()
+@Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => [Question])
-  questions() {
-    return Promise.resolve(questions);
+  questions(@Ctx() ctx: Context) {
+    return ctx.em.getRepository(Question).findAll();
   }
 }
