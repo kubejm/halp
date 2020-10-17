@@ -1,77 +1,37 @@
 import React from 'react';
+import QuestionSummary from './QuestionSummary';
+import questions from '../../fixtures/questions.json';
 
 interface Tag {
   label: string;
 }
 
-interface QuestionSummaryProps {
-  answers?: number;
+interface Question {
+  answers: number;
   askedTime: string;
   author: string;
   excerpt: string;
   question: string;
   tags: Tag[];
-  views?: number;
-  votes?: number;
+  views: number;
+  votes: number;
 }
-
-function QuestionSummary(props: QuestionSummaryProps) {
-  return (
-    <div className="flex border-l border-b p-4 divide-x">
-      <div className="pr-3 text-center">
-        <div className="pt-2">
-          <div>{props.votes}</div>
-          <div className="text-xs text-gray-700">votes</div>
-        </div>
-        <div className="pt-4 text-gray-700">
-          <div>{props.answers}</div>
-          <div className="text-xs">answers</div>
-        </div>
-        <div className="pt-4 text-xs text-gray-600">
-          <div>{props.views}</div>
-          <div>views</div>
-        </div>
-      </div>
-      <div className="flex flex-grow justify-between flex-wrap pl-4">
-        <div className="min-w-full text-lg">{props.question}</div>
-        <div className="min-w-full text-sm text-gray-700 pb-2">
-          {props.excerpt}
-        </div>
-        <div className="flex flex-row items-start text-xs pb-2">
-          {props.tags.map((tag: Tag) => (
-            <div className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1">
-              {tag.label}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-col">
-          <div className="text-xs text-gray-500">{props.askedTime}</div>
-          <div className="text-gray-700 text-sm align-middle">
-            {props.author}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-QuestionSummary.defaultProps = {
-  answers: 0,
-  views: 0,
-  votes: 0,
-  tags: [],
-};
 
 export default function QuestionList() {
   return (
     <>
-      <QuestionSummary
-        askedTime={'asked 1 min ago'}
-        author={'matt'}
-        excerpt={'I do not know how to use. How do I do it?'}
-        question={'How do I git?'}
-        tags={[{ label: 'git' }]}
-      />
+      {questions.map((question: Question) => (
+        <QuestionSummary
+          answers={question.answers}
+          askedTime={question.askedTime}
+          author={question.author}
+          excerpt={question.excerpt}
+          question={question.question}
+          tags={question.tags}
+          views={question.views}
+          votes={question.votes}
+        />
+      ))}
     </>
   );
 }
