@@ -20,8 +20,9 @@ interface Question {
 export default function QuestionList() {
   return (
     <>
-      {questions.map((question: Question) => (
+      {questions.map((question: Question, index: number) => (
         <QuestionSummary
+          key={index}
           answers={question.answers}
           askedTime={question.askedTime}
           author={question.author}

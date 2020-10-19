@@ -38,8 +38,11 @@ export default function QuestionSummary(props: Props) {
           {props.excerpt}
         </div>
         <div className="flex flex-row items-start text-xs pb-2">
-          {props.tags.map((tag: Tag) => (
-            <div className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1">
+          {props.tags.map((tag: Tag, index: number) => (
+            <div
+              key={index}
+              className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1"
+            >
               {tag.label}
             </div>
           ))}
