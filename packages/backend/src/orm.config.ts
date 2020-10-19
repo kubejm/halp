@@ -3,7 +3,7 @@ import { MikroORM } from '@mikro-orm/core';
 // TODO: inject with environment variables
 export default {
   entities: ['./src/entities'],
-  dbName: 'halp',
+  dbName: 'postgres',
   type: 'postgresql',
   host: 'postgres',
   port: 5432,

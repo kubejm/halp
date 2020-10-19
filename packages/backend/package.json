@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "db:schema": "mikro-orm schema:create -r",
     "dev": "ts-node-dev  --inspect --respawn --transpile-only ./src/index.ts",
     "start": "ts-node ./dist/index.js"
   },
