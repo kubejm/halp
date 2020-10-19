@@ -1,5 +1,6 @@
 import { Collection, Entity, ManyToMany, Property } from '@mikro-orm/core';
 import { Field, ObjectType } from 'type-graphql';
+import { QuestionValidator } from '../validators';
 import { Base } from './base.entity';
 import { Tag} from './tag.entity';
 
@@ -8,7 +9,7 @@ import { Tag} from './tag.entity';
 export class Question extends Base<Question> {
   @Field()
   @Property()
-  answers!: number;
+  answers: number = 0;
 
   @Field()
   @Property()
@@ -28,14 +29,14 @@ export class Question extends Base<Question> {
 
   @Field()
   @Property()
-  views!: number;
+  views: number = 0;
 
   @Field()
   @Property()
-  votes!: number;
+  votes: number = 0;
 
-  constructor() {
-    super();
+  constructor(input: QuestionValidator) {
+    super(input);
   }
 }
 
