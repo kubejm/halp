@@ -10,7 +10,8 @@
     "target": "es2018",
     "lib": ["es2018", "esnext.asynciterable"],
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "resolveJsonModule": true
   },
   "include": ["src"]
 }
