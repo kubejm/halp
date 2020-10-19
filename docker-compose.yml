@@ -21,9 +21,9 @@ services:
     image: node:14.12.0
     expose:
       - 4000
-    command: yarn workspace backend dev
+    command: npm run dev
     volumes:
-      - .:/opt/app/backend:rw
+      - ./packages/backend:/opt/app/backend:rw
     working_dir: /opt/app/backend
     labels:
       - "traefik.http.routers.backend.rule=Host(`halp.localhost`) && PathPrefix(`/graphql`)"
@@ -32,9 +32,9 @@ services:
     image: node:14.12.0
     expose:
       - 80
-    command: yarn workspace frontend dev
+    command: npm run dev
     volumes:
-      - .:/opt/app/frontend:rw
+      - ./packages/frontend:/opt/app/frontend:rw
     working_dir: /opt/app/frontend
     labels:
       - "traefik.http.routers.frontend.rule=Host(`halp.localhost`)"
