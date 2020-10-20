@@ -11,7 +11,10 @@ export class QuestionResolver {
   }
 
   @Mutation(() => Question)
-  async addQuestion(@Arg('input') input: QuestionValidator, @Ctx() ctx: Context): Promise<Question> {
+  async addQuestion(
+    @Arg('input') input: QuestionValidator,
+    @Ctx() ctx: Context
+  ): Promise<Question> {
     const question = new Question(input);
     await ctx.em.persist(question).flush();
     return question;

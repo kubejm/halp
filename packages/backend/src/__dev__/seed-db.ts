@@ -10,7 +10,7 @@ async function seed() {
     const question = new Question({
       author: q.author,
       body: q.body,
-      question: q.question
+      question: q.question,
     });
     await orm.em.persist(question).flush();
   }

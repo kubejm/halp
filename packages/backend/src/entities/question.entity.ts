@@ -2,7 +2,7 @@ import { Collection, Entity, ManyToMany, Property } from '@mikro-orm/core';
 import { Field, ObjectType } from 'type-graphql';
 import { QuestionValidator } from '../validators';
 import { Base } from './base.entity';
-import { Tag} from './tag.entity';
+import { Tag } from './tag.entity';
 
 @ObjectType()
 @Entity()
@@ -39,5 +39,3 @@ export class Question extends Base<Question> {
     super(input);
   }
 }
-
-

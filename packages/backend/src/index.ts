@@ -9,7 +9,7 @@ async function main() {
   const orm = await MikroORM.init(ormConfig);
 
   const schema = await buildSchema({
-    resolvers: [__dirname + "/resolvers/**/*.{ts,js}"],
+    resolvers: [__dirname + '/resolvers/**/*.{ts,js}'],
   });
 
   const server = new ApolloServer({
@@ -18,7 +18,7 @@ async function main() {
       return {
         em: orm.em,
       };
-    }
+    },
   });
 
   const app = new Koa();
@@ -26,7 +26,7 @@ async function main() {
   server.applyMiddleware({ app });
 
   app.listen({ port: 4000 }, () =>
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`),
+    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
   );
 }
 
