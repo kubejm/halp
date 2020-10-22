@@ -16,15 +16,21 @@ export class Question extends Base<Question> {
   author!: string;
 
   @Field()
-  @Property()
+  @Property({ type: 'text' })
   body!: string;
+
+  @Field()
+  createdAtRelative!: string;
+
+  @Field()
+  excerpt!: string;
 
   @Field()
   @Property()
   question!: string;
 
   @Field(() => [Tag])
-  @ManyToMany(() => Tag)
+  @ManyToMany({ entity: () => Tag, eager: true })
   tags = new Collection<Tag>(this);
 
   @Field()

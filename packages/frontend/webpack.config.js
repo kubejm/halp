@@ -12,8 +12,15 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
         exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              rootMode: 'upward',
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -24,13 +31,13 @@ module.exports = {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-            }
+            },
           },
           {
-            loader: 'postcss-loader'
-          }
-        ]
-      }
+            loader: 'postcss-loader',
+          },
+        ],
+      },
     ],
   },
   resolve: {
