@@ -6,8 +6,8 @@ interface Tag {
 
 interface Props {
   answers?: number;
-  askedTime: string;
   author: string;
+  createdAtRelative: string;
   excerpt: string;
   question: string;
   tags: readonly Tag[];
@@ -48,7 +48,9 @@ export default function QuestionSummary(props: Props) {
           ))}
         </div>
         <div className="flex flex-col">
-          <div className="text-xs text-gray-500">{props.askedTime}</div>
+          <div className="text-xs text-gray-500">
+            asked {props.createdAtRelative}
+          </div>
           <div className="text-gray-700 text-sm align-middle">
             {props.author}
           </div>
