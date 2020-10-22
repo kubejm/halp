@@ -31,7 +31,7 @@ export default function QuestionList() {
         <QuestionSummary
           key={question.id}
           answers={question.answers}
-          askedTime={question.createdAtRelative}
+          createdAtRelative={question.createdAtRelative}
           author={question.author}
           excerpt={question.excerpt}
           question={question.question}
