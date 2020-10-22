@@ -1,30 +1,37 @@
 import React from 'react';
 import QuestionSummary from './QuestionSummary';
-import questions from '../../fixtures/questions.json';
-
-interface Tag {
-  label: string;
-}
-
-interface Question {
-  answers: number;
-  askedTime: string;
-  author: string;
-  excerpt: string;
-  question: string;
-  tags: Tag[];
-  views: number;
-  votes: number;
-}
+import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
+import { questionListQuery } from '../../__generated__/questionListQuery.graphql';
 
 export default function QuestionList() {
+  const { questions } = useLazyLoadQuery<questionListQuery>(
+    graphql`
+      query questionListQuery {
+        questions {
+          answers
+          author
+          createdAtRelative
+          excerpt
+          id
+          question
+          tags {
+            name
+          }
+          views
+          votes
+        }
+      }
+    `,
+    {}
+  );
+
   return (
     <>
-      {questions.map((question: Question, index: number) => (
+      {questions.map((question) => (
         <QuestionSummary
-          key={index}
+          key={question.id}
           answers={question.answers}
-          askedTime={question.askedTime}
+          askedTime={question.createdAtRelative}
           author={question.author}
           excerpt={question.excerpt}
           question={question.question}

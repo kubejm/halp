@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface Tag {
-  label: string;
+  readonly name: string;
 }
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
   author: string;
   excerpt: string;
   question: string;
-  tags: Tag[];
+  tags: readonly Tag[];
   views?: number;
   votes?: number;
 }
@@ -43,7 +43,7 @@ export default function QuestionSummary(props: Props) {
               key={index}
               className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1"
             >
-              {tag.label}
+              {tag.name}
             </div>
           ))}
         </div>
