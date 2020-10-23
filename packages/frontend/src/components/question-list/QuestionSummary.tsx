@@ -32,27 +32,29 @@ export default function QuestionSummary(props: Props) {
           <div>views</div>
         </div>
       </div>
-      <div className="flex flex-grow justify-between flex-wrap pl-4">
+      <div className="flex flex-grow flex-wrap pl-4">
         <div className="min-w-full text-lg">{props.question}</div>
         <div className="min-w-full text-sm text-gray-700 pb-2">
           {props.excerpt}
         </div>
-        <div className="flex flex-row items-start text-xs pb-2">
-          {props.tags.map((tag: Tag, index: number) => (
-            <div
-              key={index}
-              className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1"
-            >
-              {tag.name}
+        <div className="flex flex-row-reverse justify-between min-w-full">
+          <div className="flex flex-col">
+            <div className="text-xs text-gray-500">
+              asked {props.createdAtRelative}
             </div>
-          ))}
-        </div>
-        <div className="flex flex-col">
-          <div className="text-xs text-gray-500">
-            asked {props.createdAtRelative}
+            <div className="text-gray-700 text-sm align-middle">
+              {props.author}
+            </div>
           </div>
-          <div className="text-gray-700 text-sm align-middle">
-            {props.author}
+          <div className="flex flex-row items-start text-xs pb-2">
+            {props.tags.map((tag: Tag, index: number) => (
+              <div
+                key={index}
+                className="text-gray-700 bg-gray-400 rounded text-center px-2 py-1 mr-1"
+              >
+                {tag.name}
+              </div>
+            ))}
           </div>
         </div>
       </div>

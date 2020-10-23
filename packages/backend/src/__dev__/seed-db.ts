@@ -1,5 +1,5 @@
 import { MikroORM } from '@mikro-orm/core';
-import { Question } from '../entities';
+import { Question, Tag } from '../entities';
 import ormConfig from '../orm.config';
 import questions from './fixtures/questions.json';
 
@@ -12,6 +12,14 @@ async function seed() {
       body: q.body,
       question: q.question,
     });
+
+    q.tags.forEach((t) => {
+      const tag = new Tag({
+        name: t.name,
+      });
+      question.tags.add(tag);
+    });
+
     await orm.em.persist(question).flush();
   }
 
