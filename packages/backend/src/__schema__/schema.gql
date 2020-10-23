@@ -35,7 +35,6 @@ input QuestionValidator {
   author: String!
   body: String!
   question: String!
-  tags: [TagValidator!]!
 }
 
 type Tag {
