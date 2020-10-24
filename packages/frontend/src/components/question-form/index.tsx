@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { questionFormMutation } from '../../__generated__/questionFormMutation.graphql';
+import { useHistory } from 'react-router-dom';
 
 export default function QuestionForm() {
   const { register, handleSubmit } = useForm();
@@ -12,6 +13,7 @@ export default function QuestionForm() {
       }
     }
   `);
+  const history = useHistory();
 
   const onSubmit = (values: Record<string, string>) => {
     commit({
@@ -21,6 +23,9 @@ export default function QuestionForm() {
           body: values.body,
           question: values.question,
         },
+      },
+      onCompleted() {
+        history.push('/');
       },
     });
   };
