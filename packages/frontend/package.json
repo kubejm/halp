@@ -22,6 +22,7 @@
     "core-js": "3.6.5",
     "react": "0.0.0-experimental-4ead6b530",
     "react-dom": "0.0.0-experimental-4ead6b530",
+    "react-hook-form": "6.9.6",
     "react-relay": "0.0.0-experimental-183bdd28",
     "react-router-dom": "5.2.0",
     "relay-runtime": "10.0.1",
