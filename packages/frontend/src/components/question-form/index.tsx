@@ -1,14 +1,35 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { graphql, useMutation } from 'react-relay/hooks';
+import { questionFormMutation } from '../../__generated__/questionFormMutation.graphql';
 
 export default function QuestionForm() {
   const { register, handleSubmit } = useForm();
+  const [commit, isInFlight] = useMutation<questionFormMutation>(graphql`
+    mutation questionFormMutation($input: QuestionValidator!) {
+      addQuestion(input: $input) {
+        id
+      }
+    }
+  `);
+
+  const onSubmit = (values: Record<string, string>) => {
+    commit({
+      variables: {
+        input: {
+          author: 'matt', // TODO: introduce concept of user
+          body: values.body,
+          question: values.question,
+        },
+      },
+    });
+  };
 
   return (
     <>
       <div className="w-full mt-6">
         <form
-          onSubmit={handleSubmit(console.log)}
+          onSubmit={handleSubmit(onSubmit)}
           className="bg-white shadow-md rounded p-6"
         >
           <div className="mb-2">
@@ -39,6 +60,7 @@ export default function QuestionForm() {
             type="submit"
             value="Submit"
             className="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold p-3 cursor-pointer"
+            disabled={isInFlight}
           />
         </form>
       </div>
