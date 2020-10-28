@@ -10,6 +10,8 @@ scalar DateTime
 
 type Mutation {
   addQuestion(input: QuestionValidator!): Question!
+  signIn(input: SignInInput!): Result!
+  signUp(input: SignUpInput!): Result!
 }
 
 type Query {
@@ -37,6 +39,21 @@ input QuestionValidator {
   question: String!
 }
 
+type Result {
+  ok: Boolean!
+}
+
+input SignInInput {
+  password: String!
+  username: String!
+}
+
+input SignUpInput {
+  email: String!
+  password: String!
+  username: String!
+}
+
 type Tag {
   createdAt: DateTime!
   id: ID!
@@ -47,4 +64,12 @@ type Tag {
 
 input TagValidator {
   name: String!
+}
+
+type User {
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  updatedAt: DateTime!
+  username: String!
 }
