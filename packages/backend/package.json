@@ -32,10 +32,10 @@
     "@mikro-orm/cli": "4.2.3",
     "@mikro-orm/core": "4.2.3",
     "@mikro-orm/postgresql": "4.2.3",
-    "apollo-server-koa": "2.18.1",
+    "apollo-server-koa": "2.18.2",
     "class-validator": "0.12.2",
     "date-fns": "2.16.1",
-    "graphql": "15.3.0",
+    "graphql": "15.4.0",
     "reflect-metadata": "0.1.13",
     "type-graphql": "1.1.0",
     "uuid": "8.3.1"
