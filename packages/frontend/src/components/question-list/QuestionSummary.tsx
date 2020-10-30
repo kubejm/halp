@@ -17,7 +17,7 @@ interface Props {
 
 export default function QuestionSummary(props: Props) {
   return (
-    <div className="flex border-l border-b p-4 divide-x">
+    <div className="flex bg-white border-l border-b p-4 divide-x">
       <div className="pr-3 text-center">
         <div className="pt-2">
           <div>{props.votes}</div>
