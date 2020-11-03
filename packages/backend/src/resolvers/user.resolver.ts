@@ -9,6 +9,7 @@ import {
 } from 'type-graphql';
 import { User } from '../entities';
 import { Context } from '../types';
+import jwt from 'jsonwebtoken';
 
 @ObjectType()
 class Result {
@@ -42,14 +43,15 @@ export class UserResolver {
   @Mutation(() => Result)
   async signUp(
     @Arg('input') input: SignUpInput,
-    @Ctx() ctx: Context
+    @Ctx() context: Context
   ): Promise<Result> {
+    // TODO: abstract this out
     const user = new User();
     user.username = input.username;
     user.passwordHash = input.password;
     user.email = input.email;
 
-    await ctx.em.persist(user).flush();
+    await context.ctx.em.persist(user).flush();
 
     return new Result();
   }
@@ -57,9 +59,10 @@ export class UserResolver {
   @Mutation(() => Result)
   async signIn(
     @Arg('input') input: SignInInput,
-    @Ctx() ctx: Context
+    @Ctx() context: Context
   ): Promise<Result> {
-    const userRepository = ctx.em.getRepository(User);
+    // TODO: abstract this out
+    const userRepository = context.em.getRepository(User);
     const user = await userRepository.findOne({
       username: input.username,
     });
@@ -71,6 +74,34 @@ export class UserResolver {
     if (user.passwordHash !== input.password) {
       throw new Error('incorrect password');
     }
+
+    const token = jwt.sign(
+      {
+        roles: ['user'],
+      },
+      'topsecret',
+      {
+        algorithm: 'HS256',
+        subject: user.id,
+        expiresIn: '1d',
+      }
+    );
+
+    context.ctx.cookies.set('token', token, {
+      httpOnly: false,
+      secure: false,
+    });
+
+    return new Result();
+  }
+
+  @Mutation(() => Result)
+  async signOut(@Ctx() context: Context): Promise<Result> {
+    // TODO: abstract this out
+    context.ctx.cookies.set('token', '', {
+      httpOnly: false,
+      secure: false,
+    });
 
     return new Result();
   }

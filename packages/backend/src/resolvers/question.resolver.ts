@@ -15,17 +15,17 @@ import { formatDistanceToNow } from 'date-fns';
 @Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => [Question])
-  questions(@Ctx() ctx: Context) {
-    return ctx.em.getRepository(Question).findAll();
+  questions(@Ctx() context: Context) {
+    return context.em.getRepository(Question).findAll();
   }
 
   @Mutation(() => Question)
   async addQuestion(
     @Arg('input') input: QuestionValidator,
-    @Ctx() ctx: Context
+    @Ctx() context: Context
   ): Promise<Question> {
     const question = new Question(input);
-    await ctx.em.persist(question).flush();
+    await context.em.persist(question).flush();
     return question;
   }
 

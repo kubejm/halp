@@ -11,6 +11,7 @@ scalar DateTime
 type Mutation {
   addQuestion(input: QuestionValidator!): Question!
   signIn(input: SignInInput!): Result!
+  signOut: Result!
   signUp(input: SignUpInput!): Result!
 }
 
