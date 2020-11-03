@@ -48,8 +48,10 @@ export class UserResolver {
     // TODO: abstract this out
     const user = new User();
     user.username = input.username;
-    user.passwordHash = input.password;
     user.email = input.email;
+
+    // TODO: make this more secure
+    user.passwordHash = input.password;
 
     await context.ctx.em.persist(user).flush();
 
@@ -71,6 +73,7 @@ export class UserResolver {
       throw new Error('user not found');
     }
 
+    // TODO: make this more secure
     if (user.passwordHash !== input.password) {
       throw new Error('incorrect password');
     }
