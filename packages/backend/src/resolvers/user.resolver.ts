@@ -38,6 +38,7 @@ class SignInInput {
   password!: string;
 }
 
+//TODO: consider renaming these functions, "sign in" vs "log in"
 @Resolver(() => User)
 export class UserResolver {
   @Mutation(() => Result)
