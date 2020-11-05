@@ -53,7 +53,7 @@ export class UserResolver {
     // TODO: make this more secure
     user.passwordHash = input.password;
 
-    await context.ctx.em.persist(user).flush();
+    await context.em.persist(user).flush();
 
     return new Result();
   }
