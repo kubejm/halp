@@ -8,6 +8,7 @@ module.exports = {
   mode: isProd ? 'production' : 'development',
   devtool: isProd ? 'none' : 'inline-source-map',
   entry: './src/index.tsx',
+  target: 'web',
   module: {
     rules: [
       {
