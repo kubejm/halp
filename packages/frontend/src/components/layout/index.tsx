@@ -15,12 +15,19 @@ function Header() {
   return (
     <nav className="bg-purple-800 border-b-4 border-purple-400">
       <div className="flex items-center justify-between px-4 h-16 max-w-3xl mx-auto">
-        <Link to="/">
-          <Logo />
-        </Link>
-        <Link to="/ask" className="text-white">
-          Ask
-        </Link>
+        <div>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </div>
+        <div>
+          <Link to="/ask" className="text-white">
+            Ask
+          </Link>
+          <Link to="/login" className="text-white ml-4">
+            Login
+          </Link>
+        </div>
       </div>
     </nav>
   );
