@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { EnvironmentPlugin } = require('webpack');
 const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production';
@@ -54,6 +55,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
+    }),
+    new EnvironmentPlugin({
+      NODE_ENV: 'development',
     }),
   ],
   devServer: {

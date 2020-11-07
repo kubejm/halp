@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { loginFormMutation } from '../../__generated__/loginFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
+import { useStore } from '../../store';
 
 export default function QuestionForm() {
   const { register, handleSubmit } = useForm();
@@ -13,7 +14,9 @@ export default function QuestionForm() {
       }
     }
   `);
+
   const history = useHistory();
+  const handleAuthentication = useStore((state) => state.handleAuthentication);
 
   const onSubmit = (values: Record<string, string>) => {
     commit({
@@ -24,6 +27,7 @@ export default function QuestionForm() {
         },
       },
       onCompleted() {
+        handleAuthentication();
         history.push('/');
       },
     });

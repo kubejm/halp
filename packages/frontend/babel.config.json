@@ -17,6 +17,7 @@
       {
         "artifactDirectory": "./src/__generated__"
       }
-    ]
+    ],
+    "@babel/plugin-proposal-class-properties"
   ]
 }
