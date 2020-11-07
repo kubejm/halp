@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { relayEnvironment } from './utils';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Layout } from './components';
 import { Ask, Home, Login } from './screens';
+import { useStore } from './store';
 
 export default function App() {
+  const handleAuthentication = useStore((state) => state.handleAuthentication);
+
+  useEffect(() => {
+    handleAuthentication();
+  });
+
   return (
     <RelayEnvironmentProvider environment={relayEnvironment}>
       <Router>

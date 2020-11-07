@@ -17,9 +17,9 @@ class Auth {
   }
 
   handleAuthentication() {
-    const token = String(this.getToken());
+    const token = this.getToken();
 
-    if (token) {
+    if (token !== undefined) {
       const decodedToken = decode(token) as DecodedToken;
       this.expiresAt = new Date(decodedToken.exp * 1000).getTime();
     }
