@@ -25,6 +25,10 @@ class Auth {
     }
   }
 
+  clear() {
+    this.expiresAt = -1;
+  }
+
   isAuthenticated() {
     const currentTime = new Date().getTime();
     return this.expiresAt > currentTime;
