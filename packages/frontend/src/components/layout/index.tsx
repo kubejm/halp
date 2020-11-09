@@ -15,6 +15,7 @@ function Logo() {
   );
 }
 
+// TODO: pull this into separate components?
 function Header() {
   const { isAuthenticated, logout } = useStore((state) => ({
     isAuthenticated: state.isAuthenticated,

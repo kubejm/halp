@@ -7,6 +7,7 @@ type State = {
   logout: () => void;
 };
 
+// TODO: log vs sign?
 export const useStore = create<State>((set) => ({
   isAuthenticated: auth.isAuthenticated(),
   handleAuthentication: () => {
@@ -20,3 +21,5 @@ export const useStore = create<State>((set) => ({
     set({ isAuthenticated: false });
   },
 }));
+
+// TODO: make this a utility module?
