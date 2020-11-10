@@ -16,8 +16,7 @@ class Auth {
     return token ? String(token) : undefined;
   }
 
-  // TODO: rename to login?
-  handleAuthentication() {
+  check() {
     const token = this.getToken();
 
     if (token !== undefined) {
@@ -26,8 +25,7 @@ class Auth {
     }
   }
 
-  // TODO: rename to logout?
-  clear() {
+  logout() {
     this.expiresAt = -1;
   }
 

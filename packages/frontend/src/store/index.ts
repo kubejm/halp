@@ -11,13 +11,13 @@ type State = {
 export const useStore = create<State>((set) => ({
   isAuthenticated: auth.isAuthenticated(),
   handleAuthentication: () => {
-    auth.handleAuthentication();
+    auth.check();
 
     const isAuthenticated = auth.isAuthenticated();
     set({ isAuthenticated });
   },
   logout: () => {
-    auth.clear();
+    auth.logout();
     set({ isAuthenticated: false });
   },
 }));
