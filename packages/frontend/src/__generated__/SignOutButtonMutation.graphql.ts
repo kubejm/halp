@@ -3,21 +3,21 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type layoutMutationVariables = {};
-export type layoutMutationResponse = {
+export type SignOutButtonMutationVariables = {};
+export type SignOutButtonMutationResponse = {
     readonly signOut: {
         readonly ok: boolean;
     };
 };
-export type layoutMutation = {
-    readonly response: layoutMutationResponse;
-    readonly variables: layoutMutationVariables;
+export type SignOutButtonMutation = {
+    readonly response: SignOutButtonMutationResponse;
+    readonly variables: SignOutButtonMutationVariables;
 };
 
 
 
 /*
-mutation layoutMutation {
+mutation SignOutButtonMutation {
   signOut {
     ok
   }
@@ -50,7 +50,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": [],
             "kind": "Fragment",
             "metadata": null,
-            "name": "layoutMutation",
+            "name": "SignOutButtonMutation",
             "selections": (v0 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
@@ -59,18 +59,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": [],
             "kind": "Operation",
-            "name": "layoutMutation",
+            "name": "SignOutButtonMutation",
             "selections": (v0 /*: any*/)
         },
         "params": {
-            "cacheID": "a3aaa45119dd71f0c8f3094613be5824",
+            "cacheID": "aaad5d0767a341362ee4a8ee42565a7e",
             "id": null,
             "metadata": {},
-            "name": "layoutMutation",
+            "name": "SignOutButtonMutation",
             "operationKind": "mutation",
-            "text": "mutation layoutMutation {\n  signOut {\n    ok\n  }\n}\n"
+            "text": "mutation SignOutButtonMutation {\n  signOut {\n    ok\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '25e95952dded7388137380c192955901';
+(node as any).hash = '092f8941b4769c2fd7d6b7cd5ed32d62';
 export default node;
