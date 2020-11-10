@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../../../store';
+import MenuLink from './MenuLink';
 import SignOutButton from './SignOutButton';
 
 function Logo() {
@@ -17,22 +18,12 @@ export default function MenuBar() {
   return (
     <nav className="bg-purple-800 border-b-4 border-purple-400">
       <div className="flex items-center justify-between px-4 h-16 max-w-3xl mx-auto">
+        <Link to="/">
+          <Logo />
+        </Link>
         <div>
-          <Link to="/">
-            <Logo />
-          </Link>
-        </div>
-        <div>
-          {isAuthenticated && (
-            <Link to="/ask" className="text-white">
-              Ask
-            </Link>
-          )}
-          {!isAuthenticated && (
-            <Link to="/login" className="text-white ml-4">
-              Login
-            </Link>
-          )}
+          {isAuthenticated && <MenuLink to="/ask" label="Ask" />}
+          {!isAuthenticated && <MenuLink to="/login" label="Login" />}
           {isAuthenticated && <SignOutButton />}
         </div>
       </div>
