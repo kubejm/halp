@@ -28,7 +28,7 @@ export default function MenuBar() {
 
   return (
     <button className="text-white ml-4" onClick={logOutHandler}>
-      Logout
+      Log Out
     </button>
   );
 }
