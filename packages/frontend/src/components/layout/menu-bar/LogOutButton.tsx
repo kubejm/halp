@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { LogOutButtonMutation } from '../../../__generated__/LogOutButtonMutation.graphql';
 
 export default function MenuBar() {
-  const { logOut } = useStore((state) => ({ logOut: state.logOut }));
+  const logOut = useStore((state) => state.logOut);
 
   const history = useHistory();
   const [commit] = useMutation<LogOutButtonMutation>(graphql`
@@ -16,7 +16,7 @@ export default function MenuBar() {
     }
   `);
 
-  async function logOutHandler() {
+  async function handleLogOut() {
     commit({
       variables: {},
       onCompleted() {
@@ -27,7 +27,7 @@ export default function MenuBar() {
   }
 
   return (
-    <button className="text-white ml-4" onClick={logOutHandler}>
+    <button className="text-white ml-4" onClick={handleLogOut}>
       Log Out
     </button>
   );
