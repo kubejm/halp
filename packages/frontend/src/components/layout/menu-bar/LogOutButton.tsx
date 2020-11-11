@@ -2,32 +2,32 @@ import React from 'react';
 import { useStore } from '../../../store';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { useHistory } from 'react-router-dom';
-import { SignOutButtonMutation } from '../../../__generated__/SignOutButtonMutation.graphql';
+import { LogOutButtonMutation } from '../../../__generated__/LogOutButtonMutation.graphql';
 
 export default function MenuBar() {
-  const { logout } = useStore((state) => ({ logout: state.logout }));
+  const { logOut } = useStore((state) => ({ logOut: state.logOut }));
 
   const history = useHistory();
-  const [commit] = useMutation<SignOutButtonMutation>(graphql`
-    mutation SignOutButtonMutation {
-      signOut {
+  const [commit] = useMutation<LogOutButtonMutation>(graphql`
+    mutation LogOutButtonMutation {
+      logOut {
         ok
       }
     }
   `);
 
-  async function signOut() {
+  async function logOutHandler() {
     commit({
       variables: {},
       onCompleted() {
-        logout();
+        logOut();
         history.push('/');
       },
     });
   }
 
   return (
-    <button className="text-white ml-4" onClick={signOut}>
+    <button className="text-white ml-4" onClick={logOutHandler}>
       Logout
     </button>
   );

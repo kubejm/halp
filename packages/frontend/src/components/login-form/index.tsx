@@ -5,11 +5,11 @@ import { loginFormMutation } from '../../__generated__/loginFormMutation.graphql
 import { useHistory } from 'react-router-dom';
 import { useStore } from '../../store';
 
-export default function QuestionForm() {
+export default function LoginForm() {
   const { register, handleSubmit } = useForm();
   const [commit, isInFlight] = useMutation<loginFormMutation>(graphql`
-    mutation loginFormMutation($input: SignInInput!) {
-      signIn(input: $input) {
+    mutation loginFormMutation($input: LogInInput!) {
+      logIn(input: $input) {
         ok
       }
     }

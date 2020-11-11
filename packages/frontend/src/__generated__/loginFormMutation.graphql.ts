@@ -3,15 +3,15 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type SignInInput = {
+export type LogInInput = {
     password: string;
     username: string;
 };
 export type loginFormMutationVariables = {
-    input: SignInInput;
+    input: LogInInput;
 };
 export type loginFormMutationResponse = {
-    readonly signIn: {
+    readonly logIn: {
         readonly ok: boolean;
     };
 };
@@ -24,9 +24,9 @@ export type loginFormMutation = {
 
 /*
 mutation loginFormMutation(
-  $input: SignInInput!
+  $input: LogInInput!
 ) {
-  signIn(input: $input) {
+  logIn(input: $input) {
     ok
   }
 }
@@ -51,7 +51,7 @@ const node: ConcreteRequest = (function () {
             ],
             "concreteType": "Result",
             "kind": "LinkedField",
-            "name": "signIn",
+            "name": "logIn",
             "plural": false,
             "selections": [
                 {
@@ -83,14 +83,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "335aa4fbf648ab1bbcd44cf0099ae6fd",
+            "cacheID": "d60220ddc46f814ca74aace358241412",
             "id": null,
             "metadata": {},
             "name": "loginFormMutation",
             "operationKind": "mutation",
-            "text": "mutation loginFormMutation(\n  $input: SignInInput!\n) {\n  signIn(input: $input) {\n    ok\n  }\n}\n"
+            "text": "mutation loginFormMutation(\n  $input: LogInInput!\n) {\n  logIn(input: $input) {\n    ok\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '6601f1adee7e28369cad0e3ff57bbcc3';
+(node as any).hash = 'd3a5b0d2bad5856f32853343567fd2e7';
 export default node;

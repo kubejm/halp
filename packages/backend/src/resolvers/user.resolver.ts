@@ -30,7 +30,7 @@ class SignUpInput {
 }
 
 @InputType()
-class SignInInput {
+class LogInInput {
   @Field()
   username!: string;
 
@@ -38,7 +38,6 @@ class SignInInput {
   password!: string;
 }
 
-//TODO: consider renaming these functions, "sign in" vs "log in"
 @Resolver(() => User)
 export class UserResolver {
   @Mutation(() => Result)
@@ -60,8 +59,8 @@ export class UserResolver {
   }
 
   @Mutation(() => Result)
-  async signIn(
-    @Arg('input') input: SignInInput,
+  async logIn(
+    @Arg('input') input: LogInInput,
     @Ctx() context: Context
   ): Promise<Result> {
     // TODO: abstract this out
@@ -100,7 +99,7 @@ export class UserResolver {
   }
 
   @Mutation(() => Result)
-  async signOut(@Ctx() context: Context): Promise<Result> {
+  async logOut(@Ctx() context: Context): Promise<Result> {
     // TODO: abstract this out
     context.ctx.cookies.set('token', '', {
       httpOnly: false,

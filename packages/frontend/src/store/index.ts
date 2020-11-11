@@ -4,10 +4,9 @@ import { auth } from '../utils';
 type State = {
   isAuthenticated: boolean;
   handleAuthentication: () => void;
-  logout: () => void;
+  logOut: () => void;
 };
 
-// TODO: log vs sign?
 export const useStore = create<State>((set) => ({
   isAuthenticated: auth.isAuthenticated(),
   handleAuthentication: () => {
@@ -16,8 +15,8 @@ export const useStore = create<State>((set) => ({
     const isAuthenticated = auth.isAuthenticated();
     set({ isAuthenticated });
   },
-  logout: () => {
-    auth.logout();
+  logOut: () => {
+    auth.logOut();
     set({ isAuthenticated: false });
   },
 }));
