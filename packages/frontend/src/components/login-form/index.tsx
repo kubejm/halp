@@ -16,7 +16,7 @@ export default function LoginForm() {
   `);
 
   const history = useHistory();
-  const handleAuthentication = useStore((state) => state.handleAuthentication);
+  const authenticate = useStore((state) => state.authenticate);
 
   const onSubmit = (values: Record<string, string>) => {
     commit({
@@ -27,7 +27,7 @@ export default function LoginForm() {
         },
       },
       onCompleted() {
-        handleAuthentication();
+        authenticate();
         history.push('/');
       },
     });

@@ -7,11 +7,10 @@ import { Ask, Home, Login } from './screens';
 import { useStore } from './store';
 
 export default function App() {
-  // TODO: better name for handleAuthentication?
-  const handleAuthentication = useStore((state) => state.handleAuthentication);
+  const authenticate = useStore((state) => state.authenticate);
 
   useEffect(() => {
-    handleAuthentication();
+    authenticate();
   });
 
   return (

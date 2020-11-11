@@ -16,7 +16,7 @@ class Auth {
     return token ? String(token) : undefined;
   }
 
-  check() {
+  authenticate() {
     const token = this.getToken();
 
     if (token !== undefined) {
