@@ -20,5 +20,3 @@ export const useStore = create<State>((set) => ({
     set({ isAuthenticated: false });
   },
 }));
-
-// TODO: make this a utility module?

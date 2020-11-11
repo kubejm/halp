@@ -11,9 +11,7 @@ function Logo() {
 }
 
 export default function MenuBar() {
-  const { isAuthenticated } = useStore((state) => ({
-    isAuthenticated: state.isAuthenticated,
-  }));
+  const isAuthenticated = useStore((state) => state.isAuthenticated);
 
   return (
     <nav className="bg-purple-800 border-b-4 border-purple-400">
