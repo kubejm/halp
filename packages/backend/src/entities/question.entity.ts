@@ -30,7 +30,9 @@ export class Question extends Base<Question> {
   createdAtRelative!: string;
 
   @Field()
-  excerpt!: string;
+  get excerpt(): string {
+    return this.body.length > 200 ? `${this.body.slice(0, 197)}...` : this.body;
+  }
 
   @Field()
   @Property()

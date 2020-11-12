@@ -40,11 +40,4 @@ export class QuestionResolver {
       addSuffix: true,
     })}`;
   }
-
-  @FieldResolver()
-  excerpt(@Root() question: Question) {
-    return question.body.length > 200
-      ? `${question.body.slice(0, 197)}...`
-      : question.body;
-  }
 }
