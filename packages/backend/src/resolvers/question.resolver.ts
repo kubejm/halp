@@ -7,7 +7,9 @@ import { Context } from '../types';
 export class QuestionResolver {
   @Query(() => [Question])
   questions(@Ctx() context: Context) {
-    return context.em.getRepository(Question).findAll();
+    return context.em.getRepository(Question).findAll({
+      populate: ['user'],
+    });
   }
 
   @Mutation(() => Question)
@@ -18,8 +20,7 @@ export class QuestionResolver {
     // TODO: error handling
     // TODO: clean this up
     const user = context.user;
-    const question = new Question(input);
-    question.user = user;
+    const question = new Question(input, user);
 
     await context.em.persist(question).flush();
     return question;

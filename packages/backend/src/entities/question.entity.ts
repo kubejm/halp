@@ -20,7 +20,7 @@ export class Question extends Base<Question> {
   answers: number = 0;
 
   @Field()
-  @ManyToOne()
+  @ManyToOne(() => User)
   user!: User;
 
   @Field()
@@ -55,7 +55,8 @@ export class Question extends Base<Question> {
   @Property()
   votes: number = 0;
 
-  constructor(input: QuestionValidator) {
+  constructor(input: QuestionValidator, user: User) {
     super(input);
+    this.user = user;
   }
 }
