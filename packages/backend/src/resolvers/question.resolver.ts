@@ -24,7 +24,12 @@ export class QuestionResolver {
     @Arg('input') input: QuestionValidator,
     @Ctx() context: Context
   ): Promise<Question> {
+    // TODO: error handling
+    // TODO: clean this up
+    const user = context.user;
     const question = new Question(input);
+    question.user = user;
+
     await context.em.persist(question).flush();
     return question;
   }

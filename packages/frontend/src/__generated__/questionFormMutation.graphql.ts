@@ -4,7 +4,6 @@
 
 import { ConcreteRequest } from "relay-runtime";
 export type QuestionValidator = {
-    author: string;
     body: string;
     question: string;
 };

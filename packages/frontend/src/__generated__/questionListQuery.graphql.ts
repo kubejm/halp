@@ -7,7 +7,6 @@ export type questionListQueryVariables = {};
 export type questionListQueryResponse = {
     readonly questions: ReadonlyArray<{
         readonly answers: number;
-        readonly author: string;
         readonly createdAtRelative: string;
         readonly excerpt: string;
         readonly id: string;
@@ -15,6 +14,9 @@ export type questionListQueryResponse = {
         readonly tags: ReadonlyArray<{
             readonly name: string;
         }>;
+        readonly user: {
+            readonly username: string;
+        };
         readonly views: number;
         readonly votes: number;
     }>;
@@ -30,13 +32,16 @@ export type questionListQuery = {
 query questionListQuery {
   questions {
     answers
-    author
     createdAtRelative
     excerpt
     id
     question
     tags {
       name
+      id
+    }
+    user {
+      username
       id
     }
     views
@@ -56,37 +61,37 @@ const node: ConcreteRequest = (function () {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "author",
+        "name": "createdAtRelative",
         "storageKey": null
     } as any), v2 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "createdAtRelative",
+        "name": "excerpt",
         "storageKey": null
     } as any), v3 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "excerpt",
+        "name": "id",
         "storageKey": null
     } as any), v4 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "id",
+        "name": "question",
         "storageKey": null
     } as any), v5 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "question",
+        "name": "name",
         "storageKey": null
     } as any), v6 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "name",
+        "name": "username",
         "storageKey": null
     } as any), v7 = ({
         "alias": null,
@@ -121,7 +126,6 @@ const node: ConcreteRequest = (function () {
                         (v2 /*: any*/),
                         (v3 /*: any*/),
                         (v4 /*: any*/),
-                        (v5 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -129,6 +133,18 @@ const node: ConcreteRequest = (function () {
                             "kind": "LinkedField",
                             "name": "tags",
                             "plural": true,
+                            "selections": [
+                                (v5 /*: any*/)
+                            ],
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "User",
+                            "kind": "LinkedField",
+                            "name": "user",
+                            "plural": false,
                             "selections": [
                                 (v6 /*: any*/)
                             ],
@@ -162,7 +178,6 @@ const node: ConcreteRequest = (function () {
                         (v2 /*: any*/),
                         (v3 /*: any*/),
                         (v4 /*: any*/),
-                        (v5 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -171,8 +186,21 @@ const node: ConcreteRequest = (function () {
                             "name": "tags",
                             "plural": true,
                             "selections": [
+                                (v5 /*: any*/),
+                                (v3 /*: any*/)
+                            ],
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "User",
+                            "kind": "LinkedField",
+                            "name": "user",
+                            "plural": false,
+                            "selections": [
                                 (v6 /*: any*/),
-                                (v4 /*: any*/)
+                                (v3 /*: any*/)
                             ],
                             "storageKey": null
                         },
@@ -184,14 +212,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "2cdf2a4d410ac76ba25fc1a27420c146",
+            "cacheID": "f8e5ae1c51064393a68fd51ce57d36de",
             "id": null,
             "metadata": {},
             "name": "questionListQuery",
             "operationKind": "query",
-            "text": "query questionListQuery {\n  questions {\n    answers\n    author\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    views\n    votes\n  }\n}\n"
+            "text": "query questionListQuery {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'ea337f8d113ab7ef58207087fa68d279';
+(node as any).hash = 'c8464147b31b91d31e45c50cabe062b7';
 export default node;

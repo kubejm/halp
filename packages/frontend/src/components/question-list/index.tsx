@@ -9,13 +9,15 @@ export default function QuestionList() {
       query questionListQuery {
         questions {
           answers
-          author
           createdAtRelative
           excerpt
           id
           question
           tags {
             name
+          }
+          user {
+            username
           }
           views
           votes
@@ -32,7 +34,7 @@ export default function QuestionList() {
           key={question.id}
           answers={question.answers}
           createdAtRelative={question.createdAtRelative}
-          author={question.author}
+          username={question.user.username}
           excerpt={question.excerpt}
           question={question.question}
           tags={question.tags}

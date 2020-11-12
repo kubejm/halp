@@ -6,7 +6,7 @@ interface Tag {
 
 interface Props {
   answers?: number;
-  author: string;
+  username: string;
   createdAtRelative: string;
   excerpt: string;
   question: string;
@@ -43,7 +43,7 @@ export default function QuestionSummary(props: Props) {
               asked {props.createdAtRelative}
             </div>
             <div className="text-gray-700 text-sm align-middle">
-              {props.author}
+              {props.username}
             </div>
           </div>
           <div className="flex flex-row items-start text-xs pb-2">

@@ -1,4 +1,4 @@
-import { Entity, Property } from '@mikro-orm/core';
+import { Collection, Entity, OneToMany, Property } from '@mikro-orm/core';
 import { Base } from './base.entity';
 import { Field, ObjectType } from 'type-graphql';
 

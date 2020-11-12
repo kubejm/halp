@@ -1,6 +1,6 @@
 [
   {
-    "author": "matt",
+    "username": "matt",
     "body": "I do not know how to use. How do I do it?",
     "question": "How do I git?",
     "tags": [
@@ -10,13 +10,13 @@
     ]
   },
   {
-    "author": "matt",
+    "username": "matt",
     "body": "I do not know how to use. How do I do it?",
     "question": "How do I git?",
     "tags": []
   },
   {
-    "author": "matt",
+    "username": "matt",
     "body": "There is a website. Technology stack is spring, springmvc, mybatis, freemarker and javascript. Some roles sign in the system to query info from db2 database. While some tables have sensitive info. We want to hide the info from some roles. For example: Some roles can see the full id: 1234234248789 Some roles can only see the partial id: XXXXXXXXX8789",
     "question": "How do I git?",
     "tags": []

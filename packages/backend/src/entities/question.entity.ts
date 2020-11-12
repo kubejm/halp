@@ -1,8 +1,15 @@
-import { Collection, Entity, ManyToMany, Property } from '@mikro-orm/core';
+import {
+  Collection,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  Property,
+} from '@mikro-orm/core';
 import { Field, ObjectType } from 'type-graphql';
 import { QuestionValidator } from '../validators';
 import { Base } from './base.entity';
 import { Tag } from './tag.entity';
+import { User } from './user.entity';
 
 @ObjectType()
 @Entity()
@@ -12,8 +19,8 @@ export class Question extends Base<Question> {
   answers: number = 0;
 
   @Field()
-  @Property()
-  author!: string;
+  @ManyToOne()
+  user!: User;
 
   @Field()
   @Property({ type: 'text' })

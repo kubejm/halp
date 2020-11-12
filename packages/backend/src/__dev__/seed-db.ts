@@ -8,7 +8,6 @@ async function seed() {
 
   for (const q of questions) {
     const question = new Question({
-      author: q.author,
       body: q.body,
       question: q.question,
     });

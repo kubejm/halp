@@ -5,10 +5,6 @@ import { IsString } from 'class-validator';
 export class QuestionValidator {
   @Field()
   @IsString()
-  author!: string;
-
-  @Field()
-  @IsString()
   body!: string;
 
   @Field()

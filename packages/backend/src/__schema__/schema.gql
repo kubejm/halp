@@ -26,7 +26,6 @@ type Query {
 
 type Question {
   answers: Float!
-  author: String!
   body: String!
   createdAt: DateTime!
   createdAtRelative: String!
@@ -35,12 +34,12 @@ type Question {
   question: String!
   tags: [Tag!]!
   updatedAt: DateTime!
+  user: User!
   views: Float!
   votes: Float!
 }
 
 input QuestionValidator {
-  author: String!
   body: String!
   question: String!
 }

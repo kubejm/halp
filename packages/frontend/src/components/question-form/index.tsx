@@ -19,7 +19,6 @@ export default function QuestionForm() {
     commit({
       variables: {
         input: {
-          author: 'matt', // TODO: introduce concept of user
           body: values.body,
           question: values.question,
         },
