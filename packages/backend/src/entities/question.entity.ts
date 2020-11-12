@@ -10,6 +10,7 @@ import { QuestionValidator } from '../validators';
 import { Base } from './base.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
+import { formatDistanceToNow } from 'date-fns';
 
 @ObjectType()
 @Entity()
@@ -27,7 +28,11 @@ export class Question extends Base<Question> {
   body!: string;
 
   @Field()
-  createdAtRelative!: string;
+  get createdAtRelative(): string {
+    return `${formatDistanceToNow(this.createdAt, {
+      addSuffix: true,
+    })}`;
+  }
 
   @Field()
   get excerpt(): string {
