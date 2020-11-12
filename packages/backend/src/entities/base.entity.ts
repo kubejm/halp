@@ -8,11 +8,9 @@ export class Base<T extends { id: string }> extends BaseEntity<T, 'id'> {
   @PrimaryKey({ type: 'uuid' })
   id: string = v4();
 
-  @Field()
   @Property()
   createdAt: Date = new Date();
 
-  @Field()
   @Property({ onUpdate: () => new Date() })
   updatedAt: Date = new Date();
 

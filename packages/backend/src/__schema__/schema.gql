@@ -3,11 +3,6 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-"""
-The javascript `Date` as string. Type represents date and time as the ISO Date string.
-"""
-scalar DateTime
-
 input LogInInput {
   password: String!
   username: String!
@@ -27,13 +22,11 @@ type Query {
 type Question {
   answers: Float!
   body: String!
-  createdAt: DateTime!
   createdAtRelative: String!
   excerpt: String!
   id: ID!
   question: String!
   tags: [Tag!]!
-  updatedAt: DateTime!
   user: User!
   views: Float!
   votes: Float!
@@ -55,11 +48,9 @@ input SignUpInput {
 }
 
 type Tag {
-  createdAt: DateTime!
   id: ID!
   name: String!
   questions: [Question!]!
-  updatedAt: DateTime!
 }
 
 input TagValidator {
@@ -67,9 +58,7 @@ input TagValidator {
 }
 
 type User {
-  createdAt: DateTime!
   email: String!
   id: ID!
-  updatedAt: DateTime!
   username: String!
 }
