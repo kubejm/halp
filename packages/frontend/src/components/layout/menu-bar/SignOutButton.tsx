@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { SignOutButtonMutation } from '../../../__generated__/SignOutButtonMutation.graphql';
 
 export default function MenuBar() {
-  const logOut = useStore((state) => state.logOut);
+  const signOut = useStore((state) => state.signOut);
 
   const history = useHistory();
   const [commit] = useMutation<SignOutButtonMutation>(graphql`
@@ -20,7 +20,7 @@ export default function MenuBar() {
     commit({
       variables: {},
       onCompleted() {
-        logOut();
+        signOut();
         history.push('/');
       },
     });

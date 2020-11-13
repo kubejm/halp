@@ -4,7 +4,7 @@ import { auth } from '../utils';
 type State = {
   isAuthenticated: boolean;
   authenticate: () => void;
-  logOut: () => void;
+  signOut: () => void;
 };
 
 export const useStore = create<State>((set) => ({
@@ -15,8 +15,8 @@ export const useStore = create<State>((set) => ({
     const isAuthenticated = auth.isAuthenticated();
     set({ isAuthenticated });
   },
-  logOut: () => {
-    auth.logOut();
+  signOut: () => {
+    auth.signOut();
     set({ isAuthenticated: false });
   },
 }));

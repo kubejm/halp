@@ -25,7 +25,7 @@ class Auth {
     }
   }
 
-  logOut() {
+  signOut() {
     this.expiresAt = -1;
   }
 
