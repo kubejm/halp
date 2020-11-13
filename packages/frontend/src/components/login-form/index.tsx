@@ -8,8 +8,8 @@ import { useStore } from '../../store';
 export default function LoginForm() {
   const { register, handleSubmit } = useForm();
   const [commit, isInFlight] = useMutation<loginFormMutation>(graphql`
-    mutation loginFormMutation($input: LogInInput!) {
-      logIn(input: $input) {
+    mutation loginFormMutation($input: SignInInput!) {
+      signIn(input: $input) {
         ok
       }
     }

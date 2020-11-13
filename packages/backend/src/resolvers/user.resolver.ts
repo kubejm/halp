@@ -30,7 +30,7 @@ class SignUpInput {
 }
 
 @InputType()
-class LogInInput {
+class SignInInput {
   @Field()
   username!: string;
 
@@ -59,8 +59,8 @@ export class UserResolver {
   }
 
   @Mutation(() => Result)
-  async logIn(
-    @Arg('input') input: LogInInput,
+  async signIn(
+    @Arg('input') input: SignInInput,
     @Ctx() context: Context
   ): Promise<Result> {
     // TODO: abstract this out
@@ -99,7 +99,7 @@ export class UserResolver {
   }
 
   @Mutation(() => Result)
-  async logOut(@Ctx() context: Context): Promise<Result> {
+  async signOut(@Ctx() context: Context): Promise<Result> {
     // TODO: abstract this out
     context.ctx.cookies.set('token', '', {
       httpOnly: false,

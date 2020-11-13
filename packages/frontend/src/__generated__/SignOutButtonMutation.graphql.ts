@@ -3,22 +3,22 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type LogOutButtonMutationVariables = {};
-export type LogOutButtonMutationResponse = {
-    readonly logOut: {
+export type SignOutButtonMutationVariables = {};
+export type SignOutButtonMutationResponse = {
+    readonly signOut: {
         readonly ok: boolean;
     };
 };
-export type LogOutButtonMutation = {
-    readonly response: LogOutButtonMutationResponse;
-    readonly variables: LogOutButtonMutationVariables;
+export type SignOutButtonMutation = {
+    readonly response: SignOutButtonMutationResponse;
+    readonly variables: SignOutButtonMutationVariables;
 };
 
 
 
 /*
-mutation LogOutButtonMutation {
-  logOut {
+mutation SignOutButtonMutation {
+  signOut {
     ok
   }
 }
@@ -31,7 +31,7 @@ const node: ConcreteRequest = (function () {
             "args": null,
             "concreteType": "Result",
             "kind": "LinkedField",
-            "name": "logOut",
+            "name": "signOut",
             "plural": false,
             "selections": [
                 {
@@ -50,7 +50,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": [],
             "kind": "Fragment",
             "metadata": null,
-            "name": "LogOutButtonMutation",
+            "name": "SignOutButtonMutation",
             "selections": (v0 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
@@ -59,18 +59,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": [],
             "kind": "Operation",
-            "name": "LogOutButtonMutation",
+            "name": "SignOutButtonMutation",
             "selections": (v0 /*: any*/)
         },
         "params": {
-            "cacheID": "17ced9f70761257df856e57f66b53cec",
+            "cacheID": "aaad5d0767a341362ee4a8ee42565a7e",
             "id": null,
             "metadata": {},
-            "name": "LogOutButtonMutation",
+            "name": "SignOutButtonMutation",
             "operationKind": "mutation",
-            "text": "mutation LogOutButtonMutation {\n  logOut {\n    ok\n  }\n}\n"
+            "text": "mutation SignOutButtonMutation {\n  signOut {\n    ok\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '1363c33cd3142dd6f561a249c2673dae';
+(node as any).hash = '092f8941b4769c2fd7d6b7cd5ed32d62';
 export default node;

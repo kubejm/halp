@@ -3,15 +3,10 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
-input LogInInput {
-  password: String!
-  username: String!
-}
-
 type Mutation {
   addQuestion(input: QuestionValidator!): Question!
-  logIn(input: LogInInput!): Result!
-  logOut: Result!
+  signIn(input: SignInInput!): Result!
+  signOut: Result!
   signUp(input: SignUpInput!): Result!
 }
 
@@ -39,6 +34,11 @@ input QuestionValidator {
 
 type Result {
   ok: Boolean!
+}
+
+input SignInInput {
+  password: String!
+  username: String!
 }
 
 input SignUpInput {
