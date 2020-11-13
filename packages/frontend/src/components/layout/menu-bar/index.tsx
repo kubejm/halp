@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useStore } from '../../../store';
 import MenuLink from './MenuLink';
 import SignOutButton from './SignOutButton';
+import UserDropDown from './UserDropDown';
 
 function Logo() {
   return (
@@ -23,6 +24,7 @@ export default function MenuBar() {
           {isAuthenticated && <MenuLink to="/ask" label="Ask" />}
           {!isAuthenticated && <MenuLink to="/sign-in" label="Sign In" />}
           {isAuthenticated && <SignOutButton />}
+          {isAuthenticated && <UserDropDown />}
         </div>
       </div>
     </nav>
