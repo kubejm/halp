@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useToggle } from '../../../hooks';
 import SignOutButton from './SignOutButton';
+import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
+import { UserDropDownQuery } from '../../../__generated__/UserDropDownQuery.graphql';
 
 const variants = {
   open: { opacity: 1 },
@@ -10,6 +12,17 @@ const variants = {
 
 // TODO: clean up css
 export default function UserDropDown() {
+  const data = useLazyLoadQuery<UserDropDownQuery>(
+    graphql`
+      query UserDropDownQuery {
+        profile {
+          username
+        }
+      }
+    `,
+    {}
+  );
+
   const [isOpen, toggleOpen] = useToggle();
 
   return (
@@ -21,7 +34,7 @@ export default function UserDropDown() {
             (toggleOpen as () => void)();
           }}
         >
-          Matt
+          {data.profile.username}
         </button>
         <motion.div
           variants={variants}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../../../store';
 import MenuLink from './MenuLink';
@@ -20,10 +20,12 @@ export default function MenuBar() {
           <Logo />
         </Link>
         <div>
-          {isAuthenticated && <MenuLink to="/ask" label="Ask" />}
-          {!isAuthenticated && <MenuLink to="/sign-in" label="Sign In" />}
-          {!isAuthenticated && <MenuLink to="/sign-up" label="Sign Up" />}
-          {isAuthenticated && <UserDropDown />}
+          <Suspense fallback={null}>
+            {isAuthenticated && <MenuLink to="/ask" label="Ask" />}
+            {!isAuthenticated && <MenuLink to="/sign-in" label="Sign In" />}
+            {!isAuthenticated && <MenuLink to="/sign-up" label="Sign Up" />}
+            {isAuthenticated && <UserDropDown />}
+          </Suspense>
         </div>
       </div>
     </nav>
