@@ -5,6 +5,7 @@ import {
   InputType,
   Mutation,
   ObjectType,
+  Query,
   Resolver,
 } from 'type-graphql';
 import { User } from '../entities';
@@ -40,6 +41,11 @@ class SignInInput {
 
 @Resolver(() => User)
 export class UserResolver {
+  @Query(() => User)
+  async profile(@Ctx() context: Context): Promise<User> {
+    return context.user;
+  }
+
   @Mutation(() => Result)
   async signUp(
     @Arg('input') input: SignUpInput,

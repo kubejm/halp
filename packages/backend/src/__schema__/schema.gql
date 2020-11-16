@@ -11,6 +11,7 @@ type Mutation {
 }
 
 type Query {
+  profile: User!
   questions: [Question!]!
 }
 
