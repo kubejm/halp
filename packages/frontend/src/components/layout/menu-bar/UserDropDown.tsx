@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useToggle } from '../../../hooks';
+import SignOutButton from './SignOutButton';
 
 const variants = {
   open: { opacity: 1 },
   closed: { opacity: 0 },
 };
 
+// TODO: clean up css
 export default function UserDropDown() {
   const [isOpen, toggleOpen] = useToggle();
 
@@ -23,9 +25,9 @@ export default function UserDropDown() {
         </button>
         <motion.div
           variants={variants}
-          className="absolute mt-6 z-10 mt-0 bg-purple-700 text-white text-sm w-24 p-3 border-b-4 border-l-4 border-r-4 border-purple-400"
+          className="absolute mt-6 z-10 mt-0 bg-purple-700 text-white text-sm w-32 p-3 border-b-4 border-l-4 border-r-4 border-purple-400"
         >
-          Sign Out
+          <SignOutButton />
         </motion.div>
       </motion.nav>
     </div>
