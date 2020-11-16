@@ -7,23 +7,23 @@ export type SignInInput = {
     password: string;
     username: string;
 };
-export type loginFormMutationVariables = {
+export type signInFormMutationVariables = {
     input: SignInInput;
 };
-export type loginFormMutationResponse = {
+export type signInFormMutationResponse = {
     readonly signIn: {
         readonly ok: boolean;
     };
 };
-export type loginFormMutation = {
-    readonly response: loginFormMutationResponse;
-    readonly variables: loginFormMutationVariables;
+export type signInFormMutation = {
+    readonly response: signInFormMutationResponse;
+    readonly variables: signInFormMutationVariables;
 };
 
 
 
 /*
-mutation loginFormMutation(
+mutation signInFormMutation(
   $input: SignInInput!
 ) {
   signIn(input: $input) {
@@ -70,7 +70,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "loginFormMutation",
+            "name": "signInFormMutation",
             "selections": (v1 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
@@ -79,18 +79,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "loginFormMutation",
+            "name": "signInFormMutation",
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "335aa4fbf648ab1bbcd44cf0099ae6fd",
+            "cacheID": "29c390e1d1aebfb0b22b4f3e813b467b",
             "id": null,
             "metadata": {},
-            "name": "loginFormMutation",
+            "name": "signInFormMutation",
             "operationKind": "mutation",
-            "text": "mutation loginFormMutation(\n  $input: SignInInput!\n) {\n  signIn(input: $input) {\n    ok\n  }\n}\n"
+            "text": "mutation signInFormMutation(\n  $input: SignInInput!\n) {\n  signIn(input: $input) {\n    ok\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '6601f1adee7e28369cad0e3ff57bbcc3';
+(node as any).hash = '3254fd620f7ba2c799425e0eb979294c';
 export default node;

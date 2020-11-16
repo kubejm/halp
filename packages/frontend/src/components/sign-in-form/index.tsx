@@ -1,14 +1,14 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { loginFormMutation } from '../../__generated__/loginFormMutation.graphql';
+import { signInFormMutation } from '../../__generated__/signInFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
 import { useStore } from '../../store';
 
 export default function SignInForm() {
   const { register, handleSubmit } = useForm();
-  const [commit, isInFlight] = useMutation<loginFormMutation>(graphql`
-    mutation loginFormMutation($input: SignInInput!) {
+  const [commit, isInFlight] = useMutation<signInFormMutation>(graphql`
+    mutation signInFormMutation($input: SignInInput!) {
       signIn(input: $input) {
         ok
       }
