@@ -22,6 +22,7 @@ export default function MenuBar() {
         <div>
           {isAuthenticated && <MenuLink to="/ask" label="Ask" />}
           {!isAuthenticated && <MenuLink to="/sign-in" label="Sign In" />}
+          {!isAuthenticated && <MenuLink to="/sign-up" label="Sign Up" />}
           {isAuthenticated && <UserDropDown />}
         </div>
       </div>

@@ -3,7 +3,7 @@ import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { relayEnvironment } from './utils';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Layout } from './components';
-import { Ask, Home, SignIn } from './screens';
+import { Ask, Home, SignIn, SignUp } from './screens';
 import { useStore } from './store';
 
 export default function App() {
@@ -20,6 +20,7 @@ export default function App() {
           <Route exact path="/" component={Home} />
           <Route path="/ask" component={Ask} />
           <Route path="/sign-in" component={SignIn} />
+          <Route path="/sign-up" component={SignUp} />
         </Layout>
       </Router>
     </RelayEnvironmentProvider>
