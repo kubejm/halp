@@ -63,7 +63,7 @@ export default function SignInForm() {
             </div>
             <input
               type="submit"
-              value="Log In"
+              value="Sign In"
               className="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold p-3 cursor-pointer"
               disabled={isInFlight}
             />
