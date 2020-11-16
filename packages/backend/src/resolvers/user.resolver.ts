@@ -11,6 +11,7 @@ import {
 import { User } from '../entities';
 import { Context } from '../types';
 import jwt from 'jsonwebtoken';
+import { userService } from '../services';
 
 @ObjectType()
 class Result {
@@ -43,7 +44,8 @@ class SignInInput {
 export class UserResolver {
   @Query(() => User)
   async profile(@Ctx() context: Context): Promise<User> {
-    return context.user;
+    // TODO: rename this to getUser instead of getProfile?
+    return userService.getProfile(context);
   }
 
   @Mutation(() => Result)
@@ -126,12 +128,8 @@ export class UserResolver {
 
   @Mutation(() => Result)
   async signOut(@Ctx() context: Context): Promise<Result> {
-    // TODO: abstract this out
-    context.ctx.cookies.set('token', '', {
-      httpOnly: false,
-      secure: false,
-    });
-
+    // TODO: return value for signOut?
+    userService.signOut(context);
     return new Result();
   }
 }
