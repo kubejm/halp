@@ -54,10 +54,6 @@ type Tag {
   questions: [Question!]!
 }
 
-input TagValidator {
-  name: String!
-}
-
 type User {
   email: String!
   id: ID!
