@@ -91,38 +91,8 @@ export class UserResolver {
     @Arg('input') input: SignInInput,
     @Ctx() context: Context
   ): Promise<Result> {
-    // TODO: abstract this out
-    const userRepository = context.em.getRepository(User);
-    const user = await userRepository.findOne({
-      username: input.username,
-    });
-
-    if (user === null) {
-      throw new Error('user not found');
-    }
-
-    // TODO: make this more secure
-    if (user.passwordHash !== input.password) {
-      throw new Error('incorrect password');
-    }
-
-    const token = jwt.sign(
-      {
-        roles: ['user'],
-      },
-      'topsecret',
-      {
-        algorithm: 'HS256',
-        subject: user.id,
-        expiresIn: '1d',
-      }
-    );
-
-    context.ctx.cookies.set('token', token, {
-      httpOnly: false,
-      secure: false,
-    });
-
+    // TODO: return value for signIn?
+    await userService.signIn(input.username, input.password, context);
     return new Result();
   }
 
