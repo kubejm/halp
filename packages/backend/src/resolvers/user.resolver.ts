@@ -53,36 +53,7 @@ export class UserResolver {
     @Arg('input') input: SignUpInput,
     @Ctx() context: Context
   ): Promise<Result> {
-    // TODO: abstract this out
-    const user = new User();
-    user.username = input.username;
-    user.email = input.email;
-
-    // TODO: do not create users with the same name or email
-
-    // TODO: make this more secure
-    user.passwordHash = input.password;
-
-    await context.em.persist(user).flush();
-
-    // TODO: duplication with signIn
-    const token = jwt.sign(
-      {
-        roles: ['user'],
-      },
-      'topsecret',
-      {
-        algorithm: 'HS256',
-        subject: user.id,
-        expiresIn: '1d',
-      }
-    );
-
-    context.ctx.cookies.set('token', token, {
-      httpOnly: false,
-      secure: false,
-    });
-
+    await userService.signUp(input, context);
     return new Result();
   }
 

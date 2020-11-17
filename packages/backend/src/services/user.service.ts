@@ -6,6 +6,41 @@ export function getProfile(context: Context) {
   return context.user;
 }
 
+export interface SignUpInput {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export async function signUp(input: SignUpInput, context: Context) {
+  // TODO: do not create users with the same name or email
+  const user = Object.assign(new User(), {
+    username: input.username,
+    email: input.email,
+    passwordHash: input.password,
+  });
+
+  await context.em.persist(user).flush();
+
+  // TODO: duplication with signIn
+  const token = jwt.sign(
+    {
+      roles: ['user'],
+    },
+    'topsecret',
+    {
+      algorithm: 'HS256',
+      subject: user.id,
+      expiresIn: '1d',
+    }
+  );
+
+  context.ctx.cookies.set('token', token, {
+    httpOnly: false,
+    secure: false,
+  });
+}
+
 export async function signIn(
   username: string,
   password: string,
