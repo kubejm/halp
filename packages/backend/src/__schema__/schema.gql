@@ -3,8 +3,13 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+input AddQuestionInput {
+  body: String!
+  question: String!
+}
+
 type Mutation {
-  addQuestion(input: QuestionValidator!): Question!
+  addQuestion(input: AddQuestionInput!): Question!
   signIn(input: SignInInput!): Result!
   signOut: Result!
   signUp(input: SignUpInput!): Result!
@@ -26,11 +31,6 @@ type Question {
   user: User!
   views: Float!
   votes: Float!
-}
-
-input QuestionValidator {
-  body: String!
-  question: String!
 }
 
 type Result {

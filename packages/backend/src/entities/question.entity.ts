@@ -6,7 +6,6 @@ import {
   Property,
 } from '@mikro-orm/core';
 import { Field, ObjectType } from 'type-graphql';
-import { QuestionValidator } from '../validators';
 import { Base } from './base.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
@@ -54,9 +53,4 @@ export class Question extends Base<Question> {
   @Field()
   @Property()
   votes: number = 0;
-
-  constructor(input: QuestionValidator, user: User) {
-    super(input);
-    this.user = user;
-  }
 }

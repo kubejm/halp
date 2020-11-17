@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 export default function QuestionForm() {
   const { register, handleSubmit } = useForm();
   const [commit, isInFlight] = useMutation<questionFormMutation>(graphql`
-    mutation questionFormMutation($input: QuestionValidator!) {
+    mutation questionFormMutation($input: AddQuestionInput!) {
       addQuestion(input: $input) {
         id
       }

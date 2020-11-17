@@ -1,5 +1,4 @@
 import { Question } from '../entities';
-import { QuestionValidator } from '../validators';
 import { Context } from '../types';
 
 export function getAllQuestions(context: Context) {
@@ -8,11 +7,12 @@ export function getAllQuestions(context: Context) {
   });
 }
 
-export async function addQuestion(input: QuestionValidator, context: Context) {
+export async function addQuestion(input: Question, context: Context) {
   // TODO: error handling
-  // TODO: clean this up
   const user = context.user;
-  const question = new Question(input, user);
+  const question = Object.assign(input, {
+    user,
+  });
 
   await context.em.persist(question).flush();
   return question;

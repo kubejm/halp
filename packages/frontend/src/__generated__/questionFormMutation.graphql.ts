@@ -3,12 +3,12 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type QuestionValidator = {
+export type AddQuestionInput = {
     body: string;
     question: string;
 };
 export type questionFormMutationVariables = {
-    input: QuestionValidator;
+    input: AddQuestionInput;
 };
 export type questionFormMutationResponse = {
     readonly addQuestion: {
@@ -24,7 +24,7 @@ export type questionFormMutation = {
 
 /*
 mutation questionFormMutation(
-  $input: QuestionValidator!
+  $input: AddQuestionInput!
 ) {
   addQuestion(input: $input) {
     id
@@ -83,14 +83,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "843eab46be7eb1e360d1475ea4921042",
+            "cacheID": "513f1f39249cfb1f6d9546bbf2d5c9aa",
             "id": null,
             "metadata": {},
             "name": "questionFormMutation",
             "operationKind": "mutation",
-            "text": "mutation questionFormMutation(\n  $input: QuestionValidator!\n) {\n  addQuestion(input: $input) {\n    id\n  }\n}\n"
+            "text": "mutation questionFormMutation(\n  $input: AddQuestionInput!\n) {\n  addQuestion(input: $input) {\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '053628d9edce48d48179ed0439fa93eb';
+(node as any).hash = '64e4f151306a4dd57794a48ac081b2da';
 export default node;
