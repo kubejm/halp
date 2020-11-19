@@ -43,7 +43,6 @@ class SignInInput {
 export class UserResolver {
   @Query(() => User)
   async profile(@Ctx() context: Context): Promise<User> {
-    // TODO: rename this to getUser instead of getProfile?
     return userService.getProfile(context);
   }
 
