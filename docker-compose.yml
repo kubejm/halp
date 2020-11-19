@@ -21,6 +21,11 @@ services:
     image: node:14.12.0
     expose:
       - 4000
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: halp
     command: yarn workspace backend dev
     volumes:
       - .:/opt/app/backend:rw
