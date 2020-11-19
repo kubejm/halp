@@ -10,7 +10,6 @@ import {
 } from 'type-graphql';
 import { User } from '../entities';
 import { Context } from '../types';
-import jwt from 'jsonwebtoken';
 import { userService } from '../services';
 
 @ObjectType()
