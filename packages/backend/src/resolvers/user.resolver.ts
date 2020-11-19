@@ -60,14 +60,12 @@ export class UserResolver {
     @Arg('input') input: SignInInput,
     @Ctx() context: Context
   ): Promise<Result> {
-    // TODO: return value for signIn?
     await userService.signIn(input.username, input.password, context);
     return new Result();
   }
 
   @Mutation(() => Result)
   async signOut(@Ctx() context: Context): Promise<Result> {
-    // TODO: return value for signOut?
     userService.signOut(context);
     return new Result();
   }
