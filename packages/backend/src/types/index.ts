@@ -6,7 +6,7 @@ import { User } from '../entities';
 export interface Context {
   ctx: KoaContext;
   em: EntityManager<IDatabaseDriver<Connection>>;
-  user: User;
+  user: User | null;
 }
 
 export type jwtPayload = {

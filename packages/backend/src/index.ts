@@ -5,9 +5,7 @@ import { buildSchema } from 'type-graphql';
 import { MikroORM, RequestContext } from '@mikro-orm/core';
 import ormConfig from './orm.config';
 import path from 'path';
-import jwt from 'jsonwebtoken';
-import { User } from './entities';
-import { jwtPayload } from './types';
+import { initializeContext } from './utils';
 
 async function main() {
   const isProduction = process.env.NODE_ENV === 'production';
@@ -22,21 +20,7 @@ async function main() {
 
   const server = new ApolloServer({
     schema,
-    context: async ({ ctx }) => {
-      // TODO: abstract this out
-      const token = ctx.cookies.get('token');
-      const payload = jwt.decode(token) as jwtPayload;
-      const userRepository = orm.em.getRepository(User);
-      const user = await userRepository.findOne({
-        id: payload?.sub,
-      });
-
-      return {
-        ctx,
-        em: orm.em,
-        user,
-      };
-    },
+    context: initializeContext(orm),
   });
 
   const app = new Koa();
