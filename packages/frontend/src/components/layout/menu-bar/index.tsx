@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { useStore } from '../../../store';
-import MenuLink from './MenuLink';
-import UserDropDown from './UserDropDown';
+import AuthenticatedMenu from './authenticated-menu';
+import UnauthenticatedMenu from './unauthenticated-menu';
 
 function Logo() {
   return (
@@ -19,14 +19,10 @@ export default function MenuBar() {
         <Link to="/">
           <Logo />
         </Link>
-        <div>
-          <Suspense fallback={null}>
-            {isAuthenticated && <MenuLink to="/ask" label="Ask" />}
-            {!isAuthenticated && <MenuLink to="/sign-in" label="Sign In" />}
-            {!isAuthenticated && <MenuLink to="/sign-up" label="Sign Up" />}
-            {isAuthenticated && <UserDropDown />}
-          </Suspense>
-        </div>
+        <Suspense fallback={null}>
+          {isAuthenticated && <AuthenticatedMenu />}
+          {!isAuthenticated && <UnauthenticatedMenu />}
+        </Suspense>
       </div>
     </nav>
   );
