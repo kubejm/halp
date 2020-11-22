@@ -1,3 +1,4 @@
+export { default as AuthenticatedRoute } from './authenticated-route';
 export { default as Layout } from './layout';
 export { default as SignInForm } from './sign-in-form';
 export { default as SignUpForm } from './sign-up-form';
