@@ -24,6 +24,25 @@ function DropDownDivider() {
   return <div className="border border-b-1"></div>;
 }
 
+function UserIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      className="h-4 w-4 inline-block"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+      />
+    </svg>
+  );
+}
+
 export default function UserDropDown() {
   const data = useLazyLoadQuery<userDropDownQuery>(
     graphql`
@@ -42,12 +61,12 @@ export default function UserDropDown() {
     <div className="inline-block relative">
       <motion.nav animate={isOpen ? 'open' : 'closed'} initial={false}>
         <button
-          className="w-8 h-8 rounded-full items-center bg-purple-400 text-white focus:outline-none"
+          className="w-8 h-8 rounded-full bg-purple-400 text-white focus:outline-none"
           onClick={(_) => {
             (toggleOpen as () => void)();
           }}
         >
-          A
+          <UserIcon />
         </button>
         <motion.div
           variants={variants}
