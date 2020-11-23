@@ -13,6 +13,7 @@ export default function App() {
     authenticate();
   });
 
+  // TODO: prevent authenticated users from going to sign in and sign up
   return (
     <RelayEnvironmentProvider environment={relayEnvironment}>
       <Router>
