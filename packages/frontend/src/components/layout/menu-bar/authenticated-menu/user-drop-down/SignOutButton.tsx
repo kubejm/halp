@@ -1,8 +1,8 @@
 import React from 'react';
-import { useStore } from '../../../store';
+import { useStore } from '../../../../../store';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { useHistory } from 'react-router-dom';
-import { SignOutButtonMutation } from '../../../__generated__/SignOutButtonMutation.graphql';
+import { SignOutButtonMutation } from '../../../../../__generated__/SignOutButtonMutation.graphql';
 
 export default function MenuBar() {
   const signOut = useStore((state) => state.signOut);

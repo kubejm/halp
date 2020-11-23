@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useToggle } from '../../../hooks';
+import { useToggle } from '../../../../../hooks';
 import SignOutButton from './SignOutButton';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
-import { UserDropDownQuery } from '../../../__generated__/UserDropDownQuery.graphql';
+import { userDropDownQuery } from '../../../../../__generated__/userDropDownQuery.graphql';
 
 const variants = {
   open: { opacity: 1 },
@@ -13,9 +13,9 @@ const variants = {
 // TODO: clean up css
 // TODO: fix styling of drop down
 export default function UserDropDown() {
-  const data = useLazyLoadQuery<UserDropDownQuery>(
+  const data = useLazyLoadQuery<userDropDownQuery>(
     graphql`
-      query UserDropDownQuery {
+      query userDropDownQuery {
         profile {
           username
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import MenuLink from './MenuLink';
-import UserDropDown from '../UserDropDown';
+import UserDropDown from './user-drop-down';
 
 export default function AuthenticatedMenu() {
   return (

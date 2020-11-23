@@ -3,21 +3,21 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type UserDropDownQueryVariables = {};
-export type UserDropDownQueryResponse = {
+export type userDropDownQueryVariables = {};
+export type userDropDownQueryResponse = {
     readonly profile: {
         readonly username: string;
     };
 };
-export type UserDropDownQuery = {
-    readonly response: UserDropDownQueryResponse;
-    readonly variables: UserDropDownQueryVariables;
+export type userDropDownQuery = {
+    readonly response: userDropDownQueryResponse;
+    readonly variables: userDropDownQueryVariables;
 };
 
 
 
 /*
-query UserDropDownQuery {
+query userDropDownQuery {
   profile {
     username
     id
@@ -38,7 +38,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": [],
             "kind": "Fragment",
             "metadata": null,
-            "name": "UserDropDownQuery",
+            "name": "userDropDownQuery",
             "selections": [
                 {
                     "alias": null,
@@ -60,7 +60,7 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": [],
             "kind": "Operation",
-            "name": "UserDropDownQuery",
+            "name": "userDropDownQuery",
             "selections": [
                 {
                     "alias": null,
@@ -84,14 +84,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "22bc0076702b9b953f4db857b56d6765",
+            "cacheID": "a7dbb40800dc0b6629f8d813d902d107",
             "id": null,
             "metadata": {},
-            "name": "UserDropDownQuery",
+            "name": "userDropDownQuery",
             "operationKind": "query",
-            "text": "query UserDropDownQuery {\n  profile {\n    username\n    id\n  }\n}\n"
+            "text": "query userDropDownQuery {\n  profile {\n    username\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'a591c0eaaee1ae21e5048589431a522b';
+(node as any).hash = '42c8e21a8f8797c7ec38c48aa1cd765a';
 export default node;
