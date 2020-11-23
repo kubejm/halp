@@ -1,15 +1,43 @@
 import React from 'react';
-import { Route, RouteProps, Redirect } from 'react-router-dom';
+import {
+  Route,
+  RouteComponentProps,
+  RouteProps,
+  Redirect,
+} from 'react-router-dom';
 import { auth } from '../../utils';
 
-export default function AuthenticatedRoute(props: RouteProps) {
+interface AuthenticatedComponentProps extends RouteComponentProps {
+  component?: React.ComponentType<any>;
+}
+
+function AuthenticatedComponent({
+  component: Component,
+}: AuthenticatedComponentProps) {
   const isAuthenticated = auth.isAuthenticated();
 
   if (!isAuthenticated) {
     return <Redirect to="/sign-in" />;
   }
 
-  console.log(props);
+  if (!Component) {
+    return null;
+  }
 
-  return <Route {...props} />;
+  return <Component />;
+}
+
+export default function AuthenticatedRoute({ component, ...rest }: RouteProps) {
+  return (
+    <Route
+      {...rest}
+      render={(props) => (
+        <AuthenticatedComponent
+          key={props.match.params.id || 'empty'}
+          component={component}
+          {...props}
+        />
+      )}
+    />
+  );
 }
