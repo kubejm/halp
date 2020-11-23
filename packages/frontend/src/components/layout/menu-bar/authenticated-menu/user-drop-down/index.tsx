@@ -10,8 +10,6 @@ const variants = {
   closed: { opacity: 0 },
 };
 
-// TODO: clean up css
-// TODO: fix styling of drop down
 export default function UserDropDown() {
   const data = useLazyLoadQuery<userDropDownQuery>(
     graphql`
@@ -39,10 +37,15 @@ export default function UserDropDown() {
         </button>
         <motion.div
           variants={variants}
-          className="absolute -left-20 z-10 bg-gray-50 text-black text-sm w-32 p-3 border-2 rounded"
+          className="absolute -left-20 z-10 bg-white text-black text-sm w-32 px-4 border-2 rounded"
         >
-          <div>{data.profile.username}</div>
-          <SignOutButton />
+          <div className="px-2 py-2 text-center font-bold">
+            {data.profile.username}
+          </div>
+          <div className="border border-b-1"></div>
+          <div className="px-2 py-2">
+            <SignOutButton />
+          </div>
         </motion.div>
       </motion.nav>
     </div>
