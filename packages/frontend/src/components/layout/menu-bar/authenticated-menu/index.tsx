@@ -4,9 +4,9 @@ import UserDropDown from '../UserDropDown';
 
 export default function AuthenticatedMenu() {
   return (
-    <div>
+    <nav>
       <MenuLink to="/ask" label="Ask" />
       <UserDropDown />
-    </div>
+    </nav>
   );
 }
