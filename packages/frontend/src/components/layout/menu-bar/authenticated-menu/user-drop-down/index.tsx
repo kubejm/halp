@@ -39,7 +39,7 @@ export default function UserDropDown() {
         </button>
         <motion.div
           variants={variants}
-          className="absolute mt-6 z-10 mt-0 bg-purple-700 text-white text-sm w-32 p-3 border-b-4 border-l-4 border-r-4 border-purple-400"
+          className="absolute -left-20 z-10 bg-gray-50 text-black text-sm w-32 p-3 border-2 rounded"
         >
           <div>{data.profile.username}</div>
           <SignOutButton />
