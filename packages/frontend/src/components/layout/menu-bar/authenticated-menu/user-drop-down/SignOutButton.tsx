@@ -26,5 +26,9 @@ export default function MenuBar() {
     });
   }
 
-  return <button onClick={handleLogOut}>Sign Out</button>;
+  return (
+    <button onClick={handleLogOut} className="focus:outline-none">
+      Sign Out
+    </button>
+  );
 }
