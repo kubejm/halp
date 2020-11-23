@@ -8,10 +8,7 @@ interface MenuLinkProps {
 
 export default function MenuLink({ to, label }: MenuLinkProps) {
   return (
-    <Link
-      to={to}
-      className="text-white ml-4 hover:bg-purple-600 rounded px-3 py-2"
-    >
+    <Link to={to} className="py-2 px-4 text-white">
       {label}
     </Link>
   );

@@ -11,6 +11,7 @@ const variants = {
 };
 
 // TODO: clean up css
+// TODO: fix styling of drop down
 export default function UserDropDown() {
   const data = useLazyLoadQuery<UserDropDownQuery>(
     graphql`
@@ -26,10 +27,10 @@ export default function UserDropDown() {
   const [isOpen, toggleOpen] = useToggle();
 
   return (
-    <div className="border-l inline-block ml-6 relative">
+    <div className="inline-block relative">
       <motion.nav animate={isOpen ? 'open' : 'closed'} initial={false}>
         <button
-          className="text-white ml-6 focus:outline-none"
+          className="text-white py-1 px-4 focus:outline-none"
           onClick={(_) => {
             (toggleOpen as () => void)();
           }}
