@@ -4,11 +4,25 @@ import { useToggle } from '../../../../../hooks';
 import SignOutButton from './SignOutButton';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { userDropDownQuery } from '../../../../../__generated__/userDropDownQuery.graphql';
+import clsx from 'clsx';
 
 const variants = {
   open: { opacity: 1 },
   closed: { opacity: 0 },
 };
+
+interface DropDownItemProps {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+function DropDownItem({ children, className }: DropDownItemProps) {
+  return <div className={clsx('px-2 py-2', className)}>{children}</div>;
+}
+
+function DropDownDivider() {
+  return <div className="border border-b-1"></div>;
+}
 
 export default function UserDropDown() {
   const data = useLazyLoadQuery<userDropDownQuery>(
@@ -39,13 +53,13 @@ export default function UserDropDown() {
           variants={variants}
           className="absolute -left-20 z-10 bg-white text-black text-sm w-32 px-4 border-2 rounded"
         >
-          <div className="px-2 py-2 text-center font-bold">
+          <DropDownItem className="text-center font-bold">
             {data.profile.username}
-          </div>
-          <div className="border border-b-1"></div>
-          <div className="px-2 py-2">
+          </DropDownItem>
+          <DropDownDivider />
+          <DropDownItem>
             <SignOutButton />
-          </div>
+          </DropDownItem>
         </motion.div>
       </motion.nav>
     </div>
