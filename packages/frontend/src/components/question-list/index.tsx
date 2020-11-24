@@ -32,6 +32,7 @@ export default function QuestionList() {
       {questions.map((question) => (
         <QuestionSummary
           key={question.id}
+          id={question.id}
           answers={question.answers}
           createdAtRelative={question.createdAtRelative}
           username={question.user.username}

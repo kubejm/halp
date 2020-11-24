@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface Tag {
   readonly name: string;
 }
 
 interface Props {
+  id: string;
   answers?: number;
   username: string;
   createdAtRelative: string;
@@ -33,7 +35,11 @@ export default function QuestionSummary(props: Props) {
         </div>
       </div>
       <div className="flex flex-grow flex-wrap pl-4">
-        <div className="min-w-full text-lg">{props.question}</div>
+        <div className="min-w-full text-lg">
+          <Link to={`/question/${props.id}`} className="text-purple-800">
+            {props.question}
+          </Link>
+        </div>
         <div className="min-w-full text-sm text-gray-700 pb-2">
           {props.excerpt}
         </div>
