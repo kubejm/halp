@@ -10,7 +10,7 @@ import {
 import { Question } from '../entities';
 import { Context } from '../types';
 import { questionService } from '../services';
-import { IsString } from 'class-validator';
+import { IsString, IsUUID } from 'class-validator';
 
 @InputType()
 export class AddQuestionInput {
@@ -23,11 +23,23 @@ export class AddQuestionInput {
   question!: string;
 }
 
+@InputType()
+export class GetQuestionInput {
+  @Field()
+  @IsUUID()
+  id!: string;
+}
+
 @Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => [Question])
   questions(@Ctx() context: Context) {
     return questionService.getAllQuestions(context);
+  }
+
+  @Query(() => Question)
+  question(@Arg('input') input: GetQuestionInput, @Ctx() context: Context) {
+    return questionService.getQuestion(input.id, context);
   }
 
   @Mutation(() => Question)

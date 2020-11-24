@@ -7,6 +7,17 @@ export function getAllQuestions(context: Context) {
   });
 }
 
+export function getQuestion(id: string, context: Context) {
+  return context.em.getRepository(Question).findOneOrFail(
+    {
+      id,
+    },
+    {
+      populate: ['user'],
+    }
+  );
+}
+
 export async function addQuestion(input: Question, context: Context) {
   // TODO: error handling
   const user = context.user;

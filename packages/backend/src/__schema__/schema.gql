@@ -8,6 +8,10 @@ input AddQuestionInput {
   question: String!
 }
 
+input GetQuestionInput {
+  id: String!
+}
+
 type Mutation {
   addQuestion(input: AddQuestionInput!): Question!
   signIn(input: SignInInput!): Result!
@@ -17,6 +21,7 @@ type Mutation {
 
 type Query {
   profile: User!
+  question(input: GetQuestionInput!): Question!
   questions: [Question!]!
 }
 
