@@ -3,7 +3,6 @@ import { Context } from '../types';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-// TODO: rename this function
 function setCookieToken(subject: string, context: Context) {
   const token = jwt.sign(
     {
