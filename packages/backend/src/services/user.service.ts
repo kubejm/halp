@@ -1,6 +1,7 @@
 import { User } from '../entities';
 import { Context } from '../types';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
 // TODO: rename this function
 function setCookieToken(subject: string, context: Context) {
@@ -38,10 +39,14 @@ export interface SignUpInput {
 
 export async function signUp(input: SignUpInput, context: Context) {
   // TODO: do not create users with the same name or email
+
+  const salt = bcrypt.genSaltSync(10);
+  const passwordHash = bcrypt.hashSync(input.password, salt);
+
   const user = Object.assign(new User(), {
     username: input.username,
     email: input.email,
-    passwordHash: input.password,
+    passwordHash,
   });
 
   await context.em.persist(user).flush();
@@ -63,8 +68,7 @@ export async function signIn(
     throw new Error('user not found');
   }
 
-  // TODO: make this more secure
-  if (user.passwordHash !== password) {
+  if (!bcrypt.compareSync(password, user.passwordHash)) {
     throw new Error('incorrect password');
   }
 
