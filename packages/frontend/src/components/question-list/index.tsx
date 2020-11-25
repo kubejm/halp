@@ -24,7 +24,10 @@ export default function QuestionList() {
         }
       }
     `,
-    {}
+    {},
+    {
+      fetchPolicy: 'store-and-network',
+    }
   );
 
   return (
