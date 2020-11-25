@@ -1,4 +1,10 @@
-import { Collection, Entity, OneToMany, Property } from '@mikro-orm/core';
+import {
+  Collection,
+  Entity,
+  OneToMany,
+  Property,
+  Unique,
+} from '@mikro-orm/core';
 import { Base } from './base.entity';
 import { Question } from './question.entity';
 import { Field, ObjectType } from 'type-graphql';
@@ -8,10 +14,12 @@ import { Field, ObjectType } from 'type-graphql';
 export class User extends Base<User> {
   @Field()
   @Property()
+  @Unique()
   username!: string;
 
   @Field()
   @Property()
+  @Unique()
   email!: string;
 
   @Property()
