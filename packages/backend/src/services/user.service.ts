@@ -37,7 +37,19 @@ export interface SignUpInput {
 }
 
 export async function signUp(input: SignUpInput, context: Context) {
-  // TODO: do not create users with the same name or email
+  const userRepository = context.em.getRepository(User);
+
+  const username = input.username;
+  const usernameExists = (await userRepository.count({ username })) > 0;
+  if (usernameExists) {
+    throw new Error('username already exists');
+  }
+
+  const email = input.email;
+  const emailUsed = (await userRepository.count({ email })) > 0;
+  if (emailUsed) {
+    throw new Error('email already used');
+  }
 
   const salt = bcrypt.genSaltSync(10);
   const passwordHash = bcrypt.hashSync(input.password, salt);
