@@ -4,10 +4,9 @@ import jwt from 'jsonwebtoken';
 import { User } from '../entities';
 import { jwtPayload, Context } from '../types';
 
-// TODO: interface or type?
-type ApolloContext = {
+interface ApolloContext {
   ctx: KoaContext;
-};
+}
 
 export function initializeContext(orm: MikroORM<IDatabaseDriver<Connection>>) {
   return async function ({ ctx }: ApolloContext): Promise<Context> {
