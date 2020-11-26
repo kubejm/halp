@@ -23,7 +23,7 @@ function setCookieToken(subject: string, context: Context) {
 }
 
 export function getProfile(context: Context) {
-  if (context.user === null) {
+  if (context.user === undefined) {
     throw new Error('no authenticated user');
   }
 
