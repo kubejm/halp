@@ -19,19 +19,7 @@ async function fetchRelay(params: RequestParameters, variables: Variables) {
     }),
   });
 
-  const json = await response.json();
-
-  if (Array.isArray(json.errors)) {
-    throw new Error(
-      `Error fetching GraphQL query '${
-        params.name
-      }' with variables '${JSON.stringify(variables)}': ${JSON.stringify(
-        json.errors
-      )}`
-    );
-  }
-
-  return json;
+  return response.json();
 }
 
 export default new Environment({
