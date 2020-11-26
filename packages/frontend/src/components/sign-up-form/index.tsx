@@ -4,9 +4,10 @@ import { graphql, useMutation } from 'react-relay/hooks';
 import { signUpFormMutation } from '../../__generated__/signUpFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
 import { useStore } from '../../store';
+import { ValidationError } from '../../utils';
 
 export default function SignInForm() {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors, setError } = useForm();
   const [commit, isInFlight] = useMutation<signUpFormMutation>(graphql`
     mutation signUpFormMutation($input: SignUpInput!) {
       signUp(input: $input) {
@@ -26,6 +27,14 @@ export default function SignInForm() {
           email: values.email,
           password: values.password,
         },
+      },
+      onError(error) {
+        if (error instanceof ValidationError) {
+          setError(error.property, {
+            type: 'server',
+            message: error.constraint,
+          });
+        }
       },
       onCompleted() {
         authenticate();
@@ -61,6 +70,11 @@ export default function SignInForm() {
                   ref={register({ required: true })}
                 />
               </label>
+              {errors.email && (
+                <span className="text-sm text-red-600">
+                  {errors.email.message}
+                </span>
+              )}
             </div>
             <div className="mb-6">
               <label className="block text-gray-700 text-sm font-bold mb-2">

@@ -11,6 +11,7 @@ import {
 import { User } from '../entities';
 import { Context } from '../types';
 import { userService } from '../services';
+import { IsEmail } from 'class-validator';
 
 @ObjectType()
 class Result {
@@ -24,6 +25,7 @@ class SignUpInput {
   username!: string;
 
   @Field()
+  @IsEmail()
   email!: string;
 
   @Field()
