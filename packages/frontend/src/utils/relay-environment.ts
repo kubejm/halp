@@ -22,6 +22,8 @@ async function fetchRelay(params: RequestParameters, variables: Variables) {
 
   const json = await response.json();
 
+  // class-validator and relay do not play nice
+  // work around to accommodate, so validation errors flow through easily
   if (Array.isArray(json.errors) && json.errors.length > 0) {
     const validationErrors =
       json.errors[0]?.extensions?.exception?.validationErrors;
