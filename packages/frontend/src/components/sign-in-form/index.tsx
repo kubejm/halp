@@ -5,7 +5,6 @@ import { signInFormMutation } from '../../__generated__/signInFormMutation.graph
 import { useHistory } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useStore } from '../../store';
-import clsx from 'clsx';
 import * as yup from 'yup';
 import { Input } from '../form';
 
