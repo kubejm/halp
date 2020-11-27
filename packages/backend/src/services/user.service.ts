@@ -2,6 +2,8 @@ import { User } from '../entities';
 import { Context } from '../types';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import { ValidationError } from 'class-validator';
+import { ArgumentValidationError } from 'type-graphql';
 
 function setCookieToken(subject: string, context: Context) {
   const token = jwt.sign(
@@ -42,7 +44,13 @@ export async function signUp(input: SignUpInput, context: Context) {
   const username = input.username;
   const usernameExists = (await userRepository.count({ username })) > 0;
   if (usernameExists) {
-    throw new Error('username already exists');
+    const validationError = new ValidationError();
+    validationError.property = 'username';
+    validationError.constraints = {
+      isUnique: 'username already registered',
+    };
+
+    throw new ArgumentValidationError([validationError]);
   }
 
   const email = input.email;
