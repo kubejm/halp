@@ -6,9 +6,21 @@ import { useHistory } from 'react-router-dom';
 import { useStore } from '../../store';
 import { ValidationError } from '../../utils';
 import { Input } from '../form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const schema = yup.object().shape({
+  username: yup.string().required(),
+  email: yup.string().required(),
+  password: yup.string().required(),
+});
 
 export default function SignInForm() {
-  const formMethods = useForm();
+  const formMethods = useForm({
+    resolver: yupResolver(schema),
+    shouldFocusError: false,
+  });
+
   const [commit, isInFlight] = useMutation<signUpFormMutation>(graphql`
     mutation signUpFormMutation($input: SignUpInput!) {
       signUp(input: $input) {
