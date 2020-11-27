@@ -51,7 +51,9 @@ export async function signUp(input: SignUpInput, context: Context) {
   const email = input.email;
   const emailUsed = (await userRepository.count({ email })) > 0;
   if (emailUsed) {
-    throw new Error('email already used');
+    throw new ServerValidationError('email', {
+      isUnique: 'email already registered',
+    });
   }
 
   const salt = bcrypt.genSaltSync(10);
@@ -79,11 +81,15 @@ export async function signIn(
   });
 
   if (user === null) {
-    throw new Error('user not found');
+    throw new ServerValidationError('username', {
+      isUnique: 'user not found',
+    });
   }
 
   if (!bcrypt.compareSync(password, user.passwordHash)) {
-    throw new Error('incorrect password');
+    throw new ServerValidationError('password', {
+      isUnique: 'incorrect password',
+    });
   }
 
   setCookieToken(user.id, context);
