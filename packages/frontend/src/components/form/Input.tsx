@@ -7,16 +7,17 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-export default function Input(props: InputProps) {
+export default function Input({ name, label, className, ...rest }: InputProps) {
   const { errors, register } = useFormContext();
-  const errorMessage = errors[props.name]?.message;
+  const errorMessage = errors[name]?.message;
 
   return (
-    <div className={clsx('mb-6', props.className)}>
+    <div className={clsx('mb-6', className)}>
       <label className="block text-gray-700 text-sm font-bold mb-1">
-        {props.label}
+        {label}
         <input
-          name={props.name}
+          {...rest}
+          name={name}
           className={clsx(
             'border p-2 mt-3 w-full',
             errorMessage && 'border-red-500'

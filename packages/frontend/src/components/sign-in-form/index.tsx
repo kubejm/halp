@@ -64,7 +64,7 @@ export default function SignInForm() {
               className="bg-white shadow-md rounded p-6"
             >
               <Input label="Username" name="username" />
-              <Input label="Password" name="password" />
+              <Input label="Password" name="password" type="password" />
               <input
                 type="submit"
                 value="Sign In"
