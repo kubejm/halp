@@ -2,8 +2,7 @@ import { User } from '../entities';
 import { Context } from '../types';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { ValidationError } from 'class-validator';
-import { ArgumentValidationError } from 'type-graphql';
+import { ServerValidationError } from '../utils';
 
 function setCookieToken(subject: string, context: Context) {
   const token = jwt.sign(
@@ -44,13 +43,9 @@ export async function signUp(input: SignUpInput, context: Context) {
   const username = input.username;
   const usernameExists = (await userRepository.count({ username })) > 0;
   if (usernameExists) {
-    const validationError = new ValidationError();
-    validationError.property = 'username';
-    validationError.constraints = {
+    throw new ServerValidationError('username', {
       isUnique: 'username already registered',
-    };
-
-    throw new ArgumentValidationError([validationError]);
+    });
   }
 
   const email = input.email;
