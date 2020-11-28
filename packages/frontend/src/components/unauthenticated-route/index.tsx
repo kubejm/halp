@@ -7,17 +7,17 @@ import {
 } from 'react-router-dom';
 import { useStore } from '../../store';
 
-interface AuthenticatedComponentProps extends RouteComponentProps {
+interface UnauthenticatedComponentProps extends RouteComponentProps {
   component?: React.ComponentType<any>;
 }
 
-function AuthenticatedComponent({
+function UnauthenticatedComponent({
   component: Component,
-}: AuthenticatedComponentProps) {
+}: UnauthenticatedComponentProps) {
   const isAuthenticated = useStore((state) => state.isAuthenticated);
 
-  if (!isAuthenticated) {
-    return <Redirect to="/sign-in" />;
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
   }
 
   if (!Component) {
@@ -27,12 +27,15 @@ function AuthenticatedComponent({
   return <Component />;
 }
 
-export default function AuthenticatedRoute({ component, ...rest }: RouteProps) {
+export default function UnauthenticatedRoute({
+  component,
+  ...rest
+}: RouteProps) {
   return (
     <Route
       {...rest}
       render={(props) => (
-        <AuthenticatedComponent
+        <UnauthenticatedComponent
           key={props.match.params.id || 'empty'}
           component={component}
           {...props}
