@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { relayEnvironment } from './utils';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AuthenticatedRoute, Layout } from './components';
-import { Ask, Home, Question, SignIn, SignUp } from './screens';
+import { Ask, FourOhFour, Home, Question, SignIn, SignUp } from './screens';
 import { useStore } from './store';
 
 export default function App() {
@@ -18,11 +18,14 @@ export default function App() {
     <RelayEnvironmentProvider environment={relayEnvironment}>
       <Router>
         <Layout>
-          <Route exact path="/" component={Home} />
-          <Route path="/sign-in" component={SignIn} />
-          <Route path="/sign-up" component={SignUp} />
-          <Route path="/question/:id" component={Question} />
-          <AuthenticatedRoute path="/ask" component={Ask} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/sign-in" component={SignIn} />
+            <Route path="/sign-up" component={SignUp} />
+            <Route path="/question/:id" component={Question} />
+            <AuthenticatedRoute path="/ask" component={Ask} />
+            <Route component={FourOhFour} />
+          </Switch>
         </Layout>
       </Router>
     </RelayEnvironmentProvider>
