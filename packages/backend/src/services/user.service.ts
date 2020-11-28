@@ -3,6 +3,7 @@ import { Context } from '../types';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import { ServerValidationError } from '../utils';
+import { AuthenticationError } from 'apollo-server-koa';
 
 function setCookieToken(subject: string, context: Context) {
   const token = jwt.sign(
@@ -25,7 +26,7 @@ function setCookieToken(subject: string, context: Context) {
 
 export function getProfile(context: Context) {
   if (context.user === undefined) {
-    throw new Error('no authenticated user');
+    throw new AuthenticationError('no authenticated user');
   }
 
   return context.user;
