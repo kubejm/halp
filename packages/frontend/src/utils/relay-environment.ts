@@ -29,6 +29,7 @@ async function fetchRelay(params: RequestParameters, variables: Variables) {
     // TODO: clean this up
     const errorCode = json.errors[0]?.extensions?.code;
     if (errorCode === 'UNAUTHENTICATED') {
+      // TODO: throw authentication error
       auth.signOut();
     }
 
