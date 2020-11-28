@@ -27,6 +27,7 @@ class Auth {
 
   signOut() {
     this.expiresAt = -1;
+    Cookies.remove('token');
   }
 
   isAuthenticated() {
