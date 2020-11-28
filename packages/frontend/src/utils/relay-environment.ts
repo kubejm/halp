@@ -7,6 +7,7 @@ import {
   Variables,
 } from 'relay-runtime';
 import ValidationError from './validation-error';
+import auth from './auth';
 
 async function fetchRelay(params: RequestParameters, variables: Variables) {
   const response = await fetch('/graphql', {
@@ -25,9 +26,14 @@ async function fetchRelay(params: RequestParameters, variables: Variables) {
   // class-validator and relay do not play nice
   // work around to accommodate, so validation errors flow through easily
   if (Array.isArray(json.errors) && json.errors.length > 0) {
+    // TODO: clean this up
+    const errorCode = json.errors[0]?.extensions?.code;
+    if (errorCode === 'UNAUTHENTICATED') {
+      auth.signOut();
+    }
+
     const validationErrors =
       json.errors[0]?.extensions?.exception?.validationErrors;
-
     if (Array.isArray(validationErrors) && validationErrors.length > 0) {
       const validationError = validationErrors[0];
       const property = validationError.property;
