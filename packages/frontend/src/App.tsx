@@ -7,13 +7,8 @@ import { Ask, FourOhFour, Home, Question, SignIn, SignUp } from './screens';
 import { useStore } from './store';
 
 export default function App() {
-  const authenticate = useStore((state) => state.authenticate);
+  useStore((state) => state.authenticate)();
 
-  useEffect(() => {
-    authenticate();
-  });
-
-  // TODO: fix screen flash
   return (
     <RelayEnvironmentProvider environment={relayEnvironment}>
       <Router>
