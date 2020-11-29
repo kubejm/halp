@@ -29,7 +29,7 @@ export default function FourOhFour() {
             <h1 className="ml-2 text-gray-800">Something sad happened</h1>
           </div>
           <div className="w-full text-sm mt-4 text-gray-700">
-            Please sign in or navigate home
+            Page not found
           </div>
         </div>
       </div>
