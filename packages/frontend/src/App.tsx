@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RelayEnvironmentProvider } from 'react-relay/hooks';
 import { relayEnvironment } from './utils';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
