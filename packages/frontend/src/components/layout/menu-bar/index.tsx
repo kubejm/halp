@@ -21,8 +21,8 @@ export default function MenuBar() {
         </Link>
         <Suspense fallback={null}>
           {isAuthenticated && <AuthenticatedMenu />}
-          {!isAuthenticated && <UnauthenticatedMenu />}
         </Suspense>
+        {!isAuthenticated && <UnauthenticatedMenu />}
       </div>
     </nav>
   );
