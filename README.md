@@ -2,6 +2,8 @@
 
 Rudimentary Stack Overflow clone
 
+Work in progress
+
 ## How to run
 
 Within the root directory...
