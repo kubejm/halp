@@ -50,7 +50,10 @@ export class QuestionResolver {
   }
 
   @Mutation(() => Question)
-  viewQuestion(@Arg('input') input: ViewQuestionInput, @Ctx() context: Context) {
+  viewQuestion(
+    @Arg('input') input: ViewQuestionInput,
+    @Ctx() context: Context
+  ) {
     return questionService.viewQuestion(input.id, context);
   }
 
