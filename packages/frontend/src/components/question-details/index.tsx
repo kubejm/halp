@@ -68,6 +68,9 @@ export default function QuestionDetails({ id }: Props) {
       input: {
         id,
       },
+    },
+    {
+      fetchPolicy: 'store-and-network',
     }
   );
 
