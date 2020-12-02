@@ -17,6 +17,7 @@ type Mutation {
   signIn(input: SignInInput!): Result!
   signOut: Result!
   signUp(input: SignUpInput!): Result!
+  viewQuestion(input: ViewQuestionInput!): Question!
 }
 
 type Query {
@@ -63,4 +64,8 @@ type User {
   email: String!
   id: ID!
   username: String!
+}
+
+input ViewQuestionInput {
+  id: String!
 }

@@ -30,6 +30,13 @@ export class GetQuestionInput {
   id!: string;
 }
 
+@InputType()
+export class ViewQuestionInput {
+  @Field()
+  @IsUUID()
+  id!: string;
+}
+
 @Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => [Question])
@@ -40,6 +47,11 @@ export class QuestionResolver {
   @Query(() => Question)
   question(@Arg('input') input: GetQuestionInput, @Ctx() context: Context) {
     return questionService.getQuestion(input.id, context);
+  }
+
+  @Mutation(() => Question)
+  viewQuestion(@Arg('input') input: ViewQuestionInput, @Ctx() context: Context) {
+    return questionService.viewQuestion(input.id, context);
   }
 
   @Mutation(() => Question)
