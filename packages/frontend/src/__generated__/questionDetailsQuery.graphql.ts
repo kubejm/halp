@@ -3,14 +3,14 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type GetQuestionInput = {
+export type ViewQuestionInput = {
     id: string;
 };
 export type questionDetailsQueryVariables = {
-    input: GetQuestionInput;
+    input: ViewQuestionInput;
 };
 export type questionDetailsQueryResponse = {
-    readonly question: {
+    readonly viewQuestion: {
         readonly answers: number;
         readonly body: string;
         readonly createdAtRelative: string;
@@ -33,10 +33,10 @@ export type questionDetailsQuery = {
 
 
 /*
-query questionDetailsQuery(
-  $input: GetQuestionInput!
+mutation questionDetailsQuery(
+  $input: ViewQuestionInput!
 ) {
-  question(input: $input) {
+  viewQuestion(input: $input) {
     answers
     body
     createdAtRelative
@@ -136,7 +136,7 @@ const node: ConcreteRequest = (function () {
                     "args": (v1 /*: any*/),
                     "concreteType": "Question",
                     "kind": "LinkedField",
-                    "name": "question",
+                    "name": "viewQuestion",
                     "plural": false,
                     "selections": [
                         (v2 /*: any*/),
@@ -173,7 +173,7 @@ const node: ConcreteRequest = (function () {
                     "storageKey": null
                 }
             ],
-            "type": "Query",
+            "type": "Mutation",
             "abstractKey": null
         },
         "kind": "Request",
@@ -187,7 +187,7 @@ const node: ConcreteRequest = (function () {
                     "args": (v1 /*: any*/),
                     "concreteType": "Question",
                     "kind": "LinkedField",
-                    "name": "question",
+                    "name": "viewQuestion",
                     "plural": false,
                     "selections": [
                         (v2 /*: any*/),
@@ -229,14 +229,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "a734b2aabf599ff0086face613c6f8a1",
+            "cacheID": "19fc0f9078ef2e4444e0b6e89e69a649",
             "id": null,
             "metadata": {},
             "name": "questionDetailsQuery",
-            "operationKind": "query",
-            "text": "query questionDetailsQuery(\n  $input: GetQuestionInput!\n) {\n  question(input: $input) {\n    answers\n    body\n    createdAtRelative\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n    id\n  }\n}\n"
+            "operationKind": "mutation",
+            "text": "mutation questionDetailsQuery(\n  $input: ViewQuestionInput!\n) {\n  viewQuestion(input: $input) {\n    answers\n    body\n    createdAtRelative\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'b9273c2b81a8f55c38915d0612e3c3f0';
+(node as any).hash = 'ae039162906c68e7f75de5a302310601';
 export default node;

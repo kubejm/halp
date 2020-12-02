@@ -45,10 +45,10 @@ function DownArrow() {
 }
 
 export default function QuestionDetails({ id }: Props) {
-  const { question } = useLazyLoadQuery<questionDetailsQuery>(
+  const { viewQuestion: question } = useLazyLoadQuery<questionDetailsQuery>(
     graphql`
-      query questionDetailsQuery($input: GetQuestionInput!) {
-        question(input: $input) {
+      mutation questionDetailsQuery($input: ViewQuestionInput!) {
+        viewQuestion(input: $input) {
           answers
           body
           createdAtRelative
