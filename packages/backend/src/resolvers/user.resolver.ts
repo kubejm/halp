@@ -4,7 +4,6 @@ import {
   Field,
   InputType,
   Mutation,
-  ObjectType,
   Query,
   Resolver,
 } from 'type-graphql';
@@ -12,12 +11,7 @@ import { User } from '../entities';
 import { Context } from '../types';
 import { userService } from '../services';
 import { IsEmail } from 'class-validator';
-
-@ObjectType()
-class Result {
-  @Field()
-  ok: boolean = true;
-}
+import { Result } from './shared';
 
 @InputType()
 class SignUpInput {

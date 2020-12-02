@@ -3,6 +3,7 @@ import {
   Entity,
   ManyToMany,
   ManyToOne,
+  OneToMany,
   Property,
 } from '@mikro-orm/core';
 import { Field, ObjectType } from 'type-graphql';
@@ -10,6 +11,7 @@ import { Base } from './base.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
 import { formatDistanceToNow } from 'date-fns';
+import { QuestionVote } from './question-vote.entity';
 
 @ObjectType()
 @Entity()
@@ -50,7 +52,11 @@ export class Question extends Base<Question> {
   @Property()
   views: number = 0;
 
+  @OneToMany({ entity: () => QuestionVote, mappedBy: 'question', eager: true })
+  questionVotes = new Collection<QuestionVote>(this);
+
   @Field()
-  @Property()
-  votes: number = 0;
+  get votes(): number {
+    return this.questionVotes.length;
+  }
 }

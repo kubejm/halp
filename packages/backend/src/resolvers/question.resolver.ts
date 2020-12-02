@@ -37,6 +37,13 @@ export class ViewQuestionInput {
   id!: string;
 }
 
+@InputType()
+export class UpvoteQuestionInput {
+  @Field()
+  @IsUUID()
+  id!: string;
+}
+
 @Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => [Question])
@@ -64,5 +71,13 @@ export class QuestionResolver {
   ): Promise<Question> {
     const question = Object.assign(new Question(), input);
     return questionService.addQuestion(question, context);
+  }
+
+  @Mutation(() => Question)
+  async upvoteQuestion(
+    @Arg('input') input: UpvoteQuestionInput,
+    @Ctx() context: Context
+  ) {
+    return questionService.upvoteQuestion(input.id, context);
   }
 }

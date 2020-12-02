@@ -17,6 +17,7 @@ type Mutation {
   signIn(input: SignInInput!): Result!
   signOut: Result!
   signUp(input: SignUpInput!): Result!
+  upvoteQuestion(input: UpvoteQuestionInput!): Question!
   viewQuestion(input: ViewQuestionInput!): Question!
 }
 
@@ -58,6 +59,10 @@ type Tag {
   id: ID!
   name: String!
   questions: [Question!]!
+}
+
+input UpvoteQuestionInput {
+  id: String!
 }
 
 type User {
