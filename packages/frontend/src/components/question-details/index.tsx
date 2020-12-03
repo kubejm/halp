@@ -1,47 +1,10 @@
 import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { questionDetailsQuery } from '../../__generated__/questionDetailsQuery.graphql';
+import Vote from './vote';
 
 interface Props {
   id: string;
-}
-
-function UpArrow() {
-  return (
-    <svg
-      className="w-6 h-6"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M5 15l7-7 7 7"
-      ></path>
-    </svg>
-  );
-}
-
-function DownArrow() {
-  return (
-    <svg
-      className="w-6 h-6"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="M19 9l-7 7-7-7"
-      ></path>
-    </svg>
-  );
 }
 
 export default function QuestionDetails({ id }: Props) {
@@ -49,6 +12,7 @@ export default function QuestionDetails({ id }: Props) {
     graphql`
       mutation questionDetailsQuery($input: ViewQuestionInput!) {
         viewQuestion(input: $input) {
+          id
           answers
           body
           createdAtRelative
@@ -84,11 +48,7 @@ export default function QuestionDetails({ id }: Props) {
         </div>
       </div>
       <div className="flex">
-        <div className="mr-4 text-gray-600 text-center">
-          <UpArrow />
-          <div>{question.votes}</div>
-          <DownArrow />
-        </div>
+        <Vote id={id} />
         <div className="text-sm">{question.body}</div>
       </div>
     </div>

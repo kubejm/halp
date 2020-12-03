@@ -11,6 +11,7 @@ export type questionDetailsQueryVariables = {
 };
 export type questionDetailsQueryResponse = {
     readonly viewQuestion: {
+        readonly id: string;
         readonly answers: number;
         readonly body: string;
         readonly createdAtRelative: string;
@@ -37,6 +38,7 @@ mutation questionDetailsQuery(
   $input: ViewQuestionInput!
 ) {
   viewQuestion(input: $input) {
+    id
     answers
     body
     createdAtRelative
@@ -51,7 +53,6 @@ mutation questionDetailsQuery(
     }
     views
     votes
-    id
   }
 }
 */
@@ -73,55 +74,55 @@ const node: ConcreteRequest = (function () {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "answers",
+        "name": "id",
         "storageKey": null
     } as any), v3 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "body",
+        "name": "answers",
         "storageKey": null
     } as any), v4 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "createdAtRelative",
+        "name": "body",
         "storageKey": null
     } as any), v5 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "question",
+        "name": "createdAtRelative",
         "storageKey": null
     } as any), v6 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "name",
+        "name": "question",
         "storageKey": null
     } as any), v7 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "username",
+        "name": "name",
         "storageKey": null
     } as any), v8 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "views",
+        "name": "username",
         "storageKey": null
     } as any), v9 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "votes",
+        "name": "views",
         "storageKey": null
     } as any), v10 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "id",
+        "name": "votes",
         "storageKey": null
     } as any);
     return {
@@ -143,6 +144,7 @@ const node: ConcreteRequest = (function () {
                         (v3 /*: any*/),
                         (v4 /*: any*/),
                         (v5 /*: any*/),
+                        (v6 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -151,7 +153,7 @@ const node: ConcreteRequest = (function () {
                             "name": "tags",
                             "plural": true,
                             "selections": [
-                                (v6 /*: any*/)
+                                (v7 /*: any*/)
                             ],
                             "storageKey": null
                         },
@@ -163,12 +165,12 @@ const node: ConcreteRequest = (function () {
                             "name": "user",
                             "plural": false,
                             "selections": [
-                                (v7 /*: any*/)
+                                (v8 /*: any*/)
                             ],
                             "storageKey": null
                         },
-                        (v8 /*: any*/),
-                        (v9 /*: any*/)
+                        (v9 /*: any*/),
+                        (v10 /*: any*/)
                     ],
                     "storageKey": null
                 }
@@ -194,6 +196,7 @@ const node: ConcreteRequest = (function () {
                         (v3 /*: any*/),
                         (v4 /*: any*/),
                         (v5 /*: any*/),
+                        (v6 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -202,8 +205,8 @@ const node: ConcreteRequest = (function () {
                             "name": "tags",
                             "plural": true,
                             "selections": [
-                                (v6 /*: any*/),
-                                (v10 /*: any*/)
+                                (v7 /*: any*/),
+                                (v2 /*: any*/)
                             ],
                             "storageKey": null
                         },
@@ -215,12 +218,11 @@ const node: ConcreteRequest = (function () {
                             "name": "user",
                             "plural": false,
                             "selections": [
-                                (v7 /*: any*/),
-                                (v10 /*: any*/)
+                                (v8 /*: any*/),
+                                (v2 /*: any*/)
                             ],
                             "storageKey": null
                         },
-                        (v8 /*: any*/),
                         (v9 /*: any*/),
                         (v10 /*: any*/)
                     ],
@@ -229,14 +231,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "19fc0f9078ef2e4444e0b6e89e69a649",
+            "cacheID": "eeb1cd8df520a49eccee56df78506749",
             "id": null,
             "metadata": {},
             "name": "questionDetailsQuery",
             "operationKind": "mutation",
-            "text": "mutation questionDetailsQuery(\n  $input: ViewQuestionInput!\n) {\n  viewQuestion(input: $input) {\n    answers\n    body\n    createdAtRelative\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n    id\n  }\n}\n"
+            "text": "mutation questionDetailsQuery(\n  $input: ViewQuestionInput!\n) {\n  viewQuestion(input: $input) {\n    id\n    answers\n    body\n    createdAtRelative\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'ae039162906c68e7f75de5a302310601';
+(node as any).hash = '31f3e79da1b7f476ae9d35c1725a6a59';
 export default node;
