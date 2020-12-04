@@ -57,22 +57,27 @@ export async function upvoteQuestion(id: string, context: Context) {
     throw new Error('question authors cannot vote on their own question');
   }
 
-  const qv = await context.em.getRepository(QuestionVote).findOne({
+  const questionVote = await context.em.getRepository(QuestionVote).findOne({
     question,
     user: context.user,
   });
 
-  if (qv && qv.action === QuestionVoteAction.UP) {
+  if (questionVote && questionVote.action === QuestionVoteAction.UP) {
     throw new Error('cannot upvote the same question multiple times');
   }
 
-  const questionVote = Object.assign(new QuestionVote(), {
-    action: QuestionVoteAction.UP,
-    question,
-    user: context.user,
-  });
+  if (questionVote) {
+    question.questionVotes.remove(questionVote);
+  } else {
+    question.questionVotes.add(
+      Object.assign(new QuestionVote(), {
+        action: QuestionVoteAction.UP,
+        question,
+        user: context.user,
+      })
+    );
+  }
 
-  question.questionVotes.add(questionVote);
   await context.em.persist(question).flush();
 
   return question;
