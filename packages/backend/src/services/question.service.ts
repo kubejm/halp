@@ -63,7 +63,9 @@ async function vote(id: string, action: QuestionVoteAction, context: Context) {
   });
 
   if (questionVote && questionVote.action === action) {
-    throw new Error(`cannot ${action} the same question multiple times`);
+    const actionName =
+      action === QuestionVoteAction.UPVOTE ? 'upvote' : 'downvote';
+    throw new Error(`cannot ${actionName} the same question multiple times`);
   }
 
   if (questionVote) {
