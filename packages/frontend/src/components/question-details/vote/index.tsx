@@ -32,7 +32,7 @@ export default function Vote({ id }: Props) {
     <div className="mr-4 text-gray-600 text-center">
       <Upvote id={id} />
       <div>{question.votes}</div>
-      <Downvote />
+      <Downvote id={id} />
     </div>
   );
 }
