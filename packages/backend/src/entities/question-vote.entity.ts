@@ -4,13 +4,13 @@ import { Question } from './question.entity';
 import { User } from './user.entity';
 
 export enum QuestionVoteAction {
-  UPVOTE,
-  DOWNVOTE,
+  UPVOTE = 'upvote',
+  DOWNVOTE = 'downvote',
 }
 
 @Entity()
 export class QuestionVote extends Base<QuestionVote> {
-  @Enum()
+  @Enum(() => QuestionVoteAction)
   action!: QuestionVoteAction;
 
   @ManyToOne(() => Question)
