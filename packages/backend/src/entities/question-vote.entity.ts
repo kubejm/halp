@@ -4,8 +4,8 @@ import { Question } from './question.entity';
 import { User } from './user.entity';
 
 export enum QuestionVoteAction {
-  UPVOTE,
-  DOWNVOTE,
+  UPVOTE = 'upvote',
+  DOWNVOTE = 'downvote',
 }
 
 @Entity()
