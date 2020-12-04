@@ -44,6 +44,13 @@ export class UpvoteQuestionInput {
   id!: string;
 }
 
+@InputType()
+export class DownvoteQuestionInput {
+  @Field()
+  @IsUUID()
+  id!: string;
+}
+
 @Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => [Question])
@@ -79,5 +86,13 @@ export class QuestionResolver {
     @Ctx() context: Context
   ) {
     return questionService.upvoteQuestion(input.id, context);
+  }
+
+  @Mutation(() => Question)
+  async downvoteQuestion(
+    @Arg('input') input: DownvoteQuestionInput,
+    @Ctx() context: Context
+  ) {
+    return questionService.downvoteQuestion(input.id, context);
   }
 }

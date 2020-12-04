@@ -11,7 +11,7 @@ import { Base } from './base.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
 import { formatDistanceToNow } from 'date-fns';
-import { QuestionVote } from './question-vote.entity';
+import { QuestionVote, QuestionVoteAction } from './question-vote.entity';
 
 @ObjectType()
 @Entity()
@@ -52,11 +52,20 @@ export class Question extends Base<Question> {
   @Property()
   views: number = 0;
 
-  @OneToMany({ entity: () => QuestionVote, mappedBy: 'question', eager: true })
+  @OneToMany({
+    entity: () => QuestionVote,
+    mappedBy: 'question',
+    eager: true,
+    orphanRemoval: true,
+  })
   questionVotes = new Collection<QuestionVote>(this);
 
   @Field()
   get votes(): number {
-    return this.questionVotes.length;
+    return this.questionVotes.getItems().reduce((result, vote) => {
+      if (vote.action === QuestionVoteAction.UPVOTE) result++;
+      if (vote.action === QuestionVoteAction.DOWNVOTE) result--;
+      return result;
+    }, 0);
   }
 }

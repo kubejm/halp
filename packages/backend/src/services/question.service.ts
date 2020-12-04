@@ -39,7 +39,7 @@ export async function viewQuestion(id: string, context: Context) {
   return question;
 }
 
-export async function upvoteQuestion(id: string, context: Context) {
+async function vote(id: string, action: QuestionVoteAction, context: Context) {
   const question = await context.em.getRepository(Question).findOneOrFail(
     {
       id,
@@ -62,8 +62,8 @@ export async function upvoteQuestion(id: string, context: Context) {
     user: context.user,
   });
 
-  if (questionVote && questionVote.action === QuestionVoteAction.UP) {
-    throw new Error('cannot upvote the same question multiple times');
+  if (questionVote && questionVote.action === action) {
+    throw new Error(`cannot ${action} the same question multiple times`);
   }
 
   if (questionVote) {
@@ -71,7 +71,7 @@ export async function upvoteQuestion(id: string, context: Context) {
   } else {
     question.questionVotes.add(
       Object.assign(new QuestionVote(), {
-        action: QuestionVoteAction.UP,
+        action,
         question,
         user: context.user,
       })
@@ -81,6 +81,14 @@ export async function upvoteQuestion(id: string, context: Context) {
   await context.em.persist(question).flush();
 
   return question;
+}
+
+export async function upvoteQuestion(id: string, context: Context) {
+  return vote(id, QuestionVoteAction.UPVOTE, context);
+}
+
+export async function downvoteQuestion(id: string, context: Context) {
+  return vote(id, QuestionVoteAction.DOWNVOTE, context);
 }
 
 export async function addQuestion(input: Question, context: Context) {

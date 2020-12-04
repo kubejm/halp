@@ -8,12 +8,17 @@ input AddQuestionInput {
   question: String!
 }
 
+input DownvoteQuestionInput {
+  id: String!
+}
+
 input GetQuestionInput {
   id: String!
 }
 
 type Mutation {
   addQuestion(input: AddQuestionInput!): Question!
+  downvoteQuestion(input: DownvoteQuestionInput!): Question!
   signIn(input: SignInInput!): Result!
   signOut: Result!
   signUp(input: SignUpInput!): Result!
