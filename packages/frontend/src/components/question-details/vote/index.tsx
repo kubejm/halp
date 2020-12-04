@@ -29,7 +29,7 @@ export default function Vote({ id }: Props) {
   );
 
   return (
-    <div className="mr-4 text-gray-600 text-center">
+    <div className="flex flex-col w-6 mr-4 text-gray-600 text-center">
       <Upvote id={id} />
       <div>{question.votes}</div>
       <Downvote id={id} />
