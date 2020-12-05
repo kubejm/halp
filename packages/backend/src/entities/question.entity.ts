@@ -12,6 +12,7 @@ import { Tag } from './tag.entity';
 import { User } from './user.entity';
 import { formatDistanceToNow } from 'date-fns';
 import { QuestionVote, QuestionVoteAction } from './question-vote.entity';
+import { getCtx } from '../utils';
 
 @ObjectType()
 @Entity()
@@ -59,6 +60,30 @@ export class Question extends Base<Question> {
     orphanRemoval: true,
   })
   questionVotes = new Collection<QuestionVote>(this);
+
+  @Field()
+  get hasUserUpvoted(): boolean {
+    const ctx = getCtx();
+
+    return this.questionVotes.getItems().some((questionVote) => {
+      return (
+        questionVote.user === ctx.user &&
+        questionVote.action === QuestionVoteAction.UPVOTE
+      );
+    });
+  }
+
+  @Field()
+  get hasUserDownvoted(): boolean {
+    const ctx = getCtx();
+
+    return this.questionVotes.getItems().some((questionVote) => {
+      return (
+        questionVote.user === ctx.user &&
+        questionVote.action === QuestionVoteAction.DOWNVOTE
+      );
+    });
+  }
 
   @Field()
   get votes(): number {

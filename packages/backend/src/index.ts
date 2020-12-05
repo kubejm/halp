@@ -5,7 +5,7 @@ import { buildSchema } from 'type-graphql';
 import { MikroORM, RequestContext } from '@mikro-orm/core';
 import ormConfig from './orm.config';
 import path from 'path';
-import { initializeContext } from './utils';
+import { initializeContext, storeCtx } from './utils';
 
 async function main() {
   const isProduction = process.env.NODE_ENV === 'production';
@@ -25,6 +25,7 @@ async function main() {
 
   const app = new Koa();
   app.use((_, next) => RequestContext.createAsync(orm.em, next));
+  app.use(storeCtx);
   server.applyMiddleware({ app });
 
   app.listen({ port: 4000 }, () =>

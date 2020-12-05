@@ -21,6 +21,9 @@ export function initializeContext(orm: MikroORM<IDatabaseDriver<Connection>>) {
         id: payload?.sub,
       })) ?? undefined;
 
+    // TODO: place everything on ctx
+    ctx.user = user;
+
     return {
       ctx,
       em: orm.em,

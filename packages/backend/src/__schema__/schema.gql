@@ -37,6 +37,8 @@ type Question {
   body: String!
   createdAtRelative: String!
   excerpt: String!
+  hasUserDownvoted: Boolean!
+  hasUserUpvoted: Boolean!
   id: ID!
   question: String!
   tags: [Tag!]!
