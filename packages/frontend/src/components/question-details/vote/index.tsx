@@ -1,6 +1,5 @@
 import React from 'react';
-import Upvote from './Upvote';
-import Downvote from './Downvote';
+import { Downvote, Upvote } from './vote-buttons';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { voteQuery } from '../../../__generated__/voteQuery.graphql';
 
@@ -15,6 +14,8 @@ export default function Vote({ id }: Props) {
         question(input: $input) {
           id
           votes
+          hasUserUpvoted
+          hasUserDownvoted
         }
       }
     `,
@@ -30,9 +31,9 @@ export default function Vote({ id }: Props) {
 
   return (
     <div className="flex flex-col w-6 mr-4 text-gray-600 text-center">
-      <Upvote id={id} />
+      <Upvote id={id} hasUserVoted={question.hasUserUpvoted} />
       <div>{question.votes}</div>
-      <Downvote id={id} />
+      <Downvote id={id} hasUserVoted={question.hasUserDownvoted} />
     </div>
   );
 }

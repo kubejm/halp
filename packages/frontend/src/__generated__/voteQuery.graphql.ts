@@ -13,6 +13,8 @@ export type voteQueryResponse = {
     readonly question: {
         readonly id: string;
         readonly votes: number;
+        readonly hasUserUpvoted: boolean;
+        readonly hasUserDownvoted: boolean;
     };
 };
 export type voteQuery = {
@@ -29,6 +31,8 @@ query voteQuery(
   question(input: $input) {
     id
     votes
+    hasUserUpvoted
+    hasUserDownvoted
   }
 }
 */
@@ -68,6 +72,20 @@ const node: ConcreteRequest = (function () {
                     "kind": "ScalarField",
                     "name": "votes",
                     "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "hasUserUpvoted",
+                    "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "hasUserDownvoted",
+                    "storageKey": null
                 }
             ],
             "storageKey": null
@@ -91,14 +109,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "36241a7f540989668504aa72f8aefe12",
+            "cacheID": "c3b820446c2c1a2ea05b5e822158ac4f",
             "id": null,
             "metadata": {},
             "name": "voteQuery",
             "operationKind": "query",
-            "text": "query voteQuery(\n  $input: GetQuestionInput!\n) {\n  question(input: $input) {\n    id\n    votes\n  }\n}\n"
+            "text": "query voteQuery(\n  $input: GetQuestionInput!\n) {\n  question(input: $input) {\n    id\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '4c2b6f3c366d45b1fbb8893a1397546d';
+(node as any).hash = 'd9206fca04e3c280098be1a94f5ca61a';
 export default node;

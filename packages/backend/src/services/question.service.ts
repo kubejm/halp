@@ -63,7 +63,8 @@ async function vote(id: string, action: QuestionVoteAction, context: Context) {
   });
 
   if (questionVote && questionVote.action === action) {
-    throw new Error(`cannot ${action} the same question multiple times`);
+    // people cannot vote the same direction multiple times
+    return question;
   }
 
   if (questionVote) {

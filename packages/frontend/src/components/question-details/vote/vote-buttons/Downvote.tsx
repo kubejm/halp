@@ -1,16 +1,20 @@
 import React from 'react';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { DownvoteMutation } from '../../../__generated__/DownvoteMutation.graphql';
+import { DownvoteMutation } from '../../../../__generated__/DownvoteMutation.graphql';
+import VoteButton from './VoteButton';
 
 interface Props {
   id: string;
+  hasUserVoted: boolean;
 }
 
-export default function Downvote({ id }: Props) {
+export default function Downvote({ id, hasUserVoted }: Props) {
   const [commit] = useMutation<DownvoteMutation>(graphql`
     mutation DownvoteMutation($input: DownvoteQuestionInput!) {
       downvoteQuestion(input: $input) {
         votes
+        hasUserUpvoted
+        hasUserDownvoted
       }
     }
   `);
@@ -26,7 +30,7 @@ export default function Downvote({ id }: Props) {
   };
 
   return (
-    <button onClick={handleClick}>
+    <VoteButton onClick={handleClick} hasUserVoted={hasUserVoted}>
       <svg
         className="w-6 h-6"
         fill="none"
@@ -37,10 +41,10 @@ export default function Downvote({ id }: Props) {
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth="2"
+          strokeWidth={hasUserVoted ? 3 : 2}
           d="M19 9l-7 7-7-7"
         ></path>
       </svg>
-    </button>
+    </VoteButton>
   );
 }
