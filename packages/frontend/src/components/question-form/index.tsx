@@ -3,10 +3,18 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { questionFormMutation } from '../../__generated__/questionFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
-import { Input, TextArea } from '../form';
+import { Input, TagInput, TextArea } from '../form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const schema = yup.object().shape({
+  question: yup.string().required(),
+  body: yup.string().required(),
+});
 
 export default function QuestionForm() {
   const formMethods = useForm({
+    resolver: yupResolver(schema),
     shouldFocusError: false,
   });
 
@@ -53,6 +61,7 @@ export default function QuestionForm() {
               rows={5}
               placeholder="Provide information for others to help you"
             />
+            <TagInput label="Tags" name="tags" />
             <input
               type="submit"
               value="Submit"
