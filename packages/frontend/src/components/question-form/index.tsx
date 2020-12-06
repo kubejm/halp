@@ -61,7 +61,6 @@ export default function QuestionForm() {
               ></textarea>
             </label>
           </div>
-          <TagInput />
           <input
             type="submit"
             value="Submit"
