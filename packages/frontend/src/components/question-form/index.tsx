@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { questionFormMutation } from '../../__generated__/questionFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
-import { Input } from '../form';
+import { Input, TextArea } from '../form';
 
 export default function QuestionForm() {
   const formMethods = useForm({
@@ -46,19 +46,13 @@ export default function QuestionForm() {
               name="question"
               placeholder="e.g. How do I exit vim?"
             />
-            <div className="mb-2">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Body
-                <textarea
-                  name="body"
-                  cols={10}
-                  rows={5}
-                  placeholder="Provide information for others to help you"
-                  className="border p-2 mt-3 w-full"
-                  ref={formMethods.register({ required: true })}
-                ></textarea>
-              </label>
-            </div>
+            <TextArea
+              label="Body"
+              name="body"
+              cols={10}
+              rows={5}
+              placeholder="Provide information for others to help you"
+            />
             <input
               type="submit"
               value="Submit"
