@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { questionFormMutation } from '../../__generated__/questionFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
-import TagInput from './TagInput';
 
 export default function QuestionForm() {
   const { register, handleSubmit } = useForm();
