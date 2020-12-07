@@ -27,7 +27,6 @@ export default function TagInput({
       event.preventDefault();
 
       if (!tags.some((tag) => tag.toLowerCase() === value.toLowerCase())) {
-        console.log('setting value', name, [...tags, value]);
         setValue(name, [...tags, value]);
         setTags([...tags, value]);
       }
