@@ -33,6 +33,7 @@ export default function QuestionForm() {
         input: {
           body: values.body,
           question: values.question,
+          ...(values.tags && { tags: values.tags }),
         },
       },
       onCompleted() {

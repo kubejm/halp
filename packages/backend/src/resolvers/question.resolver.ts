@@ -7,7 +7,7 @@ import {
   Query,
   Resolver,
 } from 'type-graphql';
-import { Question } from '../entities';
+import { Question, Tag } from '../entities';
 import { Context } from '../types';
 import { questionService } from '../services';
 import { IsString, IsUUID } from 'class-validator';
@@ -21,6 +21,9 @@ export class AddQuestionInput {
   @Field()
   @IsString()
   question!: string;
+
+  @Field(() => [String], { nullable: true })
+  tags?: string[];
 }
 
 @InputType()
@@ -76,7 +79,22 @@ export class QuestionResolver {
     @Arg('input') input: AddQuestionInput,
     @Ctx() context: Context
   ): Promise<Question> {
-    const question = Object.assign(new Question(), input);
+    const question = Object.assign(new Question(), {
+      question: input.question,
+      body: input.body,
+    });
+
+    if (Array.isArray(input.tags)) {
+      input.tags.forEach((tag) => {
+        question.tags.add(
+          Object.assign(new Tag(), {
+            name: tag,
+            question,
+          })
+        );
+      });
+    }
+
     return questionService.addQuestion(question, context);
   }
 

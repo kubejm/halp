@@ -6,6 +6,7 @@
 input AddQuestionInput {
   body: String!
   question: String!
+  tags: [String!]
 }
 
 input DownvoteQuestionInput {
