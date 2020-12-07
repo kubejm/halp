@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useState } from 'react';
+import React, { InputHTMLAttributes, useState, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
 
@@ -14,9 +14,11 @@ export default function TagInput({
   ...rest
 }: TagInputProps) {
   const { errors, register, setValue } = useFormContext();
+  register(name);
   const errorMessage = errors[name]?.message;
 
   const [tags, setTags] = useState<string[]>([]);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     const value = event.currentTarget.value;
@@ -25,10 +27,15 @@ export default function TagInput({
       event.preventDefault();
 
       if (!tags.some((tag) => tag.toLowerCase() === value.toLowerCase())) {
+        console.log('setting value', name, [...tags, value]);
+        setValue(name, [...tags, value]);
         setTags([...tags, value]);
       }
 
-      setValue(name, '');
+      if (inputRef && inputRef.current) {
+        inputRef.current.value = '';
+        inputRef.current.focus();
+      }
     }
   };
 
@@ -48,7 +55,7 @@ export default function TagInput({
             errorMessage && 'border-red-500'
           )}
           onKeyDown={handleKeyDown}
-          ref={register}
+          ref={inputRef}
           autoComplete="off"
         />
       </label>
