@@ -7,6 +7,7 @@ interface TagInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
+// TODO: clean up redundancy in this component
 export default function TagInput({
   name,
   label,
@@ -39,6 +40,10 @@ export default function TagInput({
   };
 
   const remove = (tag: string) => {
+    setValue(
+      name,
+      tags.filter((t) => t !== tag)
+    );
     setTags(tags.filter((t) => t !== tag));
   };
 
@@ -68,7 +73,7 @@ export default function TagInput({
             <span>{tag}</span>
             <button
               onClick={() => remove(tag)}
-              className="ml-1 text-sm font-bold text-purple-100 hover:text-purple-500"
+              className="ml-1 text-sm font-bold text-purple-100 hover:text-purple-500 focus:outline-none"
             >
               x
             </button>
