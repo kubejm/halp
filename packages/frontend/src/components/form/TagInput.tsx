@@ -39,7 +39,11 @@ export default function TagInput({
     }
   };
 
-  const remove = (tag: string) => {
+  const remove = (tag: string) => (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+
     setValue(
       name,
       tags.filter((t) => t !== tag)
@@ -73,7 +77,7 @@ export default function TagInput({
           >
             <span>{tag}</span>
             <button
-              onClick={() => remove(tag)}
+              onClick={remove(tag)}
               className="ml-1 text-sm font-bold text-purple-100 hover:text-purple-500 focus:outline-none"
             >
               x
