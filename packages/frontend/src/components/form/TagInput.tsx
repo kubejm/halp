@@ -42,6 +42,7 @@ export default function TagInput({
     setTags(tags.filter((t) => t !== tag));
   };
 
+  // TODO: abstract tags into separate component
   return (
     <div className="mb-2">
       <label className="block text-gray-700 text-sm font-bold mb-2">
