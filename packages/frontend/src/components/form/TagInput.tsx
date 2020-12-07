@@ -62,6 +62,7 @@ export default function TagInput({
           onKeyDown={handleKeyDown}
           ref={inputRef}
           autoComplete="off"
+          placeholder="e.g. rest, json, git"
         />
       </label>
       <ul>
