@@ -44,7 +44,7 @@ export default function TagInput({
 
   // TODO: abstract tags into separate component
   return (
-    <div className="mb-2">
+    <div className="mb-6">
       <label className="block text-gray-700 text-sm font-bold mb-2">
         Tags
         <input
