@@ -41,6 +41,7 @@ type Question {
   hasUserDownvoted: Boolean!
   hasUserUpvoted: Boolean!
   id: ID!
+  isUserAuthor: Boolean!
   question: String!
   tags: [Tag!]!
   user: User!

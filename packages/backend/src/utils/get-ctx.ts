@@ -1,9 +1,10 @@
 import { AsyncLocalStorage } from 'async_hooks';
-import { Context as KoaContext, Next } from 'koa';
+import { Next } from 'koa';
+import { Ctx } from '../types';
 
-const asyncLocalStorage = new AsyncLocalStorage<KoaContext>();
+const asyncLocalStorage = new AsyncLocalStorage<Ctx>();
 
-export function storeCtx(ctx: KoaContext, next: Next) {
+export function storeCtx(ctx: Ctx, next: Next) {
   return asyncLocalStorage.run(ctx, next);
 }
 

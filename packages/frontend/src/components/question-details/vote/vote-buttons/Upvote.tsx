@@ -6,9 +6,10 @@ import VoteButton from './VoteButton';
 interface Props {
   id: string;
   hasUserVoted: boolean;
+  isUserAuthor: boolean;
 }
 
-export default function Upvote({ id, hasUserVoted }: Props) {
+export default function Upvote({ id, hasUserVoted, isUserAuthor }: Props) {
   const [commit] = useMutation<UpvoteMutation>(graphql`
     mutation UpvoteMutation($input: UpvoteQuestionInput!) {
       upvoteQuestion(input: $input) {
@@ -30,7 +31,11 @@ export default function Upvote({ id, hasUserVoted }: Props) {
   };
 
   return (
-    <VoteButton onClick={handleClick} hasUserVoted={hasUserVoted}>
+    <VoteButton
+      onClick={handleClick}
+      hasUserVoted={hasUserVoted}
+      isUserAuthor={isUserAuthor}
+    >
       <svg
         className="w-6 h-6"
         fill="none"

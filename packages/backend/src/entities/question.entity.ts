@@ -86,6 +86,12 @@ export class Question extends Base<Question> {
   }
 
   @Field()
+  isUserAuthor(): boolean {
+    const ctx = getCtx();
+    return ctx.user?.username === this.user.username;
+  }
+
+  @Field()
   get votes(): number {
     return this.questionVotes.getItems().reduce((result, vote) => {
       if (vote.action === QuestionVoteAction.UPVOTE) result++;

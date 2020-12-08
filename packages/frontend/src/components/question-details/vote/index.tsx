@@ -16,6 +16,7 @@ export default function Vote({ id }: Props) {
           votes
           hasUserUpvoted
           hasUserDownvoted
+          isUserAuthor
         }
       }
     `,
@@ -31,9 +32,17 @@ export default function Vote({ id }: Props) {
 
   return (
     <div className="flex flex-col w-6 mr-4 text-gray-600 text-center">
-      <Upvote id={id} hasUserVoted={question.hasUserUpvoted} />
+      <Upvote
+        id={id}
+        hasUserVoted={question.hasUserUpvoted}
+        isUserAuthor={question.isUserAuthor}
+      />
       <div>{question.votes}</div>
-      <Downvote id={id} hasUserVoted={question.hasUserDownvoted} />
+      <Downvote
+        id={id}
+        hasUserVoted={question.hasUserDownvoted}
+        isUserAuthor={question.isUserAuthor}
+      />
     </div>
   );
 }

@@ -6,15 +6,21 @@ interface Props {
   children?: React.ReactNode;
   onClick: () => void;
   hasUserVoted: boolean;
+  isUserAuthor: boolean;
 }
 
-export default function VoteButton({ children, onClick, hasUserVoted }: Props) {
+export default function VoteButton({
+  children,
+  onClick,
+  hasUserVoted,
+  isUserAuthor,
+}: Props) {
   const isAuthenticated = useStore((state) => state.isAuthenticated);
 
   return (
     <button
       onClick={onClick}
-      disabled={!isAuthenticated || hasUserVoted}
+      disabled={!isAuthenticated || isUserAuthor || hasUserVoted}
       className={clsx(
         'focus:outline-none',
         hasUserVoted && 'text-purple-600',

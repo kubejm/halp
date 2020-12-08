@@ -15,6 +15,7 @@ export type voteQueryResponse = {
         readonly votes: number;
         readonly hasUserUpvoted: boolean;
         readonly hasUserDownvoted: boolean;
+        readonly isUserAuthor: boolean;
     };
 };
 export type voteQuery = {
@@ -33,6 +34,7 @@ query voteQuery(
     votes
     hasUserUpvoted
     hasUserDownvoted
+    isUserAuthor
   }
 }
 */
@@ -86,6 +88,13 @@ const node: ConcreteRequest = (function () {
                     "kind": "ScalarField",
                     "name": "hasUserDownvoted",
                     "storageKey": null
+                },
+                {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "isUserAuthor",
+                    "storageKey": null
                 }
             ],
             "storageKey": null
@@ -109,14 +118,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "c3b820446c2c1a2ea05b5e822158ac4f",
+            "cacheID": "8de4873f083b62b4055f9ba710d86b56",
             "id": null,
             "metadata": {},
             "name": "voteQuery",
             "operationKind": "query",
-            "text": "query voteQuery(\n  $input: GetQuestionInput!\n) {\n  question(input: $input) {\n    id\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n  }\n}\n"
+            "text": "query voteQuery(\n  $input: GetQuestionInput!\n) {\n  question(input: $input) {\n    id\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n    isUserAuthor\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'd9206fca04e3c280098be1a94f5ca61a';
+(node as any).hash = 'cefb5f6dafda60c01cb08deb63ca468e';
 export default node;
