@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { questionDetailsQuery } from '../../__generated__/questionDetailsQuery.graphql';
 import Vote from './vote';
+import Chip from '../chip';
 
 interface Props {
   id: string;
@@ -44,12 +45,25 @@ export default function QuestionDetails({ id }: Props) {
         <h1 className="text-2xl mb-2">{question.question}</h1>
         <div className="flex text-xs text-gray-600 pb-4">
           <div className="mr-5">Asked {question.createdAtRelative}</div>
-          <div>Viewed {question.views} times</div>
+          <div className="mr-5">Viewed {question.views} times</div>
         </div>
       </div>
       <div className="flex">
         <Vote id={id} />
-        <div className="text-sm">{question.body}</div>
+        <div className="flex-grow">
+          <div className="text-sm">{question.body}</div>
+          <div className="flex flex-row-reverse justify-between min-w-full mt-6">
+            <div className="bg-gray-300 p-2 rounded text-gray-500 text-sm align-middle w-28 min-w-min">
+              <div className="text-xs">Asked by</div>
+              <div>{question.user.username}</div>
+            </div>
+            <div className="flex flex-row items-start text-xs">
+              {question.tags.map((tag, index: number) => (
+                <Chip key={index} label={tag.name} />
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
