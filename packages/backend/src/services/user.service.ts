@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 import { ServerValidationError } from '../utils';
 import { AuthenticationError } from 'apollo-server-koa';
 
-function setCookieToken(subject: string, context: Context) {
+function setCookieToken(subject: string, { ctx }: Context) {
   const token = jwt.sign(
     {
       roles: ['user'],
@@ -18,18 +18,18 @@ function setCookieToken(subject: string, context: Context) {
     }
   );
 
-  context.ctx.cookies.set('token', token, {
+  ctx.cookies.set('token', token, {
     httpOnly: false,
     secure: false,
   });
 }
 
-export function getProfile(context: Context) {
-  if (context.ctx.user === undefined) {
+export function getProfile({ ctx }: Context) {
+  if (ctx.user === undefined) {
     throw new AuthenticationError('no authenticated user');
   }
 
-  return context.ctx.user;
+  return ctx.user;
 }
 
 export interface SignUpInput {
@@ -96,8 +96,8 @@ export async function signIn(
   setCookieToken(user.id, context);
 }
 
-export function signOut(context: Context) {
-  context.ctx.cookies.set('token', '', {
+export function signOut({ ctx }: Context) {
+  ctx.cookies.set('token', '', {
     httpOnly: false,
     secure: false,
   });
