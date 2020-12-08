@@ -4,41 +4,24 @@ import { Context } from '../types';
 
 export function getQuestions({ ctx }: Context, tag?: string) {
   if (tag) {
-    return ctx.em.getRepository(Question).find(
-      {
-        tags: { name: tag },
-      },
-      {
-        populate: ['user'],
-      }
-    );
+    return ctx.em.getRepository(Question).find({
+      tags: { name: tag },
+    });
   }
 
-  return ctx.em.getRepository(Question).findAll({
-    populate: ['user'],
-  });
+  return ctx.em.getRepository(Question).findAll();
 }
 
 export function getQuestion(id: string, { ctx }: Context) {
-  return ctx.em.getRepository(Question).findOneOrFail(
-    {
-      id,
-    },
-    {
-      populate: ['user'],
-    }
-  );
+  return ctx.em.getRepository(Question).findOneOrFail({
+    id,
+  });
 }
 
 export async function viewQuestion(id: string, { ctx }: Context) {
-  const question = await ctx.em.getRepository(Question).findOneOrFail(
-    {
-      id,
-    },
-    {
-      populate: ['user'],
-    }
-  );
+  const question = await ctx.em.getRepository(Question).findOneOrFail({
+    id,
+  });
 
   if (ctx.user?.id !== question.user.id) {
     wrap(question).assign({
@@ -51,14 +34,9 @@ export async function viewQuestion(id: string, { ctx }: Context) {
 }
 
 async function vote(id: string, action: QuestionVoteAction, { ctx }: Context) {
-  const question = await ctx.em.getRepository(Question).findOneOrFail(
-    {
-      id,
-    },
-    {
-      populate: ['user'],
-    }
-  );
+  const question = await ctx.em.getRepository(Question).findOneOrFail({
+    id,
+  });
 
   if (!ctx.user?.id) {
     throw new Error('must be logged in to vote');
