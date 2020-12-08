@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes, useState, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
+import Chip from '../chip';
 
 interface TagInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -71,17 +72,8 @@ export default function TagInput({
       </label>
       <ul>
         {tags.map((tag, index) => (
-          <li
-            key={index}
-            className="inline-block bg-purple-400 text-white text-xs px-2 py-1 rounded mr-1"
-          >
-            <span>{tag}</span>
-            <button
-              onClick={remove(tag)}
-              className="ml-1 text-sm font-bold text-purple-100 hover:text-purple-500 focus:outline-none"
-            >
-              x
-            </button>
+          <li key={index}>
+            <Chip label={tag} onDelete={remove(tag)} />
           </li>
         ))}
       </ul>
