@@ -25,11 +25,11 @@ function setCookieToken(subject: string, context: Context) {
 }
 
 export function getProfile(context: Context) {
-  if (context.user === undefined) {
+  if (context.ctx.user === undefined) {
     throw new AuthenticationError('no authenticated user');
   }
 
-  return context.user;
+  return context.ctx.user;
 }
 
 export interface SignUpInput {
@@ -39,7 +39,7 @@ export interface SignUpInput {
 }
 
 export async function signUp(input: SignUpInput, context: Context) {
-  const userRepository = context.em.getRepository(User);
+  const userRepository = context.ctx.em.getRepository(User);
 
   const username = input.username;
   const usernameExists = (await userRepository.count({ username })) > 0;
@@ -66,7 +66,7 @@ export async function signUp(input: SignUpInput, context: Context) {
     passwordHash,
   });
 
-  await context.em.persist(user).flush();
+  await context.ctx.em.persist(user).flush();
 
   setCookieToken(user.id, context);
 }
@@ -76,7 +76,7 @@ export async function signIn(
   password: string,
   context: Context
 ) {
-  const userRepository = context.em.getRepository(User);
+  const userRepository = context.ctx.em.getRepository(User);
   const user = await userRepository.findOne({
     username,
   });

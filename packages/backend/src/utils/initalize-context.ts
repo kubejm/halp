@@ -5,12 +5,12 @@ import { jwtPayload, Context } from '../types';
 
 export function initializeContext(orm: MikroORM<IDatabaseDriver<Connection>>) {
   return async function ({ ctx }: Context): Promise<Context> {
-    const token = ctx.cookies.get('token');
+    ctx.em = orm.em;
 
+    const token = ctx.cookies.get('token');
     if (token === undefined) {
       return {
         ctx,
-        em: orm.em,
       };
     }
 
@@ -21,13 +21,10 @@ export function initializeContext(orm: MikroORM<IDatabaseDriver<Connection>>) {
         id: payload?.sub,
       })) ?? undefined;
 
-    // TODO: place everything on ctx
     ctx.user = user;
 
     return {
       ctx,
-      em: orm.em,
-      user,
     };
   };
 }
