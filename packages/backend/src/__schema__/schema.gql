@@ -17,6 +17,10 @@ input GetQuestionInput {
   id: String!
 }
 
+input GetQuestionsInput {
+  tag: String!
+}
+
 type Mutation {
   addQuestion(input: AddQuestionInput!): Question!
   downvoteQuestion(input: DownvoteQuestionInput!): Question!
@@ -30,7 +34,7 @@ type Mutation {
 type Query {
   profile: User!
   question(input: GetQuestionInput!): Question!
-  questions: [Question!]!
+  questions(input: GetQuestionsInput): [Question!]!
 }
 
 type Question {

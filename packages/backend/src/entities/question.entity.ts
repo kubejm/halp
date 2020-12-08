@@ -1,6 +1,7 @@
 import {
   Collection,
   Entity,
+  Filter,
   ManyToMany,
   ManyToOne,
   OneToMany,
@@ -16,6 +17,14 @@ import { getCtx } from '../utils';
 
 @ObjectType()
 @Entity()
+@Filter({
+  name: 'byTag',
+  cond: (args, type) => {
+    if (type === 'update') return {};
+
+    return { tags: args.byTag };
+  },
+})
 export class Question extends Base<Question> {
   @Field()
   @Property()

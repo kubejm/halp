@@ -27,6 +27,13 @@ export class AddQuestionInput {
 }
 
 @InputType()
+export class GetQuestionsInput {
+  @Field()
+  @IsString()
+  tag!: string;
+}
+
+@InputType()
 export class GetQuestionInput {
   @Field()
   @IsUUID()
@@ -57,8 +64,11 @@ export class DownvoteQuestionInput {
 @Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => [Question])
-  questions(@Ctx() context: Context) {
-    return questionService.getAllQuestions(context);
+  questions(
+    @Ctx() context: Context,
+    @Arg('input', { nullable: true }) input?: GetQuestionsInput
+  ) {
+    return questionService.getQuestions(context, input?.tag);
   }
 
   @Query(() => Question)

@@ -2,7 +2,18 @@ import { wrap } from '@mikro-orm/core';
 import { Question, QuestionVote, QuestionVoteAction } from '../entities';
 import { Context } from '../types';
 
-export function getAllQuestions({ ctx }: Context) {
+export function getQuestions({ ctx }: Context, tag?: string) {
+  if (tag) {
+    return ctx.em.getRepository(Question).find(
+      {
+        tags: { name: tag },
+      },
+      {
+        populate: ['user'],
+      }
+    );
+  }
+
   return ctx.em.getRepository(Question).findAll({
     populate: ['user'],
   });
