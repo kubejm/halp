@@ -12,6 +12,12 @@ const schema = yup.object().shape({
   body: yup.string().required(),
 });
 
+interface QuestionFormInput {
+  body: string;
+  question: string;
+  tags?: string[];
+}
+
 export default function QuestionForm() {
   const formMethods = useForm({
     resolver: yupResolver(schema),
@@ -27,7 +33,7 @@ export default function QuestionForm() {
   `);
   const history = useHistory();
 
-  const onSubmit = (values: Record<string, string>) => {
+  const onSubmit = (values: QuestionFormInput) => {
     commit({
       variables: {
         input: {
