@@ -5,13 +5,16 @@ import Chip from '../chip';
 
 interface TagProps {
   name: string;
+  questionCount: number;
 }
 
-function Tag(props: TagProps) {
+function Tag({ name, questionCount }: TagProps) {
   return (
     <div className="border rounded p-3">
-      <Chip label={props.name} />
-      <div className="text-gray-400 text-xs mt-2">123 questions</div>
+      <Chip label={name} />
+      <div className="text-gray-400 text-xs mt-2">
+        {questionCount} questions
+      </div>
     </div>
   );
 }
@@ -22,6 +25,7 @@ export default function TagList() {
       query tagListQuery {
         tags {
           name
+          questionCount
         }
       }
     `,
@@ -34,7 +38,7 @@ export default function TagList() {
   return (
     <div className="grid gap-4 grid-cols-3">
       {tags.map((tag) => (
-        <Tag name={tag.name} />
+        <Tag name={tag.name} questionCount={tag.questionCount} />
       ))}
     </div>
   );
