@@ -4,6 +4,7 @@ export { default as SignUpForm } from './sign-up-form';
 export { default as QuestionList } from './question-list';
 export { default as QuestionDetails } from './question-details';
 export { default as QuestionForm } from './question-form';
+export { default as TagList } from './tag-list';
 export {
   AuthenticatedRoute,
   ConditionalRoute,
