@@ -7,6 +7,7 @@ export default function AuthenticatedMenu() {
     <nav className="flex flex-row items-center justify-end">
       <div className="flex flex-row items-center justify-end">
         <MenuLink to="/ask" label="Ask" />
+        <MenuLink to="/tags" label="Tags" />
       </div>
       <div className="border-l pl-4">
         <UserDropDown />
