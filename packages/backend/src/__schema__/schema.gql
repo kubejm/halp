@@ -35,6 +35,7 @@ type Query {
   profile: User!
   question(input: GetQuestionInput!): Question!
   questions(input: GetQuestionsInput): [Question!]!
+  tags: [Tag!]!
 }
 
 type Question {
