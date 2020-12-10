@@ -3,8 +3,8 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type questionListQueryVariables = {};
-export type questionListQueryResponse = {
+export type QuestionListQueryVariables = {};
+export type QuestionListQueryResponse = {
     readonly questions: ReadonlyArray<{
         readonly answers: number;
         readonly createdAtRelative: string;
@@ -21,15 +21,15 @@ export type questionListQueryResponse = {
         readonly votes: number;
     }>;
 };
-export type questionListQuery = {
-    readonly response: questionListQueryResponse;
-    readonly variables: questionListQueryVariables;
+export type QuestionListQuery = {
+    readonly response: QuestionListQueryResponse;
+    readonly variables: QuestionListQueryVariables;
 };
 
 
 
 /*
-query questionListQuery {
+query QuestionListQuery {
   questions {
     answers
     createdAtRelative
@@ -111,7 +111,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": [],
             "kind": "Fragment",
             "metadata": null,
-            "name": "questionListQuery",
+            "name": "QuestionListQuery",
             "selections": [
                 {
                     "alias": null,
@@ -163,7 +163,7 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": [],
             "kind": "Operation",
-            "name": "questionListQuery",
+            "name": "QuestionListQuery",
             "selections": [
                 {
                     "alias": null,
@@ -212,14 +212,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "f8e5ae1c51064393a68fd51ce57d36de",
+            "cacheID": "5d4ec44086d84874686150cbc1d05c5b",
             "id": null,
             "metadata": {},
-            "name": "questionListQuery",
+            "name": "QuestionListQuery",
             "operationKind": "query",
-            "text": "query questionListQuery {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
+            "text": "query QuestionListQuery {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'c8464147b31b91d31e45c50cabe062b7';
+(node as any).hash = 'e77c8b11215f3235261efefe48a117ab';
 export default node;
