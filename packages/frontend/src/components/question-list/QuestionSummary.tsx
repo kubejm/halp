@@ -1,10 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Tag from '../tag';
-
-interface Tag {
-  readonly name: string;
-}
+import TagList from '../tag-list';
 
 interface Props {
   id: string;
@@ -13,7 +9,7 @@ interface Props {
   createdAtRelative: string;
   excerpt: string;
   question: string;
-  tags: readonly Tag[];
+  tags: readonly { readonly name: string }[];
   views?: number;
   votes?: number;
 }
@@ -53,15 +49,7 @@ export default function QuestionSummary(props: Props) {
               {props.username}
             </div>
           </div>
-          <div className="flex flex-row items-start text-xs pb-2">
-            {props.tags.map((tag: Tag, index: number) => (
-              <Tag
-                key={index}
-                label={tag.name}
-                to={`/questions/tagged/${tag.name}`}
-              />
-            ))}
-          </div>
+          <TagList tags={props.tags} />
         </div>
       </div>
     </div>
