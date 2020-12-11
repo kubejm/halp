@@ -59,7 +59,11 @@ export default function QuestionDetails({ id }: Props) {
             </div>
             <div className="flex flex-row items-start text-xs">
               {question.tags.map((tag, index: number) => (
-                <Chip key={index} label={tag.name} />
+                <Chip
+                  key={index}
+                  label={tag.name}
+                  to={`/questions/tagged/${tag.name}`}
+                />
               ))}
             </div>
           </div>

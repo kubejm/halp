@@ -55,7 +55,11 @@ export default function QuestionSummary(props: Props) {
           </div>
           <div className="flex flex-row items-start text-xs pb-2">
             {props.tags.map((tag: Tag, index: number) => (
-              <Chip key={index} label={tag.name} />
+              <Chip
+                key={index}
+                label={tag.name}
+                to={`/questions/tagged/${tag.name}`}
+              />
             ))}
           </div>
         </div>
