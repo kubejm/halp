@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 
 interface DeleteButtonProps {
   onDelete?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
@@ -28,7 +29,7 @@ export default function Chip(props: ChipProps) {
 
   if (props.to) {
     return (
-      <Link to={props.to} className={classes}>
+      <Link to={props.to} className={clsx(classes, 'hover:bg-purple-500')}>
         <span>{props.label}</span>
       </Link>
     );
