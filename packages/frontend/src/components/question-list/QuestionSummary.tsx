@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Chip from '../chip';
+import Tag from '../tag';
 
 interface Tag {
   readonly name: string;
@@ -55,7 +55,7 @@ export default function QuestionSummary(props: Props) {
           </div>
           <div className="flex flex-row items-start text-xs pb-2">
             {props.tags.map((tag: Tag, index: number) => (
-              <Chip
+              <Tag
                 key={index}
                 label={tag.name}
                 to={`/questions/tagged/${tag.name}`}

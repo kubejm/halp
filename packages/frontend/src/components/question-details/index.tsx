@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { questionDetailsQuery } from '../../__generated__/questionDetailsQuery.graphql';
 import Vote from './vote';
-import Chip from '../chip';
+import Tag from '../tag';
 
 interface Props {
   id: string;
@@ -59,7 +59,7 @@ export default function QuestionDetails({ id }: Props) {
             </div>
             <div className="flex flex-row items-start text-xs">
               {question.tags.map((tag, index: number) => (
-                <Chip
+                <Tag
                   key={index}
                   label={tag.name}
                   to={`/questions/tagged/${tag.name}`}

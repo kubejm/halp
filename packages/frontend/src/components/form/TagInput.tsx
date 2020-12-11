@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, useState, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
-import Chip from '../chip';
+import Tag from '../tag';
 
 interface TagInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -73,7 +73,7 @@ export default function TagInput({
       <ul>
         {tags.map((tag, index) => (
           <li key={index}>
-            <Chip label={tag} onDelete={remove(tag)} />
+            <Tag label={tag} onDelete={remove(tag)} />
           </li>
         ))}
       </ul>

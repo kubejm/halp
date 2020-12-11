@@ -1,17 +1,17 @@
 import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { tagListQuery } from '../../__generated__/tagListQuery.graphql';
-import Chip from '../chip';
+import Tag from '../tag';
 
-interface TagProps {
+interface TagDescriptionProps {
   name: string;
   questionCount: number;
 }
 
-function Tag({ name, questionCount }: TagProps) {
+function TagDescription({ name, questionCount }: TagDescriptionProps) {
   return (
     <div className="border rounded p-3">
-      <Chip label={name} />
+      <Tag label={name} />
       <div className="text-gray-400 text-xs mt-2">
         {questionCount} questions
       </div>
@@ -19,7 +19,7 @@ function Tag({ name, questionCount }: TagProps) {
   );
 }
 
-export default function TagList() {
+export default function TagGrid() {
   const { tags } = useLazyLoadQuery<tagListQuery>(
     graphql`
       query tagListQuery {
@@ -38,7 +38,7 @@ export default function TagList() {
   return (
     <div className="grid gap-4 grid-cols-3">
       {tags.map((tag) => (
-        <Tag name={tag.name} questionCount={tag.questionCount} />
+        <TagDescription name={tag.name} questionCount={tag.questionCount} />
       ))}
     </div>
   );

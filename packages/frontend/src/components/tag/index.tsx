@@ -17,13 +17,13 @@ function DeleteButton(props: DeleteButtonProps) {
   );
 }
 
-interface ChipProps {
+interface TagProps {
   label: string;
   to?: string;
   onDelete?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-export default function Chip(props: ChipProps) {
+export default function Tag(props: TagProps) {
   const classes =
     'inline-block bg-purple-400 text-white text-xs px-2 py-1 rounded mr-1';
 
