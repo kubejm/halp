@@ -1,5 +1,5 @@
 import React from 'react';
-import { TagList } from '../components';
+import { TagGrid } from '../components';
 
 export default function Tags() {
   return (
@@ -7,7 +7,7 @@ export default function Tags() {
       <div className="mb-3 pb-3 border-b">
         <h1 className="text-xl">Tags</h1>
       </div>
-      <TagList />
+      <TagGrid />
     </div>
   );
 }
