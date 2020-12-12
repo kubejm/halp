@@ -22,6 +22,7 @@ export default function Input({ name, label, className, ...rest }: InputProps) {
             'border p-2 mt-3 w-full',
             errorMessage && 'border-red-500'
           )}
+          autoComplete="off"
           ref={register}
         />
       </label>
