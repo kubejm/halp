@@ -67,7 +67,7 @@ export default function SignInForm() {
             >
               <Input label="Username" name="username" />
               <Input label="Email" name="email" />
-              <Input label="Password" name="password" />
+              <Input label="Password" name="password" type="password" />
               <input
                 type="submit"
                 value="Sign Up"
