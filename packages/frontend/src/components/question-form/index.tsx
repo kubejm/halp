@@ -34,6 +34,7 @@ export default function QuestionForm() {
   `);
   const history = useHistory();
 
+  // TODO: can onError be abstracted out?
   const onSubmit = (values: QuestionFormInput) => {
     commit({
       variables: {
@@ -57,6 +58,7 @@ export default function QuestionForm() {
     });
   };
 
+  // TODO: can FormProvider be abstracted out?
   return (
     <>
       <div className="w-full mt-6">
