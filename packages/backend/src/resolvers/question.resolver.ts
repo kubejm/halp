@@ -10,7 +10,16 @@ import {
 import { Question, Tag } from '../entities';
 import { Context } from '../types';
 import { questionService } from '../services';
-import { IsString, IsUUID } from 'class-validator';
+import {
+  IsArray,
+  ArrayMinSize,
+  ArrayMaxSize,
+  IsString,
+  IsUUID,
+  Length,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 @InputType()
 export class AddQuestionInput {
@@ -20,10 +29,20 @@ export class AddQuestionInput {
 
   @Field()
   @IsString()
+  @Length(15, 300)
   question!: string;
 
-  @Field(() => [String], { nullable: true })
-  tags?: string[];
+  @Field(() => [String])
+  @IsArray()
+  @MinLength(2, {
+    each: true,
+  })
+  @MaxLength(15, {
+    each: true,
+  })
+  @ArrayMinSize(1)
+  @ArrayMaxSize(5)
+  tags!: string[];
 }
 
 @InputType()

@@ -11,12 +11,13 @@ import { ValidationError } from '../../utils';
 const schema = yup.object().shape({
   question: yup.string().required(),
   body: yup.string().required(),
+  tags: yup.array().required(),
 });
 
 interface QuestionFormInput {
   body: string;
   question: string;
-  tags?: string[];
+  tags: string[];
 }
 
 export default function QuestionForm() {
@@ -41,7 +42,7 @@ export default function QuestionForm() {
         input: {
           body: values.body,
           question: values.question,
-          ...(values.tags && { tags: values.tags }),
+          tags: values.tags,
         },
       },
       onError(error) {
