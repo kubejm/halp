@@ -70,7 +70,7 @@ export default function TagInput({
           placeholder="e.g. rest, json, git"
         />
       </label>
-      <ul>
+      <ul className="flex flex-row items-start">
         {tags.map((tag, index) => (
           <li key={index}>
             <Tag label={tag} onDelete={remove(tag)} />
