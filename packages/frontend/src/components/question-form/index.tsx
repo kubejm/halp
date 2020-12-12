@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Input, TagInput, TextArea } from '../form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ValidationError } from '../../utils';
 
 const schema = yup.object().shape({
   question: yup.string().required(),
@@ -42,6 +43,14 @@ export default function QuestionForm() {
           ...(values.tags && { tags: values.tags }),
         },
       },
+      onError(error) {
+        if (error instanceof ValidationError) {
+          formMethods.setError(error.property, {
+            type: 'server',
+            message: error.constraint,
+          });
+        }
+      },
       onCompleted() {
         history.push('/');
       },
@@ -60,6 +69,7 @@ export default function QuestionForm() {
               label="Question"
               name="question"
               placeholder="e.g. How do I exit vim?"
+              maxLength={300}
             />
             <TextArea
               label="Body"
