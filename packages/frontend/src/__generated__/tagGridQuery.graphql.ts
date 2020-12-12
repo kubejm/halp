@@ -3,22 +3,22 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type tagListQueryVariables = {};
-export type tagListQueryResponse = {
+export type tagGridQueryVariables = {};
+export type tagGridQueryResponse = {
     readonly tags: ReadonlyArray<{
         readonly name: string;
         readonly questionCount: number;
     }>;
 };
-export type tagListQuery = {
-    readonly response: tagListQueryResponse;
-    readonly variables: tagListQueryVariables;
+export type tagGridQuery = {
+    readonly response: tagGridQueryResponse;
+    readonly variables: tagGridQueryVariables;
 };
 
 
 
 /*
-query tagListQuery {
+query tagGridQuery {
   tags {
     name
     questionCount
@@ -46,7 +46,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": [],
             "kind": "Fragment",
             "metadata": null,
-            "name": "tagListQuery",
+            "name": "tagGridQuery",
             "selections": [
                 {
                     "alias": null,
@@ -69,7 +69,7 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": [],
             "kind": "Operation",
-            "name": "tagListQuery",
+            "name": "tagGridQuery",
             "selections": [
                 {
                     "alias": null,
@@ -94,14 +94,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "3323e0a4434e991c4c5208046f3b2178",
+            "cacheID": "4640e6280906c31183af554721705046",
             "id": null,
             "metadata": {},
-            "name": "tagListQuery",
+            "name": "tagGridQuery",
             "operationKind": "query",
-            "text": "query tagListQuery {\n  tags {\n    name\n    questionCount\n    id\n  }\n}\n"
+            "text": "query tagGridQuery {\n  tags {\n    name\n    questionCount\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '15fce6a75281f22b924add2358e6294a';
+(node as any).hash = '9fc5b64ed04980cabf6d2d0b3e3800fc';
 export default node;

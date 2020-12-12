@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
-import { tagListQuery } from '../../__generated__/tagListQuery.graphql';
+import { tagGridQuery } from '../../__generated__/tagGridQuery.graphql';
 import Tag from '../tag';
 
 interface TagDescriptionProps {
@@ -20,9 +20,9 @@ function TagDescription({ name, questionCount }: TagDescriptionProps) {
 }
 
 export default function TagGrid() {
-  const { tags } = useLazyLoadQuery<tagListQuery>(
+  const { tags } = useLazyLoadQuery<tagGridQuery>(
     graphql`
-      query tagListQuery {
+      query tagGridQuery {
         tags {
           name
           questionCount
