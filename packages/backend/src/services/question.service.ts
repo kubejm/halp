@@ -1,4 +1,4 @@
-import { wrap } from '@mikro-orm/core';
+import { wrap, QueryOrder } from '@mikro-orm/core';
 import { Question, QuestionVote, QuestionVoteAction } from '../entities';
 import { Context } from '../types';
 
@@ -9,7 +9,11 @@ export function getQuestions({ ctx }: Context, tag?: string) {
     });
   }
 
-  return ctx.em.getRepository(Question).findAll();
+  return ctx.em.getRepository(Question).findAll({
+    orderBy: {
+      createdAt: QueryOrder.DESC,
+    },
+  });
 }
 
 export function getQuestion(id: string, { ctx }: Context) {
