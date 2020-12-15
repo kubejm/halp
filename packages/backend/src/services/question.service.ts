@@ -94,3 +94,7 @@ export async function addQuestion(input: Question, { ctx }: Context) {
   await ctx.em.persist(question).flush();
   return question;
 }
+
+export async function getQuestionCount({ ctx }: Context) {
+  return ctx.em.getRepository(Question).count();
+}

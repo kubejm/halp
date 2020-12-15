@@ -82,6 +82,11 @@ export class DownvoteQuestionInput {
 
 @Resolver(() => Question)
 export class QuestionResolver {
+  @Query(() => Number)
+  questionCount(@Ctx() context: Context) {
+    return questionService.getQuestionCount(context);
+  }
+
   @Query(() => [Question])
   questions(
     @Ctx() context: Context,
