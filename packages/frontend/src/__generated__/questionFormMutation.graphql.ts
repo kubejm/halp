@@ -6,7 +6,7 @@ import { ConcreteRequest } from "relay-runtime";
 export type AddQuestionInput = {
     body: string;
     question: string;
-    tags?: Array<string> | null;
+    tags: Array<string>;
 };
 export type questionFormMutationVariables = {
     input: AddQuestionInput;
