@@ -6,8 +6,8 @@ import { AuthenticatedRoute, Layout, UnauthenticatedRoute } from './components';
 import {
   Ask,
   FourOhFour,
-  Home,
   Question,
+  Questions,
   QuestionsByTag,
   SignIn,
   SignUp,
@@ -23,7 +23,7 @@ export default function App() {
       <Router>
         <Layout>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Questions} />
             <Route path="/question/:id" component={Question} />
             <Route path="/tags" component={Tags} />
             <Route path="/questions/tagged/:tag" component={QuestionsByTag} />
