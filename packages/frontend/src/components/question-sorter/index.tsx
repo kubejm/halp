@@ -34,6 +34,7 @@ function SortLink(props: SortLinkProps) {
 
 // TODO: clean up Link elements
 // TODO: change selected
+// TODO: more intelligent way to set border right to 0
 export default function QuestionSorter() {
   const { questionCount } = useLazyLoadQuery<questionSorterQuery>(
     graphql`
