@@ -3,7 +3,14 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type QuestionListQueryVariables = {};
+export type QuestionOrderBy = "ACTIVE" | "NEW" | "VOTES" | "%future added value";
+export type GetQuestionsInput = {
+    orderBy?: QuestionOrderBy | null;
+    tag?: string | null;
+};
+export type QuestionListQueryVariables = {
+    input: GetQuestionsInput;
+};
 export type QuestionListQueryResponse = {
     readonly questions: ReadonlyArray<{
         readonly answers: number;
@@ -29,8 +36,10 @@ export type QuestionListQuery = {
 
 
 /*
-query QuestionListQuery {
-  questions {
+query QuestionListQuery(
+  $input: GetQuestionsInput!
+) {
+  questions(input: $input) {
     answers
     createdAtRelative
     excerpt
@@ -51,55 +60,67 @@ query QuestionListQuery {
 */
 
 const node: ConcreteRequest = (function () {
-    var v0 = ({
+    var v0 = [
+        ({
+            "defaultValue": null,
+            "kind": "LocalArgument",
+            "name": "input"
+        } as any)
+    ], v1 = [
+        ({
+            "kind": "Variable",
+            "name": "input",
+            "variableName": "input"
+        } as any)
+    ], v2 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "answers",
         "storageKey": null
-    } as any), v1 = ({
+    } as any), v3 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "createdAtRelative",
         "storageKey": null
-    } as any), v2 = ({
+    } as any), v4 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "excerpt",
         "storageKey": null
-    } as any), v3 = ({
+    } as any), v5 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "id",
         "storageKey": null
-    } as any), v4 = ({
+    } as any), v6 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "question",
         "storageKey": null
-    } as any), v5 = ({
+    } as any), v7 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "name",
         "storageKey": null
-    } as any), v6 = ({
+    } as any), v8 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "username",
         "storageKey": null
-    } as any), v7 = ({
+    } as any), v9 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
         "name": "views",
         "storageKey": null
-    } as any), v8 = ({
+    } as any), v10 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
@@ -108,24 +129,24 @@ const node: ConcreteRequest = (function () {
     } as any);
     return {
         "fragment": {
-            "argumentDefinitions": [],
+            "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
             "name": "QuestionListQuery",
             "selections": [
                 {
                     "alias": null,
-                    "args": null,
+                    "args": (v1 /*: any*/),
                     "concreteType": "Question",
                     "kind": "LinkedField",
                     "name": "questions",
                     "plural": true,
                     "selections": [
-                        (v0 /*: any*/),
-                        (v1 /*: any*/),
                         (v2 /*: any*/),
                         (v3 /*: any*/),
                         (v4 /*: any*/),
+                        (v5 /*: any*/),
+                        (v6 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -134,6 +155,59 @@ const node: ConcreteRequest = (function () {
                             "name": "tags",
                             "plural": true,
                             "selections": [
+                                (v7 /*: any*/)
+                            ],
+                            "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "User",
+                            "kind": "LinkedField",
+                            "name": "user",
+                            "plural": false,
+                            "selections": [
+                                (v8 /*: any*/)
+                            ],
+                            "storageKey": null
+                        },
+                        (v9 /*: any*/),
+                        (v10 /*: any*/)
+                    ],
+                    "storageKey": null
+                }
+            ],
+            "type": "Query",
+            "abstractKey": null
+        },
+        "kind": "Request",
+        "operation": {
+            "argumentDefinitions": (v0 /*: any*/),
+            "kind": "Operation",
+            "name": "QuestionListQuery",
+            "selections": [
+                {
+                    "alias": null,
+                    "args": (v1 /*: any*/),
+                    "concreteType": "Question",
+                    "kind": "LinkedField",
+                    "name": "questions",
+                    "plural": true,
+                    "selections": [
+                        (v2 /*: any*/),
+                        (v3 /*: any*/),
+                        (v4 /*: any*/),
+                        (v5 /*: any*/),
+                        (v6 /*: any*/),
+                        {
+                            "alias": null,
+                            "args": null,
+                            "concreteType": "Tag",
+                            "kind": "LinkedField",
+                            "name": "tags",
+                            "plural": true,
+                            "selections": [
+                                (v7 /*: any*/),
                                 (v5 /*: any*/)
                             ],
                             "storageKey": null
@@ -146,80 +220,27 @@ const node: ConcreteRequest = (function () {
                             "name": "user",
                             "plural": false,
                             "selections": [
-                                (v6 /*: any*/)
+                                (v8 /*: any*/),
+                                (v5 /*: any*/)
                             ],
                             "storageKey": null
                         },
-                        (v7 /*: any*/),
-                        (v8 /*: any*/)
-                    ],
-                    "storageKey": null
-                }
-            ],
-            "type": "Query",
-            "abstractKey": null
-        },
-        "kind": "Request",
-        "operation": {
-            "argumentDefinitions": [],
-            "kind": "Operation",
-            "name": "QuestionListQuery",
-            "selections": [
-                {
-                    "alias": null,
-                    "args": null,
-                    "concreteType": "Question",
-                    "kind": "LinkedField",
-                    "name": "questions",
-                    "plural": true,
-                    "selections": [
-                        (v0 /*: any*/),
-                        (v1 /*: any*/),
-                        (v2 /*: any*/),
-                        (v3 /*: any*/),
-                        (v4 /*: any*/),
-                        {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "Tag",
-                            "kind": "LinkedField",
-                            "name": "tags",
-                            "plural": true,
-                            "selections": [
-                                (v5 /*: any*/),
-                                (v3 /*: any*/)
-                            ],
-                            "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "User",
-                            "kind": "LinkedField",
-                            "name": "user",
-                            "plural": false,
-                            "selections": [
-                                (v6 /*: any*/),
-                                (v3 /*: any*/)
-                            ],
-                            "storageKey": null
-                        },
-                        (v7 /*: any*/),
-                        (v8 /*: any*/)
+                        (v9 /*: any*/),
+                        (v10 /*: any*/)
                     ],
                     "storageKey": null
                 }
             ]
         },
         "params": {
-            "cacheID": "5d4ec44086d84874686150cbc1d05c5b",
+            "cacheID": "a9c077df1abe5903cb6146558fd46a9f",
             "id": null,
             "metadata": {},
             "name": "QuestionListQuery",
             "operationKind": "query",
-            "text": "query QuestionListQuery {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
+            "text": "query QuestionListQuery(\n  $input: GetQuestionsInput!\n) {\n  questions(input: $input) {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'e77c8b11215f3235261efefe48a117ab';
+(node as any).hash = '9fb1dca2488ef1b2cadecc49310eef36';
 export default node;

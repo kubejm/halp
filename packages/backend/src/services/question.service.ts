@@ -2,18 +2,39 @@ import { wrap, QueryOrder } from '@mikro-orm/core';
 import { Question, QuestionVote, QuestionVoteAction } from '../entities';
 import { Context } from '../types';
 
-export function getQuestions({ ctx }: Context, tag?: string) {
+export enum QuestionOrderBy {
+  NEW = 'new',
+  ACTIVE = 'active',
+  VOTES = 'votes',
+}
+
+export function getQuestions(
+  { ctx }: Context,
+  tag?: string,
+  orderBy: QuestionOrderBy = QuestionOrderBy.NEW
+) {
+  const options = {
+    orderBy: {
+      ...(orderBy === QuestionOrderBy.NEW && { createdAt: QueryOrder.DESC }),
+      ...(orderBy === QuestionOrderBy.ACTIVE && { updatedAt: QueryOrder.DESC }),
+      ...(orderBy === QuestionOrderBy.VOTES && {
+        questionVotes: QueryOrder.DESC,
+      }),
+    },
+  };
+
+  console.log(options);
+
   if (tag) {
-    return ctx.em.getRepository(Question).find({
-      tags: { name: tag },
-    });
+    return ctx.em.getRepository(Question).find(
+      {
+        tags: { name: tag },
+      },
+      options
+    );
   }
 
-  return ctx.em.getRepository(Question).findAll({
-    orderBy: {
-      createdAt: QueryOrder.DESC,
-    },
-  });
+  return ctx.em.getRepository(Question).findAll(options);
 }
 
 export function getQuestion(id: string, { ctx }: Context) {

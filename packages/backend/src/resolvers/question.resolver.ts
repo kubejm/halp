@@ -6,6 +6,7 @@ import {
   Mutation,
   Query,
   Resolver,
+  registerEnumType,
 } from 'type-graphql';
 import { Question, Tag } from '../entities';
 import { Context } from '../types';
@@ -19,6 +20,7 @@ import {
   Length,
   MaxLength,
   MinLength,
+  IsEnum,
 } from 'class-validator';
 
 @InputType()
@@ -45,11 +47,18 @@ export class AddQuestionInput {
   tags!: string[];
 }
 
+// TODO: where should I place this?
+registerEnumType(questionService.QuestionOrderBy, { name: 'QuestionOrderBy' });
+
 @InputType()
 export class GetQuestionsInput {
-  @Field()
+  @Field({ nullable: true })
   @IsString()
-  tag!: string;
+  tag?: string;
+
+  @Field(() => questionService.QuestionOrderBy, { nullable: true })
+  @IsEnum(questionService.QuestionOrderBy)
+  orderBy?: questionService.QuestionOrderBy;
 }
 
 @InputType()
@@ -92,7 +101,8 @@ export class QuestionResolver {
     @Ctx() context: Context,
     @Arg('input', { nullable: true }) input?: GetQuestionsInput
   ) {
-    return questionService.getQuestions(context, input?.tag);
+    console.log(input);
+    return questionService.getQuestions(context, input?.tag, input?.orderBy);
   }
 
   @Query(() => Question)

@@ -18,7 +18,8 @@ input GetQuestionInput {
 }
 
 input GetQuestionsInput {
-  tag: String!
+  orderBy: QuestionOrderBy
+  tag: String
 }
 
 type Mutation {
@@ -53,6 +54,12 @@ type Question {
   user: User!
   views: Float!
   votes: Float!
+}
+
+enum QuestionOrderBy {
+  ACTIVE
+  NEW
+  VOTES
 }
 
 type Result {

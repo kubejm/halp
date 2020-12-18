@@ -3,11 +3,15 @@ import QuestionSummary from './QuestionSummary';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { QuestionListQuery } from '../../__generated__/QuestionListQuery.graphql';
 
-export default function QuestionList() {
+interface Props {
+  orderBy: 'ACTIVE' | 'NEW' | 'VOTES';
+}
+
+export default function QuestionList(props: Props) {
   const { questions } = useLazyLoadQuery<QuestionListQuery>(
     graphql`
-      query QuestionListQuery {
-        questions {
+      query QuestionListQuery($input: GetQuestionsInput!) {
+        questions(input: $input) {
           answers
           createdAtRelative
           excerpt
@@ -24,7 +28,11 @@ export default function QuestionList() {
         }
       }
     `,
-    {},
+    {
+      input: {
+        orderBy: props.orderBy,
+      },
+    },
     {
       fetchPolicy: 'store-and-network',
     }

@@ -3,8 +3,10 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
+export type QuestionOrderBy = "ACTIVE" | "NEW" | "VOTES" | "%future added value";
 export type GetQuestionsInput = {
-    tag: string;
+    orderBy?: QuestionOrderBy | null;
+    tag?: string | null;
 };
 export type QuestionListByTagQueryVariables = {
     input: GetQuestionsInput;
