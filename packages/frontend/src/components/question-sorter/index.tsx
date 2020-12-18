@@ -2,9 +2,37 @@ import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { questionSorterQuery } from '../../__generated__/questionSorterQuery.graphql';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+
+interface SortLinkProps {
+  to: string;
+  selected: boolean;
+  label: string;
+  className?: string;
+}
+
+function SortLink(props: SortLinkProps) {
+  const defaultStyles = 'py-2 px-3 border';
+  const selectedStyles = 'text-white bg-purple-500';
+  const hoverStyles =
+    'hover:bg-purple-400 hover:text-white hover:border-purple-200 transition duration-300 ease-in-out';
+
+  return (
+    <Link
+      to={props.to}
+      className={clsx(
+        defaultStyles,
+        props.selected && selectedStyles,
+        hoverStyles,
+        props.className
+      )}
+    >
+      {props.label}
+    </Link>
+  );
+}
 
 // TODO: clean up Link elements
-// TODO: add hover for buttons
 // TODO: change selected
 export default function QuestionSorter() {
   const { questionCount } = useLazyLoadQuery<questionSorterQuery>(
@@ -27,17 +55,23 @@ export default function QuestionSorter() {
         </div>
         <div>
           <ul className="flex list-none rounded text-xs text-purple-500">
-            <Link to={'/'}>
-              <li className="py-2 px-3 border border-r-0 bg-purple-500 text-white border rounded-l">
-                New
-              </li>
-            </Link>
-            <Link to={'/?orderBy=ACTIVE'}>
-              <li className="py-2 px-3 border border-r-0">Active</li>
-            </Link>
-            <Link to={'/?orderBy=VOTES'}>
-              <li className="py-2 px-3 border rounded-r">Most Votes</li>
-            </Link>
+            <SortLink
+              label="New"
+              to="/"
+              selected={true}
+              className=" border-r-0"
+            />
+            <SortLink
+              label="Active"
+              to="/?orderBy=ACTIVE"
+              selected={false}
+              className=" border-r-0"
+            />
+            <SortLink
+              label="Most Votes"
+              to="/?orderBy=VOTES"
+              selected={false}
+            />
           </ul>
         </div>
       </div>
