@@ -23,8 +23,6 @@ export function getQuestions(
     },
   };
 
-  console.log(options);
-
   if (tag) {
     return ctx.em.getRepository(Question).find(
       {
