@@ -22,6 +22,10 @@ export class Question extends Base<Question> {
   answers: number = 0;
 
   @Field()
+  @Property()
+  votes: number = 0;
+
+  @Field()
   @ManyToOne({ entity: () => User, eager: true })
   user!: User;
 
@@ -89,14 +93,5 @@ export class Question extends Base<Question> {
   isUserAuthor(): boolean {
     const ctx = getCtx();
     return ctx.user?.username === this.user.username;
-  }
-
-  @Field()
-  get votes(): number {
-    return this.questionVotes.getItems().reduce((result, vote) => {
-      if (vote.action === QuestionVoteAction.UPVOTE) result++;
-      if (vote.action === QuestionVoteAction.DOWNVOTE) result--;
-      return result;
-    }, 0);
   }
 }

@@ -18,7 +18,7 @@ export function getQuestions(
       ...(orderBy === QuestionOrderBy.NEW && { createdAt: QueryOrder.DESC }),
       ...(orderBy === QuestionOrderBy.ACTIVE && { updatedAt: QueryOrder.DESC }),
       ...(orderBy === QuestionOrderBy.VOTES && {
-        questionVotes: QueryOrder.DESC,
+        votes: QueryOrder.DESC,
       }),
     },
   };
@@ -90,6 +90,8 @@ async function vote(id: string, action: QuestionVoteAction, { ctx }: Context) {
       })
     );
   }
+
+  question.votes += action === QuestionVoteAction.UPVOTE ? 1 : -1;
 
   await ctx.em.persist(question).flush();
 
