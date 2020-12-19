@@ -101,7 +101,6 @@ export class QuestionResolver {
     @Ctx() context: Context,
     @Arg('input', { nullable: true }) input?: GetQuestionsInput
   ) {
-    console.log(input);
     return questionService.getQuestions(context, input?.tag, input?.orderBy);
   }
 
