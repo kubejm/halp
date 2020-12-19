@@ -32,10 +32,14 @@ function SortLink(props: SortLinkProps) {
   );
 }
 
+interface QuestionSorterProps {
+  orderBy?: string;
+}
+
 // TODO: clean up Link elements
-// TODO: change selected
 // TODO: more intelligent way to set border right to 0
-export default function QuestionSorter() {
+// TODO: share enums
+export default function QuestionSorter(props: QuestionSorterProps) {
   const { questionCount } = useLazyLoadQuery<questionSorterQuery>(
     graphql`
       query questionSorterQuery {
@@ -59,19 +63,19 @@ export default function QuestionSorter() {
             <SortLink
               label="New"
               to="/"
-              selected={true}
+              selected={props.orderBy === 'NEW'}
               className=" border-r-0"
             />
             <SortLink
               label="Active"
-              to="/?orderBy=ACTIVE"
-              selected={false}
+              to="/?orderBy=active"
+              selected={props.orderBy === 'ACTIVE'}
               className=" border-r-0"
             />
             <SortLink
               label="Most Votes"
-              to="/?orderBy=VOTES"
-              selected={false}
+              to="/?orderBy=votes"
+              selected={props.orderBy === 'VOTES'}
             />
           </ul>
         </div>
