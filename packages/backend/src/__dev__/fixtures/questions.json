@@ -1,17 +1,82 @@
 [
   {
-    "body": "I do not know how to use. How do I do it?",
-    "question": "How do I use git?",
-    "tags": ["tag1", "tag2", "tag3"]
+    "question": "How do I exit vim?",
+    "body": "I am stuck.  Please help.",
+    "tags": ["vim", "editor"]
   },
   {
-    "body": "I do not know how to use. How do I do it?",
-    "question": "How do I use git?",
-    "tags": ["tag1", "tag2", "tag3"]
+    "question": "How do I clone a git repository?",
+    "body": "I would like to pull down my friend's code",
+    "tags": ["git"]
   },
   {
-    "body": "There is a website. Technology stack is spring, springmvc, mybatis, freemarker and javascript. Some roles sign in the system to query info from db2 database. While some tables have sensitive info. We want to hide the info from some roles. For example: Some roles can see the full id: 1234234248789 Some roles can only see the partial id: XXXXXXXXX8789",
-    "question": "How do I use git?",
-    "tags": ["tag1", "tag2", "tag3"]
+    "question": "How do I type text in vim?",
+    "body": "My cursor is jumping around my screen when I type.",
+    "tags": ["vim", "editor"]
+  },
+  {
+    "question": "Which is better, vim or vscode?",
+    "body": "Should I use vim over vscode? If so, why?",
+    "tags": ["vim", "vscode", "editor"]
+  },
+  {
+    "question": "How do I change my commit message?",
+    "body": "I pushed my code and would like to change my commit message.",
+    "tags": ["git"]
+  },
+  {
+    "question": "How do I sort an array?",
+    "body": "I have an unordered array of numbers.  How do I sort them?",
+    "tags": ["javascript", "typescript"]
+  },
+  {
+    "question": "How do I get the keys of an object?",
+    "body": "I would like an array of all the keys of an object.",
+    "tags": ["javascript", "typescript"]
+  },
+  {
+    "question": "How do I run another script from within a script?",
+    "body": "I have a script I would like to execute within another script",
+    "tags": ["bash"]
+  },
+  {
+    "question": "How do I delete a folder?",
+    "body": "I would like to be able to delete a folder via command line.",
+    "tags": ["bash"]
+  },
+  {
+    "question": "How do I change directories?",
+    "body": "How do I move between directories in command line?",
+    "tags": ["bash"]
+  },
+  {
+    "question": "How do I bold text?",
+    "body": "I would like to bold text in one of my paragraphs.",
+    "tags": ["html", "css"]
+  },
+  {
+    "question": "How do I link pages?",
+    "body": "I'd like to add a link to my blog to go to another page.",
+    "tags": ["html", "css"]
+  },
+  {
+    "question": "How do I minify my assets?",
+    "body": "I have a lot of assets that are fairly large.  How do I make them smaller?",
+    "tags": ["html", "css", "javascript", "typescript"]
+  },
+  {
+    "question": "How do I install neovim?",
+    "body": "I am having trouble install this editor. Please help.",
+    "tags": ["vim", "neovim", "linux"]
+  },
+  {
+    "question": "How do I reformat my laptop with linux?",
+    "body": "I just got a fresh laptop and would like to run linux.",
+    "tags": ["linux", "windows"]
+  },
+  {
+    "question": "How do I update packages in ubuntu?",
+    "body": "I have a bunch of packages installed, but don't know how to update them.",
+    "tags": ["linux", "ubuntu"]
   }
 ]
