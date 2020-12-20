@@ -1,28 +1,25 @@
-import { MikroORM } from '@mikro-orm/core';
-import { Question, Tag } from '../entities';
-import ormConfig from '../orm.config';
-import questions from './fixtures/questions.json';
+import { gql, request } from 'graphql-request';
+import users from './fixtures/users.json';
+
+const endpoint = 'http://localhost:4000/graphql';
+
+const SignUp = gql`
+  mutation SignUp($input: SignUpInput!) {
+    signUp(input: $input) {
+      ok
+    }
+  }
+`;
 
 async function seed() {
-  const orm = await MikroORM.init(ormConfig);
-
-  for (const q of questions) {
-    const question = new Question({
-      body: q.body,
-      question: q.question,
+  for (let i = 0; i < users.length; i++) {
+    const response = await request(endpoint, SignUp, {
+      input: {
+        ...users[i],
+      },
     });
-
-    q.tags.forEach((t) => {
-      const tag = new Tag({
-        name: t.name,
-      });
-      question.tags.add(tag);
-    });
-
-    await orm.em.persist(question).flush();
+    console.log(response);
   }
-
-  await orm.close();
 }
 
 seed().catch(console.error);
