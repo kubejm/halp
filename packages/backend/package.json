@@ -6,8 +6,8 @@
   "scripts": {
     "db:drop": "mikro-orm schema:drop -r",
     "db:create": "mikro-orm schema:create -r",
-    "seed:users": "ts-node ./src/__dev__/seed-users.ts",
-    "seed:questions": "ts-node ./src/__dev__/seed-questions.ts",
+    "seed:users": "ts-node ./src/__dev__/seed.users.ts",
+    "seed:questions": "ts-node ./src/__dev__/seed.questions.ts",
     "dev": "ts-node-dev  --inspect --respawn --transpile-only ./src/index.ts",
     "lint": "eslint --ext .ts,.tsx src",
     "lint:fix": "eslint --ext .ts,.tsx src --fix",
