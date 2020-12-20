@@ -13,12 +13,11 @@ const SignUp = gql`
 
 async function seed() {
   for (let i = 0; i < users.length; i++) {
-    const response = await request(endpoint, SignUp, {
+    await request(endpoint, SignUp, {
       input: {
         ...users[i],
       },
     });
-    console.log(response);
   }
 }
 
