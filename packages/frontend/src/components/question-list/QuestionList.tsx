@@ -1,47 +1,34 @@
 import React from 'react';
 import QuestionSummary from './QuestionSummary';
-import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
-import { QuestionListQuery } from '../../__generated__/QuestionListQuery.graphql';
+import { graphql, useFragment } from 'react-relay/hooks';
+import { QuestionList_questions$key } from '../../__generated__/QuestionList_questions.graphql';
 
 interface Props {
-  orderBy: 'ACTIVE' | 'NEW' | 'VOTES';
-  page: number;
+  questionsPage: QuestionList_questions$key;
 }
 
 export default function QuestionList(props: Props) {
-  const {
-    questionsPage: { questions },
-  } = useLazyLoadQuery<QuestionListQuery>(
+  const { questions } = useFragment(
     graphql`
-      query QuestionListQuery($input: GetQuestionsInput!) {
-        questionsPage(input: $input) {
-          questions {
-            answers
-            createdAtRelative
-            excerpt
-            id
-            question
-            tags {
-              name
-            }
-            user {
-              username
-            }
-            views
-            votes
+      fragment QuestionList_questions on QuestionsPage {
+        questions {
+          answers
+          createdAtRelative
+          excerpt
+          id
+          question
+          tags {
+            name
           }
+          user {
+            username
+          }
+          views
+          votes
         }
       }
     `,
-    {
-      input: {
-        orderBy: props.orderBy,
-        page: props.page,
-      },
-    },
-    {
-      fetchPolicy: 'store-and-network',
-    }
+    props.questionsPage
   );
 
   return (

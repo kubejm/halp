@@ -1,6 +1,8 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { QuestionSorter, QuestionList, QuestionPager } from '../components';
+import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
+import { QuestionsQuery } from '../__generated__/QuestionsQuery.graphql';
 import * as H from 'history';
 
 interface ScreenProps extends RouteComponentProps {
@@ -28,10 +30,29 @@ export default function Questions(props: ScreenProps) {
   const orderBy = getOrderBy(orderByQuery);
   const page = Number(query.get('page')) || 1;
 
+  const { questionsPage } = useLazyLoadQuery<QuestionsQuery>(
+    graphql`
+      query QuestionsQuery($input: GetQuestionsInput!) {
+        questionsPage(input: $input) {
+          ...QuestionList_questions
+        }
+      }
+    `,
+    {
+      input: {
+        orderBy,
+        page,
+      },
+    },
+    {
+      fetchPolicy: 'store-and-network',
+    }
+  );
+
   return (
     <>
       <QuestionSorter orderBy={orderBy} />
-      <QuestionList orderBy={orderBy} page={page} />
+      <QuestionList questionsPage={questionsPage} />
       <QuestionPager page={page} />
     </>
   );
