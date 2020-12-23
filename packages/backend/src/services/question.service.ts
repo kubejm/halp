@@ -15,10 +15,17 @@ interface GetQuestionsOptions {
   pageSize?: number;
 }
 
-export function getQuestions({ ctx }: Context, options?: GetQuestionsOptions) {
+export async function getQuestions(
+  { ctx }: Context,
+  options?: GetQuestionsOptions
+) {
   const { tag, orderBy, page, pageSize } = {
     ...{ pageSize: 15, page: 1, orderBy: QuestionOrderBy.NEW },
     ...options,
+  };
+
+  const where = {
+    ...(tag && { tags: { name: tag } }),
   };
 
   const findOptions = {
@@ -37,16 +44,13 @@ export function getQuestions({ ctx }: Context, options?: GetQuestionsOptions) {
     offset: (page - 1) * pageSize,
   };
 
-  if (tag) {
-    return ctx.em.getRepository(Question).find(
-      {
-        tags: { name: tag },
-      },
-      findOptions
-    );
-  }
+  const [questions, count] = await ctx.em
+    .getRepository(Question)
+    .findAndCount(where, findOptions);
 
-  return ctx.em.getRepository(Question).findAll(findOptions);
+  const pageCount = Math.ceil(count / pageSize);
+
+  return [questions, count, pageCount];
 }
 
 export function getQuestion(id: string, { ctx }: Context) {

@@ -38,7 +38,7 @@ type Query {
   profile: User!
   question(input: GetQuestionInput!): Question!
   questionCount: Float!
-  questions(input: GetQuestionsInput): [Question!]!
+  questions(input: GetQuestionsInput): QuestionsPage!
   tags: [Tag!]!
 }
 
@@ -62,6 +62,12 @@ enum QuestionOrderBy {
   ACTIVE
   NEW
   VOTES
+}
+
+type QuestionsPage {
+  count: Float!
+  pageCount: Float!
+  questions: [Question!]!
 }
 
 type Result {

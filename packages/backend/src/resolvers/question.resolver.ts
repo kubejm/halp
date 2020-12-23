@@ -3,6 +3,7 @@ import {
   Ctx,
   Field,
   InputType,
+  ObjectType,
   Mutation,
   Query,
   Resolver,
@@ -70,6 +71,18 @@ export class GetQuestionsInput {
   pageSize?: number;
 }
 
+@ObjectType()
+export class QuestionsPage {
+  @Field(() => [Question])
+  questions!: Question[];
+
+  @Field()
+  count!: number;
+
+  @Field()
+  pageCount!: number;
+}
+
 @InputType()
 export class GetQuestionInput {
   @Field()
@@ -105,12 +118,24 @@ export class QuestionResolver {
     return questionService.getQuestionCount(context);
   }
 
-  @Query(() => [Question])
-  questions(
+  @Query(() => QuestionsPage)
+  async questions(
     @Ctx() context: Context,
     @Arg('input', { nullable: true }) input?: GetQuestionsInput
   ) {
-    return questionService.getQuestions(context, input);
+    const [questions, count, pageCount] = await questionService.getQuestions(
+      context,
+      input
+    );
+
+    return Object.assign(
+      {
+        questions,
+        count,
+        pageCount,
+      },
+      new QuestionsPage()
+    );
   }
 
   @Query(() => Question)
