@@ -8,19 +8,33 @@ export enum QuestionOrderBy {
   VOTES = 'votes',
 }
 
-export function getQuestions(
-  { ctx }: Context,
-  tag?: string,
-  orderBy: QuestionOrderBy = QuestionOrderBy.NEW
-) {
-  const options = {
+interface GetQuestionsOptions {
+  tag?: string;
+  orderBy?: QuestionOrderBy;
+  page?: number;
+  pageSize?: number;
+}
+
+export function getQuestions({ ctx }: Context, options?: GetQuestionsOptions) {
+  const { tag, orderBy, page, pageSize } = {
+    ...{ pageSize: 15, page: 1, orderBy: QuestionOrderBy.NEW },
+    ...options,
+  };
+
+  const findOptions = {
     orderBy: {
-      ...(orderBy === QuestionOrderBy.NEW && { createdAt: QueryOrder.DESC }),
-      ...(orderBy === QuestionOrderBy.ACTIVE && { updatedAt: QueryOrder.DESC }),
+      ...(orderBy === QuestionOrderBy.NEW && {
+        createdAt: QueryOrder.DESC,
+      }),
+      ...(orderBy === QuestionOrderBy.ACTIVE && {
+        updatedAt: QueryOrder.DESC,
+      }),
       ...(orderBy === QuestionOrderBy.VOTES && {
         votes: QueryOrder.DESC,
       }),
     },
+    limit: pageSize,
+    offset: (page - 1) * pageSize,
   };
 
   if (tag) {
@@ -28,11 +42,11 @@ export function getQuestions(
       {
         tags: { name: tag },
       },
-      options
+      findOptions
     );
   }
 
-  return ctx.em.getRepository(Question).findAll(options);
+  return ctx.em.getRepository(Question).findAll(findOptions);
 }
 
 export function getQuestion(id: string, { ctx }: Context) {

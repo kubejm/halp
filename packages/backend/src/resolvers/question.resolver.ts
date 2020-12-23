@@ -16,6 +16,7 @@ import {
   ArrayMinSize,
   ArrayMaxSize,
   IsString,
+  IsNumber,
   IsUUID,
   Length,
   MaxLength,
@@ -59,6 +60,14 @@ export class GetQuestionsInput {
   @Field(() => questionService.QuestionOrderBy, { nullable: true })
   @IsEnum(questionService.QuestionOrderBy)
   orderBy?: questionService.QuestionOrderBy;
+
+  @Field({ nullable: true })
+  @IsNumber()
+  page?: number;
+
+  @Field({ nullable: true })
+  @IsNumber()
+  pageSize?: number;
 }
 
 @InputType()
@@ -101,7 +110,7 @@ export class QuestionResolver {
     @Ctx() context: Context,
     @Arg('input', { nullable: true }) input?: GetQuestionsInput
   ) {
-    return questionService.getQuestions(context, input?.tag, input?.orderBy);
+    return questionService.getQuestions(context, input);
   }
 
   @Query(() => Question)

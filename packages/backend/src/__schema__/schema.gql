@@ -19,6 +19,8 @@ input GetQuestionInput {
 
 input GetQuestionsInput {
   orderBy: QuestionOrderBy
+  page: Float
+  pageSize: Float
   tag: String
 }
 
