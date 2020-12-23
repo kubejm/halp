@@ -4,6 +4,7 @@ export { default as SignUpForm } from './sign-up-form';
 export { QuestionList, QuestionListByTag } from './question-list';
 export { default as QuestionDetails } from './question-details';
 export { default as QuestionForm } from './question-form';
+export { default as QuestionPager } from './question-pager';
 export { default as QuestionSorter } from './question-sorter';
 export { default as TagGrid } from './tag-grid';
 export { default as TagList } from './tag-list';

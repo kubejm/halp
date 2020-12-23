@@ -6,6 +6,8 @@ import { ConcreteRequest } from "relay-runtime";
 export type QuestionOrderBy = "ACTIVE" | "NEW" | "VOTES" | "%future added value";
 export type GetQuestionsInput = {
     orderBy?: QuestionOrderBy | null;
+    page?: number | null;
+    pageSize?: number | null;
     tag?: string | null;
 };
 export type QuestionListQueryVariables = {

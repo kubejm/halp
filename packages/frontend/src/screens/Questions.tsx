@@ -1,6 +1,6 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
-import { QuestionSorter, QuestionList } from '../components';
+import { QuestionSorter, QuestionList, QuestionPager } from '../components';
 import * as H from 'history';
 
 interface ScreenProps extends RouteComponentProps {
@@ -26,11 +26,13 @@ export default function Questions(props: ScreenProps) {
   const query = new URLSearchParams(props.location.search);
   const orderByQuery = query.get('orderBy') || 'new';
   const orderBy = getOrderBy(orderByQuery);
+  const page = Number(query.get('page')) || 1;
 
   return (
     <>
       <QuestionSorter orderBy={orderBy} />
-      <QuestionList orderBy={orderBy} />
+      <QuestionList orderBy={orderBy} page={page} />
+      <QuestionPager page={page} />
     </>
   );
 }

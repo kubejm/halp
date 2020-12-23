@@ -5,6 +5,7 @@ import { QuestionListQuery } from '../../__generated__/QuestionListQuery.graphql
 
 interface Props {
   orderBy: 'ACTIVE' | 'NEW' | 'VOTES';
+  page: number;
 }
 
 export default function QuestionList(props: Props) {
@@ -31,6 +32,7 @@ export default function QuestionList(props: Props) {
     {
       input: {
         orderBy: props.orderBy,
+        page: props.page,
       },
     },
     {
