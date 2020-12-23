@@ -119,7 +119,7 @@ export class QuestionResolver {
   }
 
   @Query(() => QuestionsPage)
-  async questions(
+  async questionsPage(
     @Ctx() context: Context,
     @Arg('input', { nullable: true }) input?: GetQuestionsInput
   ) {

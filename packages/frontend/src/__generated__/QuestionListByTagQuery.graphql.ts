@@ -14,21 +14,23 @@ export type QuestionListByTagQueryVariables = {
     input: GetQuestionsInput;
 };
 export type QuestionListByTagQueryResponse = {
-    readonly questions: ReadonlyArray<{
-        readonly answers: number;
-        readonly createdAtRelative: string;
-        readonly excerpt: string;
-        readonly id: string;
-        readonly question: string;
-        readonly tags: ReadonlyArray<{
-            readonly name: string;
+    readonly questionsPage: {
+        readonly questions: ReadonlyArray<{
+            readonly answers: number;
+            readonly createdAtRelative: string;
+            readonly excerpt: string;
+            readonly id: string;
+            readonly question: string;
+            readonly tags: ReadonlyArray<{
+                readonly name: string;
+            }>;
+            readonly user: {
+                readonly username: string;
+            };
+            readonly views: number;
+            readonly votes: number;
         }>;
-        readonly user: {
-            readonly username: string;
-        };
-        readonly views: number;
-        readonly votes: number;
-    }>;
+    };
 };
 export type QuestionListByTagQuery = {
     readonly response: QuestionListByTagQueryResponse;
@@ -41,22 +43,24 @@ export type QuestionListByTagQuery = {
 query QuestionListByTagQuery(
   $input: GetQuestionsInput!
 ) {
-  questions(input: $input) {
-    answers
-    createdAtRelative
-    excerpt
-    id
-    question
-    tags {
-      name
+  questionsPage(input: $input) {
+    questions {
+      answers
+      createdAtRelative
+      excerpt
       id
+      question
+      tags {
+        name
+        id
+      }
+      user {
+        username
+        id
+      }
+      views
+      votes
     }
-    user {
-      username
-      id
-    }
-    views
-    votes
   }
 }
 */
@@ -139,42 +143,53 @@ const node: ConcreteRequest = (function () {
                 {
                     "alias": null,
                     "args": (v1 /*: any*/),
-                    "concreteType": "Question",
+                    "concreteType": "QuestionsPage",
                     "kind": "LinkedField",
-                    "name": "questions",
-                    "plural": true,
+                    "name": "questionsPage",
+                    "plural": false,
                     "selections": [
-                        (v2 /*: any*/),
-                        (v3 /*: any*/),
-                        (v4 /*: any*/),
-                        (v5 /*: any*/),
-                        (v6 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
-                            "concreteType": "Tag",
+                            "concreteType": "Question",
                             "kind": "LinkedField",
-                            "name": "tags",
+                            "name": "questions",
                             "plural": true,
                             "selections": [
-                                (v7 /*: any*/)
+                                (v2 /*: any*/),
+                                (v3 /*: any*/),
+                                (v4 /*: any*/),
+                                (v5 /*: any*/),
+                                (v6 /*: any*/),
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "Tag",
+                                    "kind": "LinkedField",
+                                    "name": "tags",
+                                    "plural": true,
+                                    "selections": [
+                                        (v7 /*: any*/)
+                                    ],
+                                    "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "User",
+                                    "kind": "LinkedField",
+                                    "name": "user",
+                                    "plural": false,
+                                    "selections": [
+                                        (v8 /*: any*/)
+                                    ],
+                                    "storageKey": null
+                                },
+                                (v9 /*: any*/),
+                                (v10 /*: any*/)
                             ],
                             "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "User",
-                            "kind": "LinkedField",
-                            "name": "user",
-                            "plural": false,
-                            "selections": [
-                                (v8 /*: any*/)
-                            ],
-                            "storageKey": null
-                        },
-                        (v9 /*: any*/),
-                        (v10 /*: any*/)
+                        }
                     ],
                     "storageKey": null
                 }
@@ -191,58 +206,69 @@ const node: ConcreteRequest = (function () {
                 {
                     "alias": null,
                     "args": (v1 /*: any*/),
-                    "concreteType": "Question",
+                    "concreteType": "QuestionsPage",
                     "kind": "LinkedField",
-                    "name": "questions",
-                    "plural": true,
+                    "name": "questionsPage",
+                    "plural": false,
                     "selections": [
-                        (v2 /*: any*/),
-                        (v3 /*: any*/),
-                        (v4 /*: any*/),
-                        (v5 /*: any*/),
-                        (v6 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
-                            "concreteType": "Tag",
+                            "concreteType": "Question",
                             "kind": "LinkedField",
-                            "name": "tags",
+                            "name": "questions",
                             "plural": true,
                             "selections": [
-                                (v7 /*: any*/),
-                                (v5 /*: any*/)
+                                (v2 /*: any*/),
+                                (v3 /*: any*/),
+                                (v4 /*: any*/),
+                                (v5 /*: any*/),
+                                (v6 /*: any*/),
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "Tag",
+                                    "kind": "LinkedField",
+                                    "name": "tags",
+                                    "plural": true,
+                                    "selections": [
+                                        (v7 /*: any*/),
+                                        (v5 /*: any*/)
+                                    ],
+                                    "storageKey": null
+                                },
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "User",
+                                    "kind": "LinkedField",
+                                    "name": "user",
+                                    "plural": false,
+                                    "selections": [
+                                        (v8 /*: any*/),
+                                        (v5 /*: any*/)
+                                    ],
+                                    "storageKey": null
+                                },
+                                (v9 /*: any*/),
+                                (v10 /*: any*/)
                             ],
                             "storageKey": null
-                        },
-                        {
-                            "alias": null,
-                            "args": null,
-                            "concreteType": "User",
-                            "kind": "LinkedField",
-                            "name": "user",
-                            "plural": false,
-                            "selections": [
-                                (v8 /*: any*/),
-                                (v5 /*: any*/)
-                            ],
-                            "storageKey": null
-                        },
-                        (v9 /*: any*/),
-                        (v10 /*: any*/)
+                        }
                     ],
                     "storageKey": null
                 }
             ]
         },
         "params": {
-            "cacheID": "4a30e26850ceb8121790792927b83b64",
+            "cacheID": "269590ba8c286b48a6de49d94f86ac0c",
             "id": null,
             "metadata": {},
             "name": "QuestionListByTagQuery",
             "operationKind": "query",
-            "text": "query QuestionListByTagQuery(\n  $input: GetQuestionsInput!\n) {\n  questions(input: $input) {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
+            "text": "query QuestionListByTagQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    questions {\n      answers\n      createdAtRelative\n      excerpt\n      id\n      question\n      tags {\n        name\n        id\n      }\n      user {\n        username\n        id\n      }\n      views\n      votes\n    }\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'e1e4f5c8b49e21b450cab371dffea4a4';
+(node as any).hash = '16852a5d312084f985f29adefbd7569d';
 export default node;

@@ -9,23 +9,27 @@ interface Props {
 }
 
 export default function QuestionList(props: Props) {
-  const { questions } = useLazyLoadQuery<QuestionListQuery>(
+  const {
+    questionsPage: { questions },
+  } = useLazyLoadQuery<QuestionListQuery>(
     graphql`
       query QuestionListQuery($input: GetQuestionsInput!) {
-        questions(input: $input) {
-          answers
-          createdAtRelative
-          excerpt
-          id
-          question
-          tags {
-            name
+        questionsPage(input: $input) {
+          questions {
+            answers
+            createdAtRelative
+            excerpt
+            id
+            question
+            tags {
+              name
+            }
+            user {
+              username
+            }
+            views
+            votes
           }
-          user {
-            username
-          }
-          views
-          votes
         }
       }
     `,

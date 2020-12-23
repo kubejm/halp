@@ -38,7 +38,7 @@ type Query {
   profile: User!
   question(input: GetQuestionInput!): Question!
   questionCount: Float!
-  questions(input: GetQuestionsInput): QuestionsPage!
+  questionsPage(input: GetQuestionsInput): QuestionsPage!
   tags: [Tag!]!
 }
 
