@@ -1,12 +1,17 @@
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { match, RouteComponentProps } from 'react-router-dom';
 import { QuestionSorter, QuestionList, QuestionPager } from '../components';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { QuestionsQuery } from '../__generated__/QuestionsQuery.graphql';
 import * as H from 'history';
 
+interface ScreenParams {
+  tag: string;
+}
+
 interface ScreenProps extends RouteComponentProps {
   location: H.Location;
+  match: match<ScreenParams>;
 }
 
 enum OrderBy {
@@ -29,6 +34,7 @@ export default function Questions(props: ScreenProps) {
   const orderByQuery = query.get('orderBy') || 'new';
   const orderBy = getOrderBy(orderByQuery);
   const page = Number(query.get('page')) || 1;
+  const tag = props.match.params.tag;
 
   const { questionsPage } = useLazyLoadQuery<QuestionsQuery>(
     graphql`
@@ -44,6 +50,7 @@ export default function Questions(props: ScreenProps) {
       input: {
         orderBy,
         page,
+        ...(tag && { tag }),
       },
     },
     {

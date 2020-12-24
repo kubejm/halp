@@ -8,7 +8,6 @@ import {
   FourOhFour,
   Question,
   Questions,
-  QuestionsByTag,
   SignIn,
   SignUp,
   Tags,
@@ -26,7 +25,7 @@ export default function App() {
             <Route exact path="/" component={Questions} />
             <Route path="/question/:id" component={Question} />
             <Route path="/tags" component={Tags} />
-            <Route path="/questions/tagged/:tag" component={QuestionsByTag} />
+            <Route path="/questions/tagged/:tag" component={Questions} />
             <UnauthenticatedRoute path="/sign-in" component={SignIn} />
             <UnauthenticatedRoute path="/sign-up" component={SignUp} />
             <AuthenticatedRoute path="/ask" component={Ask} />
