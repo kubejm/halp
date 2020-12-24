@@ -16,7 +16,7 @@ export type QuestionsQueryVariables = {
 };
 export type QuestionsQueryResponse = {
     readonly questionsPage: {
-        readonly " $fragmentRefs": FragmentRefs<"QuestionList_questionsPage" | "questionSorter_questionsPage">;
+        readonly " $fragmentRefs": FragmentRefs<"questionSorter_questionsPage" | "QuestionList_questionsPage" | "questionPager_questionsPage">;
     };
 };
 export type QuestionsQuery = {
@@ -31,8 +31,9 @@ query QuestionsQuery(
   $input: GetQuestionsInput!
 ) {
   questionsPage(input: $input) {
-    ...QuestionList_questionsPage
     ...questionSorter_questionsPage
+    ...QuestionList_questionsPage
+    ...questionPager_questionsPage
   }
 }
 
@@ -54,6 +55,10 @@ fragment QuestionList_questionsPage on QuestionsPage {
     views
     votes
   }
+}
+
+fragment questionPager_questionsPage on QuestionsPage {
+  pageCount
 }
 
 fragment questionSorter_questionsPage on QuestionsPage {
@@ -99,12 +104,17 @@ const node: ConcreteRequest = (function () {
                         {
                             "args": null,
                             "kind": "FragmentSpread",
+                            "name": "questionSorter_questionsPage"
+                        },
+                        {
+                            "args": null,
+                            "kind": "FragmentSpread",
                             "name": "QuestionList_questionsPage"
                         },
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "questionSorter_questionsPage"
+                            "name": "questionPager_questionsPage"
                         }
                     ],
                     "storageKey": null
@@ -127,6 +137,13 @@ const node: ConcreteRequest = (function () {
                     "name": "questionsPage",
                     "plural": false,
                     "selections": [
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "count",
+                            "storageKey": null
+                        },
                         {
                             "alias": null,
                             "args": null,
@@ -223,7 +240,7 @@ const node: ConcreteRequest = (function () {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "count",
+                            "name": "pageCount",
                             "storageKey": null
                         }
                     ],
@@ -232,14 +249,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "b751258ee17260ab52ed2416057bc166",
+            "cacheID": "66cd79eb9a0ca898509bd49f4087c6ec",
             "id": null,
             "metadata": {},
             "name": "QuestionsQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionList_questionsPage\n    ...questionSorter_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  count\n}\n"
+            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...QuestionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  count\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '02aebe9d81df5198f27d01cf6f9021b2';
+(node as any).hash = '770bd7e4cdc9482417deea6bbc0843d7';
 export default node;

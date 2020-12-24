@@ -34,8 +34,9 @@ export default function Questions(props: ScreenProps) {
     graphql`
       query QuestionsQuery($input: GetQuestionsInput!) {
         questionsPage(input: $input) {
-          ...QuestionList_questionsPage
           ...questionSorter_questionsPage
+          ...QuestionList_questionsPage
+          ...questionPager_questionsPage
         }
       }
     `,
@@ -52,9 +53,9 @@ export default function Questions(props: ScreenProps) {
 
   return (
     <>
-      <QuestionSorter orderBy={orderBy} questionsPage={questionsPage} />
+      <QuestionSorter questionsPage={questionsPage} orderBy={orderBy} />
       <QuestionList questionsPage={questionsPage} />
-      <QuestionPager page={page} />
+      <QuestionPager questionsPage={questionsPage} page={page} />
     </>
   );
 }
