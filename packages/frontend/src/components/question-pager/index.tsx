@@ -4,22 +4,22 @@ import { graphql, useFragment } from 'react-relay/hooks';
 import { questionPager_questionsPage$key } from '../../__generated__/questionPager_questionsPage.graphql';
 
 interface Props {
-  page: number;
+  currentPage: number;
   questionsPage: questionPager_questionsPage$key;
 }
 
-const pageList = (page: number, pageCount: number) => {
-  const previousPrevious = page - 2;
-  const previous = page - 1;
-  const next = page + 1;
-  const nextNext = page + 2;
+const pageList = (currentPage: number, pageCount: number) => {
+  const previousPrevious = currentPage - 2;
+  const previous = currentPage - 1;
+  const next = currentPage + 1;
+  const nextNext = currentPage + 2;
 
-  return [previousPrevious, previous, page, next, nextNext].filter(
+  return [previousPrevious, previous, currentPage, next, nextNext].filter(
     (pageNumber) => pageNumber > 0 && pageNumber <= pageCount
   );
 };
 
-export default function QuestionPager({ page, questionsPage }: Props) {
+export default function QuestionPager({ currentPage, questionsPage }: Props) {
   const { pageCount } = useFragment(
     graphql`
       fragment questionPager_questionsPage on QuestionsPage {
@@ -29,25 +29,33 @@ export default function QuestionPager({ page, questionsPage }: Props) {
     questionsPage
   );
 
-  const hasPrevious = page !== 1;
-  const hasNext = page !== pageCount;
+  const hasPrevious = currentPage !== 1;
+  const hasNext = currentPage !== pageCount;
 
   return (
     <div className="flex flex-wrap bg-white border-l border-b p-4">
       <div>
         <ul className="flex list-none rounded text-xs text-purple-500">
           {hasPrevious && (
-            <PageLink to={`/?page=${page - 1}`} label="Prev" selected={false} />
+            <PageLink
+              to={`/?page=${currentPage - 1}`}
+              label="Prev"
+              selected={false}
+            />
           )}
-          {pageList(page, pageCount).map((pageNumber) => (
+          {pageList(currentPage, pageCount).map((pageNumber) => (
             <PageLink
               to={`/?page=${pageNumber}`}
               label={String(pageNumber)}
-              selected={pageNumber === page}
+              selected={pageNumber === currentPage}
             />
           ))}
           {hasNext && (
-            <PageLink to={`/?page=${page + 1}`} label="Next" selected={false} />
+            <PageLink
+              to={`/?page=${currentPage + 1}`}
+              label="Next"
+              selected={false}
+            />
           )}
         </ul>
       </div>

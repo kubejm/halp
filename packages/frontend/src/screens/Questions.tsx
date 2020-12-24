@@ -55,7 +55,7 @@ export default function Questions(props: ScreenProps) {
     <>
       <QuestionSorter questionsPage={questionsPage} orderBy={orderBy} />
       <QuestionList questionsPage={questionsPage} />
-      <QuestionPager questionsPage={questionsPage} page={page} />
+      <QuestionPager questionsPage={questionsPage} currentPage={page} />
     </>
   );
 }
