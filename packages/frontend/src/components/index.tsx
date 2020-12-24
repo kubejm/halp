@@ -1,5 +1,6 @@
 export { default as Layout } from './layout';
 export { default as AnswerForm } from './answer-form';
+export { default as AnswerList } from './answer-list';
 export { default as SignInForm } from './sign-in-form';
 export { default as SignUpForm } from './sign-up-form';
 export { default as QuestionDetails } from './question-details';
