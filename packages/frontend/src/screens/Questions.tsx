@@ -35,6 +35,7 @@ export default function Questions(props: ScreenProps) {
       query QuestionsQuery($input: GetQuestionsInput!) {
         questionsPage(input: $input) {
           ...QuestionList_questionsPage
+          ...questionSorter_questionsPage
         }
       }
     `,
@@ -51,7 +52,7 @@ export default function Questions(props: ScreenProps) {
 
   return (
     <>
-      <QuestionSorter orderBy={orderBy} />
+      <QuestionSorter orderBy={orderBy} questionsPage={questionsPage} />
       <QuestionList questionsPage={questionsPage} />
       <QuestionPager page={page} />
     </>

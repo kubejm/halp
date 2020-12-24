@@ -16,7 +16,7 @@ export type QuestionsQueryVariables = {
 };
 export type QuestionsQueryResponse = {
     readonly questionsPage: {
-        readonly " $fragmentRefs": FragmentRefs<"QuestionList_questionsPage">;
+        readonly " $fragmentRefs": FragmentRefs<"QuestionList_questionsPage" | "questionSorter_questionsPage">;
     };
 };
 export type QuestionsQuery = {
@@ -32,6 +32,7 @@ query QuestionsQuery(
 ) {
   questionsPage(input: $input) {
     ...QuestionList_questionsPage
+    ...questionSorter_questionsPage
   }
 }
 
@@ -53,6 +54,10 @@ fragment QuestionList_questionsPage on QuestionsPage {
     views
     votes
   }
+}
+
+fragment questionSorter_questionsPage on QuestionsPage {
+  count
 }
 */
 
@@ -95,6 +100,11 @@ const node: ConcreteRequest = (function () {
                             "args": null,
                             "kind": "FragmentSpread",
                             "name": "QuestionList_questionsPage"
+                        },
+                        {
+                            "args": null,
+                            "kind": "FragmentSpread",
+                            "name": "questionSorter_questionsPage"
                         }
                     ],
                     "storageKey": null
@@ -208,6 +218,13 @@ const node: ConcreteRequest = (function () {
                                 }
                             ],
                             "storageKey": null
+                        },
+                        {
+                            "alias": null,
+                            "args": null,
+                            "kind": "ScalarField",
+                            "name": "count",
+                            "storageKey": null
                         }
                     ],
                     "storageKey": null
@@ -215,14 +232,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "57bb2118f80cc54800958710ebea175f",
+            "cacheID": "b751258ee17260ab52ed2416057bc166",
             "id": null,
             "metadata": {},
             "name": "QuestionsQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionList_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
+            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionList_questionsPage\n    ...questionSorter_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  count\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'cf9484251aa1a0000ef05d97ea9129a2';
+(node as any).hash = '02aebe9d81df5198f27d01cf6f9021b2';
 export default node;

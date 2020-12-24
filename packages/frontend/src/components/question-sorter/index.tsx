@@ -1,6 +1,6 @@
 import React from 'react';
-import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
-import { questionSorterQuery } from '../../__generated__/questionSorterQuery.graphql';
+import { graphql, useFragment } from 'react-relay/hooks';
+import { questionSorter_questionsPage$key } from '../../__generated__/questionSorter_questionsPage.graphql';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 
@@ -33,20 +33,21 @@ function SortLink(props: SortLinkProps) {
 }
 
 interface QuestionSorterProps {
-  orderBy?: string;
+  orderBy: string;
+  questionsPage: questionSorter_questionsPage$key;
 }
 
 // TODO: clean up Link elements
 // TODO: more intelligent way to set border right to 0
 // TODO: share enums
 export default function QuestionSorter(props: QuestionSorterProps) {
-  const { questionCount } = useLazyLoadQuery<questionSorterQuery>(
+  const { count } = useFragment(
     graphql`
-      query questionSorterQuery {
-        questionCount
+      fragment questionSorter_questionsPage on QuestionsPage {
+        count
       }
     `,
-    {}
+    props.questionsPage
   );
 
   return (
@@ -54,9 +55,7 @@ export default function QuestionSorter(props: QuestionSorterProps) {
       <h1 className="text-xl min-w-full">Questions</h1>
       <div className="flex justify-between min-w-full">
         <div className="flex flex-col-reverse">
-          <div className="text-xs text-gray-500">
-            {questionCount} questions asked
-          </div>
+          <div className="text-xs text-gray-500">{count} questions asked</div>
         </div>
         <div>
           <ul className="flex list-none rounded text-xs text-purple-500">
