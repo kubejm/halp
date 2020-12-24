@@ -65,8 +65,8 @@ enum QuestionOrderBy {
 }
 
 type QuestionsPage {
-  count: Float!
   pageCount: Float!
+  questionCount: Float!
   questions: [Question!]!
 }
 

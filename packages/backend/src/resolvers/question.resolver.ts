@@ -77,7 +77,7 @@ export class QuestionsPage {
   questions!: Question[];
 
   @Field()
-  count!: number;
+  questionCount!: number;
 
   @Field()
   pageCount!: number;
@@ -123,7 +123,7 @@ export class QuestionResolver {
     @Ctx() context: Context,
     @Arg('input', { nullable: true }) input?: GetQuestionsInput
   ) {
-    const [questions, count, pageCount] = await questionService.getQuestions(
+    const [questions, questionCount, pageCount] = await questionService.getQuestions(
       context,
       input
     );
@@ -131,7 +131,7 @@ export class QuestionResolver {
     return Object.assign(
       {
         questions,
-        count,
+        questionCount,
         pageCount,
       },
       new QuestionsPage()

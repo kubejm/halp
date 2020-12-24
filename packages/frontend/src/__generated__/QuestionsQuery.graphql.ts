@@ -62,7 +62,7 @@ fragment questionPager_questionsPage on QuestionsPage {
 }
 
 fragment questionSorter_questionsPage on QuestionsPage {
-  count
+  questionCount
 }
 */
 
@@ -141,7 +141,7 @@ const node: ConcreteRequest = (function () {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "count",
+                            "name": "questionCount",
                             "storageKey": null
                         },
                         {
@@ -249,12 +249,12 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "66cd79eb9a0ca898509bd49f4087c6ec",
+            "cacheID": "8a17789966f36351b224ba287fc0d78e",
             "id": null,
             "metadata": {},
             "name": "QuestionsQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...QuestionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  count\n}\n"
+            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...QuestionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
         }
     } as any;
 })();

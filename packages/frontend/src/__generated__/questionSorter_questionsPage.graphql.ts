@@ -5,7 +5,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type questionSorter_questionsPage = {
-    readonly count: number;
+    readonly questionCount: number;
     readonly " $refType": "questionSorter_questionsPage";
 };
 export type questionSorter_questionsPage$data = questionSorter_questionsPage;
@@ -26,12 +26,12 @@ const node: ReaderFragment = ({
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "count",
+            "name": "questionCount",
             "storageKey": null
         }
     ],
     "type": "QuestionsPage",
     "abstractKey": null
 } as any);
-(node as any).hash = 'c8cfe84075e2712c4faba79b4c346073';
+(node as any).hash = '69601d98b2567214d117ee32551589a8';
 export default node;
