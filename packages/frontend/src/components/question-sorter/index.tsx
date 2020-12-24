@@ -1,43 +1,13 @@
 import React from 'react';
+import SortLink from './SortLink';
 import { graphql, useFragment } from 'react-relay/hooks';
 import { questionSorter_questionsPage$key } from '../../__generated__/questionSorter_questionsPage.graphql';
-import { Link } from 'react-router-dom';
-import clsx from 'clsx';
-
-interface SortLinkProps {
-  to: string;
-  selected: boolean;
-  label: string;
-  className?: string;
-}
-
-function SortLink(props: SortLinkProps) {
-  const defaultStyles = 'py-2 px-3 border';
-  const selectedStyles = 'text-white bg-purple-500';
-  const hoverStyles =
-    'hover:bg-purple-400 hover:text-white hover:border-purple-200 transition duration-300 ease-in-out';
-
-  return (
-    <Link
-      to={props.to}
-      className={clsx(
-        defaultStyles,
-        props.selected && selectedStyles,
-        hoverStyles,
-        props.className
-      )}
-    >
-      {props.label}
-    </Link>
-  );
-}
 
 interface QuestionSorterProps {
   orderBy: string;
   questionsPage: questionSorter_questionsPage$key;
 }
 
-// TODO: clean up Link elements
 // TODO: more intelligent way to set border right to 0
 // TODO: share enums
 export default function QuestionSorter(props: QuestionSorterProps) {
