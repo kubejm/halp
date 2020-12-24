@@ -16,7 +16,7 @@ export type QuestionsQueryVariables = {
 };
 export type QuestionsQueryResponse = {
     readonly questionsPage: {
-        readonly " $fragmentRefs": FragmentRefs<"QuestionList_questions">;
+        readonly " $fragmentRefs": FragmentRefs<"QuestionList_questionsPage">;
     };
 };
 export type QuestionsQuery = {
@@ -31,11 +31,11 @@ query QuestionsQuery(
   $input: GetQuestionsInput!
 ) {
   questionsPage(input: $input) {
-    ...QuestionList_questions
+    ...QuestionList_questionsPage
   }
 }
 
-fragment QuestionList_questions on QuestionsPage {
+fragment QuestionList_questionsPage on QuestionsPage {
   questions {
     answers
     createdAtRelative
@@ -94,7 +94,7 @@ const node: ConcreteRequest = (function () {
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "QuestionList_questions"
+                            "name": "QuestionList_questionsPage"
                         }
                     ],
                     "storageKey": null
@@ -215,14 +215,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "55269d13c5ff06580a1904afd24e07eb",
+            "cacheID": "57bb2118f80cc54800958710ebea175f",
             "id": null,
             "metadata": {},
             "name": "QuestionsQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionList_questions\n  }\n}\n\nfragment QuestionList_questions on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
+            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionList_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '7ca289140e3e702a76d9c0ab8e422a7c';
+(node as any).hash = 'cf9484251aa1a0000ef05d97ea9129a2';
 export default node;

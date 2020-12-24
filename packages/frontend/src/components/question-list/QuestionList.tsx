@@ -1,16 +1,16 @@
 import React from 'react';
 import QuestionSummary from './QuestionSummary';
 import { graphql, useFragment } from 'react-relay/hooks';
-import { QuestionList_questions$key } from '../../__generated__/QuestionList_questions.graphql';
+import { QuestionList_questionsPage$key } from '../../__generated__/QuestionList_questionsPage.graphql';
 
 interface Props {
-  questionsPage: QuestionList_questions$key;
+  questionsPage: QuestionList_questionsPage$key;
 }
 
 export default function QuestionList(props: Props) {
   const { questions } = useFragment(
     graphql`
-      fragment QuestionList_questions on QuestionsPage {
+      fragment QuestionList_questionsPage on QuestionsPage {
         questions {
           answers
           createdAtRelative

@@ -34,7 +34,7 @@ export default function Questions(props: ScreenProps) {
     graphql`
       query QuestionsQuery($input: GetQuestionsInput!) {
         questionsPage(input: $input) {
-          ...QuestionList_questions
+          ...QuestionList_questionsPage
         }
       }
     `,
