@@ -9,7 +9,7 @@ input AddQuestionInput {
   tags: [String!]!
 }
 
-input AnswerQuestion {
+input AnswerQuestionInput {
   answer: String!
   id: String!
 }
@@ -31,7 +31,7 @@ input GetQuestionsInput {
 
 type Mutation {
   addQuestion(input: AddQuestionInput!): Question!
-  answerQuestion(input: AnswerQuestion!): Question!
+  answerQuestion(input: AnswerQuestionInput!): Question!
   downvoteQuestion(input: DownvoteQuestionInput!): Question!
   signIn(input: SignInInput!): Result!
   signOut: Result!

@@ -16,7 +16,7 @@ export default function Question(props: QuestionScreenProps) {
   return (
     <>
       <QuestionDetails id={id} />
-      <AnswerForm />
+      <AnswerForm questionId={id} />
     </>
   );
 }

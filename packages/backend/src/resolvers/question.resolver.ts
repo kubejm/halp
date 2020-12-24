@@ -112,7 +112,7 @@ export class DownvoteQuestionInput {
 }
 
 @InputType()
-export class AnswerQuestion {
+export class AnswerQuestionInput {
   @Field()
   @IsUUID()
   id!: string;
@@ -205,7 +205,7 @@ export class QuestionResolver {
 
   @Mutation(() => Question)
   async answerQuestion(
-    @Arg('input') input: AnswerQuestion,
+    @Arg('input') input: AnswerQuestionInput,
     @Ctx() context: Context
   ) {
     return questionService.answerQuestion(input.id, input.answer, context);
