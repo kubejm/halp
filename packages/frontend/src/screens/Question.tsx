@@ -1,6 +1,6 @@
 import React from 'react';
 import { match, RouteComponentProps } from 'react-router-dom';
-import { QuestionDetails } from '../components';
+import { QuestionDetails, AnswerForm } from '../components';
 
 interface QuestionScreenParams {
   id: string;
@@ -16,6 +16,7 @@ export default function Question(props: QuestionScreenProps) {
   return (
     <>
       <QuestionDetails id={id} />
+      <AnswerForm />
     </>
   );
 }
