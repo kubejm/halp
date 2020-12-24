@@ -11,6 +11,7 @@ import { Base } from './base.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
 import { formatDistanceToNow } from 'date-fns';
+import { QuestionAnswer } from './question-answer.entity';
 import { QuestionVote, QuestionVoteAction } from './question-vote.entity';
 import { getCtx } from '../utils';
 
@@ -64,6 +65,15 @@ export class Question extends Base<Question> {
     orphanRemoval: true,
   })
   questionVotes = new Collection<QuestionVote>(this);
+
+  @Field(() => [QuestionAnswer])
+  @OneToMany({
+    entity: () => QuestionAnswer,
+    mappedBy: 'question',
+    eager: true,
+    orphanRemoval: true,
+  })
+  questionAnswers = new Collection<QuestionAnswer>(this);
 
   @Field()
   get hasUserUpvoted(): boolean {

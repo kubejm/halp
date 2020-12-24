@@ -1,5 +1,10 @@
 import { wrap, QueryOrder } from '@mikro-orm/core';
-import { Question, QuestionVote, QuestionVoteAction } from '../entities';
+import {
+  Question,
+  QuestionVote,
+  QuestionVoteAction,
+  QuestionAnswer,
+} from '../entities';
 import { Context } from '../types';
 
 export enum QuestionOrderBy {
@@ -136,4 +141,28 @@ export async function addQuestion(input: Question, { ctx }: Context) {
 
 export async function getQuestionCount({ ctx }: Context) {
   return ctx.em.getRepository(Question).count();
+}
+
+export async function answerQuestion(
+  id: string,
+  answer: string,
+  { ctx }: Context
+) {
+  const question = await ctx.em.getRepository(Question).findOneOrFail({
+    id,
+  });
+
+  question.questionAnswers.add(
+    Object.assign(new QuestionAnswer(), {
+      body: answer,
+      question,
+      user: ctx.user,
+    })
+  );
+
+  question.answers += 1;
+
+  await ctx.em.persist(question).flush();
+
+  return question;
 }

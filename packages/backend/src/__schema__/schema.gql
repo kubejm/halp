@@ -9,6 +9,11 @@ input AddQuestionInput {
   tags: [String!]!
 }
 
+input AnswerQuestion {
+  answer: String!
+  id: String!
+}
+
 input DownvoteQuestionInput {
   id: String!
 }
@@ -26,6 +31,7 @@ input GetQuestionsInput {
 
 type Mutation {
   addQuestion(input: AddQuestionInput!): Question!
+  answerQuestion(input: AnswerQuestion!): Question!
   downvoteQuestion(input: DownvoteQuestionInput!): Question!
   signIn(input: SignInInput!): Result!
   signOut: Result!
@@ -52,10 +58,16 @@ type Question {
   id: ID!
   isUserAuthor: Boolean!
   question: String!
+  questionAnswers: [QuestionAnswer!]!
   tags: [Tag!]!
   user: User!
   views: Float!
   votes: Float!
+}
+
+type QuestionAnswer {
+  body: String!
+  id: ID!
 }
 
 enum QuestionOrderBy {

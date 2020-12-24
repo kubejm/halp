@@ -111,6 +111,17 @@ export class DownvoteQuestionInput {
   id!: string;
 }
 
+@InputType()
+export class AnswerQuestion {
+  @Field()
+  @IsUUID()
+  id!: string;
+
+  @Field()
+  @IsString()
+  answer!: string;
+}
+
 @Resolver(() => Question)
 export class QuestionResolver {
   @Query(() => Number)
@@ -123,10 +134,11 @@ export class QuestionResolver {
     @Ctx() context: Context,
     @Arg('input', { nullable: true }) input?: GetQuestionsInput
   ) {
-    const [questions, questionCount, pageCount] = await questionService.getQuestions(
-      context,
-      input
-    );
+    const [
+      questions,
+      questionCount,
+      pageCount,
+    ] = await questionService.getQuestions(context, input);
 
     return Object.assign(
       {
@@ -189,5 +201,13 @@ export class QuestionResolver {
     @Ctx() context: Context
   ) {
     return questionService.downvoteQuestion(input.id, context);
+  }
+
+  @Mutation(() => Question)
+  async answerQuestion(
+    @Arg('input') input: AnswerQuestion,
+    @Ctx() context: Context
+  ) {
+    return questionService.answerQuestion(input.id, input.answer, context);
   }
 }
