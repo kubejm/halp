@@ -41,7 +41,7 @@ export default function Questions(props: ScreenProps) {
       query QuestionsQuery($input: GetQuestionsInput!) {
         questionsPage(input: $input) {
           ...questionSorter_questionsPage
-          ...QuestionList_questionsPage
+          ...questionList_questionsPage
           ...questionPager_questionsPage
         }
       }

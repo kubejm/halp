@@ -16,7 +16,7 @@ export type QuestionsQueryVariables = {
 };
 export type QuestionsQueryResponse = {
     readonly questionsPage: {
-        readonly " $fragmentRefs": FragmentRefs<"questionSorter_questionsPage" | "QuestionList_questionsPage" | "questionPager_questionsPage">;
+        readonly " $fragmentRefs": FragmentRefs<"questionSorter_questionsPage" | "questionList_questionsPage" | "questionPager_questionsPage">;
     };
 };
 export type QuestionsQuery = {
@@ -32,12 +32,12 @@ query QuestionsQuery(
 ) {
   questionsPage(input: $input) {
     ...questionSorter_questionsPage
-    ...QuestionList_questionsPage
+    ...questionList_questionsPage
     ...questionPager_questionsPage
   }
 }
 
-fragment QuestionList_questionsPage on QuestionsPage {
+fragment questionList_questionsPage on QuestionsPage {
   questions {
     answers
     createdAtRelative
@@ -109,7 +109,7 @@ const node: ConcreteRequest = (function () {
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "QuestionList_questionsPage"
+                            "name": "questionList_questionsPage"
                         },
                         {
                             "args": null,
@@ -249,14 +249,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "8a17789966f36351b224ba287fc0d78e",
+            "cacheID": "e01cd0651d0ac971e67fe070b7b18362",
             "id": null,
             "metadata": {},
             "name": "QuestionsQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...QuestionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
+            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...questionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment questionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '770bd7e4cdc9482417deea6bbc0843d7';
+(node as any).hash = 'c8d82e1940d7a55356dd1a984701175d';
 export default node;
