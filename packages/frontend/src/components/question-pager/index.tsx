@@ -1,38 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PageLink from './PageLink';
 import { graphql, useFragment } from 'react-relay/hooks';
 import { questionPager_questionsPage$key } from '../../__generated__/questionPager_questionsPage.graphql';
-import clsx from 'clsx';
 
-interface PageLinkProps {
-  to: string;
-  selected: boolean;
-  label: string;
-  className?: string;
-}
-
-function PageLink(props: PageLinkProps) {
-  const defaultStyles = 'py-1 px-2 border rounded ml-0.5 mr-0.5';
-  const selectedStyles = 'text-white bg-purple-500';
-  const hoverStyles =
-    'hover:bg-purple-400 hover:text-white hover:border-purple-200 transition duration-300 ease-in-out';
-
-  return (
-    <Link
-      to={props.to}
-      className={clsx(
-        defaultStyles,
-        props.selected && selectedStyles,
-        hoverStyles,
-        props.className
-      )}
-    >
-      {props.label}
-    </Link>
-  );
-}
-
-interface QuestionPagerProps {
+interface Props {
   page: number;
   questionsPage: questionPager_questionsPage$key;
 }
@@ -48,10 +19,7 @@ const pageList = (page: number, pageCount: number) => {
   );
 };
 
-export default function QuestionPager({
-  page,
-  questionsPage,
-}: QuestionPagerProps) {
+export default function QuestionPager({ page, questionsPage }: Props) {
   const { pageCount } = useFragment(
     graphql`
       fragment questionPager_questionsPage on QuestionsPage {
