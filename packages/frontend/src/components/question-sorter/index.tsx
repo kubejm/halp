@@ -6,6 +6,7 @@ import { questionSorter_questionsPage$key } from '../../__generated__/questionSo
 interface QuestionSorterProps {
   orderBy: string;
   questionsPage: questionSorter_questionsPage$key;
+  tag?: string;
 }
 
 // TODO: more intelligent way to set border right to 0
@@ -20,9 +21,13 @@ export default function QuestionSorter(props: QuestionSorterProps) {
     props.questionsPage
   );
 
+  const headerLabel = props.tag
+    ? `Questions tagged '${props.tag}'`
+    : 'Questions';
+
   return (
     <div className="flex flex-wrap bg-white border-l border-b p-4">
-      <h1 className="text-xl min-w-full">Questions</h1>
+      <h1 className="text-xl min-w-full">{headerLabel}</h1>
       <div className="flex justify-between min-w-full">
         <div className="flex flex-col-reverse">
           <div className="text-xs text-gray-500">
