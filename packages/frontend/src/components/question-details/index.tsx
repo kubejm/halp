@@ -53,7 +53,7 @@ export default function QuestionDetails({ id }: Props) {
         <div className="flex-grow">
           <div className="text-sm">{question.body}</div>
           <div className="flex flex-row-reverse justify-between min-w-full mt-6">
-            <div className="bg-purple-100 p-2 rounded text-gray-500 text-sm align-middle w-28 min-w-min">
+            <div className="bg-purple-100 p-2 rounded text-gray-500 text-sm align-middle w-40 min-w-min">
               <div className="text-xs">Asked by</div>
               <div>{question.user.username}</div>
             </div>
