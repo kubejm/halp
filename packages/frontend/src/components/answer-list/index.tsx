@@ -53,8 +53,8 @@ export default function AnswerList(props: Props) {
 
   return (
     <>
-      {questionAnswers.map((answer) => (
-        <AnswerDetails body={answer.body} />
+      {questionAnswers.map((answer, index) => (
+        <AnswerDetails key={index} body={answer.body} />
       ))}
     </>
   );
