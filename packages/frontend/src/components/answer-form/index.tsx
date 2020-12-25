@@ -30,6 +30,8 @@ export default function AnswerForm(props: Props) {
     mutation answerFormMutation($input: AnswerQuestionInput!) {
       answerQuestion(input: $input) {
         id
+        ...questionDetails_question
+        ...answerList_question
       }
     }
   `);
