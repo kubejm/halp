@@ -1,30 +1,7 @@
 import React from 'react';
+import AnswerDetails from './AnswerDetails';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { answerListQuery } from '../../__generated__/answerListQuery.graphql';
-
-interface AnswerDetailsProps {
-  body: string;
-  username: string;
-  createdAtRelative: string;
-}
-
-function AnswerDetails(props: AnswerDetailsProps) {
-  return (
-    <div className="bg-white border-l border-b p-4">
-      <div className="flex">
-        <div className="flex-grow">
-          <div className="text-sm">{props.body}</div>
-          <div className="flex flex-row-reverse justify-between min-w-full mt-6">
-            <div className="p-2 text-gray-500 text-xs align-middle w-40 min-w-min">
-              <div className="text-xs">answered {props.createdAtRelative}</div>
-              <div>{props.username}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 interface Props {
   questionId: string;
