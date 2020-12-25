@@ -1,10 +1,10 @@
 import React from 'react';
 import QuestionSummary from './QuestionSummary';
 import { graphql, useFragment } from 'react-relay/hooks';
-import { QuestionList_questionsPage$key } from '../../__generated__/QuestionList_questionsPage.graphql';
+import { questionList_questionsPage$key } from '../../__generated__/questionList_questionsPage.graphql';
 
 interface Props {
-  questionsPage: QuestionList_questionsPage$key;
+  questionsPage: questionList_questionsPage$key;
 }
 
 export default function QuestionList(props: Props) {

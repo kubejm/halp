@@ -1,42 +1,34 @@
 import React from 'react';
-import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
-import { questionDetailsQuery } from '../../__generated__/questionDetailsQuery.graphql';
+import { graphql, useFragment } from 'react-relay/hooks';
 import Vote from './vote';
 import TagList from '../tag-list';
+import { questionDetails_question$key } from '../../__generated__/questionDetails_question.graphql';
 
 interface Props {
   id: string;
+  question: questionDetails_question$key;
 }
 
-export default function QuestionDetails({ id }: Props) {
-  const { viewQuestion: question } = useLazyLoadQuery<questionDetailsQuery>(
+export default function QuestionDetails(props: Props) {
+  const question = useFragment(
     graphql`
-      mutation questionDetailsQuery($input: ViewQuestionInput!) {
-        viewQuestion(input: $input) {
-          id
-          answers
-          body
-          createdAtRelative
-          question
-          tags {
-            name
-          }
-          user {
-            username
-          }
-          views
-          votes
+      fragment questionDetails_question on Question {
+        id
+        answers
+        body
+        createdAtRelative
+        question
+        tags {
+          name
         }
+        user {
+          username
+        }
+        views
+        votes
       }
     `,
-    {
-      input: {
-        id,
-      },
-    },
-    {
-      fetchPolicy: 'store-and-network',
-    }
+    props.question
   );
 
   return (
@@ -49,7 +41,7 @@ export default function QuestionDetails({ id }: Props) {
         </div>
       </div>
       <div className="flex">
-        <Vote id={id} />
+        <Vote id={props.id} />
         <div className="flex-grow">
           <div className="text-sm">{question.body}</div>
           <div className="flex flex-row-reverse justify-between min-w-full mt-6">
