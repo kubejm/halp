@@ -173,18 +173,7 @@ export class QuestionResolver {
       body: input.body,
     });
 
-    if (Array.isArray(input.tags)) {
-      input.tags.forEach((tag) => {
-        question.tags.add(
-          Object.assign(new Tag(), {
-            name: tag,
-            question,
-          })
-        );
-      });
-    }
-
-    return questionService.addQuestion(question, context);
+    return questionService.addQuestion(context, question, input.tags);
   }
 
   @Mutation(() => Question)

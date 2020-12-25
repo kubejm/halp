@@ -4,6 +4,7 @@ import {
   QuestionVote,
   QuestionVoteAction,
   QuestionAnswer,
+  Tag,
 } from '../entities';
 import { Context } from '../types';
 
@@ -129,11 +130,32 @@ export async function downvoteQuestion(id: string, context: Context) {
   return vote(id, QuestionVoteAction.DOWNVOTE, context);
 }
 
-export async function addQuestion(input: Question, { ctx }: Context) {
+export async function addQuestion(
+  { ctx }: Context,
+  input: Question,
+  tags: string[] = []
+) {
   // TODO: error handling
   const question = Object.assign(input, {
     user: ctx.user,
   });
+
+  for (const name of tags) {
+    const tag = await ctx.em.getRepository(Tag).findOne({
+      name,
+    });
+
+    if (tag) {
+      question.tags.add(tag);
+    } else {
+      question.tags.add(
+        Object.assign(new Tag(), {
+          name,
+          question,
+        })
+      );
+    }
+  }
 
   await ctx.em.persist(question).flush();
   return question;

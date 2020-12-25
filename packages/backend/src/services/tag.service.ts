@@ -6,6 +6,5 @@ export function getTags({ ctx }: Context) {
 }
 
 export async function getTagQuestionCount(tag: Tag) {
-  await tag.questions.init();
-  return tag.questions.count();
+  return tag.questions.loadCount();
 }
