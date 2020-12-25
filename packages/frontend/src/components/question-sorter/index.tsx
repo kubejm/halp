@@ -40,7 +40,7 @@ export default function QuestionSorter(props: QuestionSorterProps) {
               label="New"
               to="/"
               selected={props.orderBy === 'NEW'}
-              className=" border-r-0"
+              className="rounded-l border-r-0"
             />
             <SortLink
               label="Active"
@@ -52,6 +52,7 @@ export default function QuestionSorter(props: QuestionSorterProps) {
               label="Most Votes"
               to="/?orderBy=votes"
               selected={props.orderBy === 'VOTES'}
+              className="rounded-r"
             />
           </ul>
         </div>
