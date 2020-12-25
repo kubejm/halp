@@ -60,7 +60,11 @@ export default function Questions(props: ScreenProps) {
 
   return (
     <>
-      <QuestionSorter questionsPage={questionsPage} orderBy={orderBy} tag={tag} />
+      <QuestionSorter
+        questionsPage={questionsPage}
+        orderBy={orderBy}
+        tag={tag}
+      />
       <QuestionList questionsPage={questionsPage} />
       <QuestionPager questionsPage={questionsPage} currentPage={page} />
     </>
