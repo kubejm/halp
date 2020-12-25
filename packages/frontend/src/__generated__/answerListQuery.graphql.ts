@@ -13,6 +13,10 @@ export type answerListQueryResponse = {
     readonly viewQuestion: {
         readonly questionAnswers: ReadonlyArray<{
             readonly body: string;
+            readonly user: {
+                readonly username: string;
+            };
+            readonly createdAtRelative: string;
         }>;
     };
 };
@@ -30,6 +34,11 @@ mutation answerListQuery(
   viewQuestion(input: $input) {
     questionAnswers {
       body
+      user {
+        username
+        id
+      }
+      createdAtRelative
       id
     }
     id
@@ -60,6 +69,18 @@ const node: ConcreteRequest = (function () {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
+        "name": "username",
+        "storageKey": null
+    } as any), v4 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "createdAtRelative",
+        "storageKey": null
+    } as any), v5 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
         "name": "id",
         "storageKey": null
     } as any);
@@ -86,7 +107,20 @@ const node: ConcreteRequest = (function () {
                             "name": "questionAnswers",
                             "plural": true,
                             "selections": [
-                                (v2 /*: any*/)
+                                (v2 /*: any*/),
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "User",
+                                    "kind": "LinkedField",
+                                    "name": "user",
+                                    "plural": false,
+                                    "selections": [
+                                        (v3 /*: any*/)
+                                    ],
+                                    "storageKey": null
+                                },
+                                (v4 /*: any*/)
                             ],
                             "storageKey": null
                         }
@@ -120,25 +154,39 @@ const node: ConcreteRequest = (function () {
                             "plural": true,
                             "selections": [
                                 (v2 /*: any*/),
-                                (v3 /*: any*/)
+                                {
+                                    "alias": null,
+                                    "args": null,
+                                    "concreteType": "User",
+                                    "kind": "LinkedField",
+                                    "name": "user",
+                                    "plural": false,
+                                    "selections": [
+                                        (v3 /*: any*/),
+                                        (v5 /*: any*/)
+                                    ],
+                                    "storageKey": null
+                                },
+                                (v4 /*: any*/),
+                                (v5 /*: any*/)
                             ],
                             "storageKey": null
                         },
-                        (v3 /*: any*/)
+                        (v5 /*: any*/)
                     ],
                     "storageKey": null
                 }
             ]
         },
         "params": {
-            "cacheID": "407ab0895df3ba4af312d402bfe49acb",
+            "cacheID": "43f3be3aac0f11f507f8438c5c0dca4a",
             "id": null,
             "metadata": {},
             "name": "answerListQuery",
             "operationKind": "mutation",
-            "text": "mutation answerListQuery(\n  $input: ViewQuestionInput!\n) {\n  viewQuestion(input: $input) {\n    questionAnswers {\n      body\n      id\n    }\n    id\n  }\n}\n"
+            "text": "mutation answerListQuery(\n  $input: ViewQuestionInput!\n) {\n  viewQuestion(input: $input) {\n    questionAnswers {\n      body\n      user {\n        username\n        id\n      }\n      createdAtRelative\n      id\n    }\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'cf03c2ca7dd66e064d0b07ba781c8fd4';
+(node as any).hash = 'd03fca7acac909254e4c4b523c4c3081';
 export default node;
