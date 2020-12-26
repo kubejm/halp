@@ -25,6 +25,8 @@ import {
   IsEnum,
 } from 'class-validator';
 
+registerEnumType(questionService.QuestionOrderBy, { name: 'QuestionOrderBy' });
+
 @InputType()
 export class AddQuestionInput {
   @Field()
@@ -48,9 +50,6 @@ export class AddQuestionInput {
   @ArrayMaxSize(5)
   tags!: string[];
 }
-
-// TODO: where should I place this?
-registerEnumType(questionService.QuestionOrderBy, { name: 'QuestionOrderBy' });
 
 @InputType()
 export class GetQuestionsInput {
