@@ -9,6 +9,14 @@ input AddQuestionInput {
   tags: [String!]!
 }
 
+type Answer {
+  body: String!
+  createdAtRelative: String!
+  id: ID!
+  question: Question!
+  user: User!
+}
+
 input AnswerQuestionInput {
   answer: String!
   id: String!
@@ -41,7 +49,8 @@ type Query {
 }
 
 type Question {
-  answers: Float!
+  answerCount: Float!
+  answers: [Answer!]!
   body: String!
   createdAtRelative: String!
   excerpt: String!
@@ -50,19 +59,10 @@ type Question {
   id: ID!
   isUserAuthor: Boolean!
   question: String!
-  questionAnswers: [QuestionAnswer!]!
   tags: [Tag!]!
   user: User!
   views: Float!
-  votes: Float!
-}
-
-type QuestionAnswer {
-  body: String!
-  createdAtRelative: String!
-  id: ID!
-  question: Question!
-  user: User!
+  voteCount: Float!
 }
 
 input QuestionByIdInput {

@@ -11,7 +11,7 @@ export type UpvoteMutationVariables = {
 };
 export type UpvoteMutationResponse = {
     readonly upvoteQuestion: {
-        readonly votes: number;
+        readonly voteCount: number;
         readonly hasUserUpvoted: boolean;
         readonly hasUserDownvoted: boolean;
     };
@@ -28,7 +28,7 @@ mutation UpvoteMutation(
   $input: QuestionByIdInput!
 ) {
   upvoteQuestion(input: $input) {
-    votes
+    voteCount
     hasUserUpvoted
     hasUserDownvoted
     id
@@ -53,7 +53,7 @@ const node: ConcreteRequest = (function () {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "votes",
+        "name": "voteCount",
         "storageKey": null
     } as any), v3 = ({
         "alias": null,
@@ -123,14 +123,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "05c7cabd11b42207017d991b13bde711",
+            "cacheID": "d950120526f2a1c4671f9890896697ca",
             "id": null,
             "metadata": {},
             "name": "UpvoteMutation",
             "operationKind": "mutation",
-            "text": "mutation UpvoteMutation(\n  $input: QuestionByIdInput!\n) {\n  upvoteQuestion(input: $input) {\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n    id\n  }\n}\n"
+            "text": "mutation UpvoteMutation(\n  $input: QuestionByIdInput!\n) {\n  upvoteQuestion(input: $input) {\n    voteCount\n    hasUserUpvoted\n    hasUserDownvoted\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '712c8e2b3f7c673b40dc8a38a7c74734';
+(node as any).hash = 'bfedc5a778732fe37011cfc4ebc51ad4';
 export default node;

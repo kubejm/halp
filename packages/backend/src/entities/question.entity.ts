@@ -11,20 +11,21 @@ import { Base } from './base.entity';
 import { Tag } from './tag.entity';
 import { User } from './user.entity';
 import { formatDistanceToNow } from 'date-fns';
-import { QuestionAnswer } from './question-answer.entity';
-import { QuestionVote, QuestionVoteAction } from './question-vote.entity';
+import { Answer } from './answer.entity';
+import { QuestionVote } from './question-vote.entity';
 import { getCtx } from '../utils';
+import { VoteAction } from './types';
 
 @ObjectType()
 @Entity()
 export class Question extends Base<Question> {
   @Field()
   @Property()
-  answers: number = 0;
+  answerCount: number = 0;
 
   @Field()
   @Property()
-  votes: number = 0;
+  voteCount: number = 0;
 
   @Field()
   @ManyToOne({ entity: () => User, eager: true })
@@ -64,26 +65,23 @@ export class Question extends Base<Question> {
     eager: true,
     orphanRemoval: true,
   })
-  questionVotes = new Collection<QuestionVote>(this);
+  votes = new Collection<QuestionVote>(this);
 
-  @Field(() => [QuestionAnswer])
+  @Field(() => [Answer])
   @OneToMany({
-    entity: () => QuestionAnswer,
+    entity: () => Answer,
     mappedBy: 'question',
     eager: true,
     orphanRemoval: true,
   })
-  questionAnswers = new Collection<QuestionAnswer>(this);
+  answers = new Collection<Answer>(this);
 
   @Field()
   get hasUserUpvoted(): boolean {
     const ctx = getCtx();
 
-    return this.questionVotes.getItems().some((questionVote) => {
-      return (
-        questionVote.user === ctx.user &&
-        questionVote.action === QuestionVoteAction.UPVOTE
-      );
+    return this.votes.getItems().some((vote) => {
+      return vote.user === ctx.user && vote.action === VoteAction.UPVOTE;
     });
   }
 
@@ -91,11 +89,8 @@ export class Question extends Base<Question> {
   get hasUserDownvoted(): boolean {
     const ctx = getCtx();
 
-    return this.questionVotes.getItems().some((questionVote) => {
-      return (
-        questionVote.user === ctx.user &&
-        questionVote.action === QuestionVoteAction.DOWNVOTE
-      );
+    return this.votes.getItems().some((vote) => {
+      return vote.user === ctx.user && vote.action === VoteAction.DOWNVOTE;
     });
   }
 

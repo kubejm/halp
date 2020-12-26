@@ -6,7 +6,7 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type questionDetails_question = {
     readonly id: string;
-    readonly answers: number;
+    readonly answerCount: number;
     readonly body: string;
     readonly createdAtRelative: string;
     readonly question: string;
@@ -17,7 +17,7 @@ export type questionDetails_question = {
         readonly username: string;
     };
     readonly views: number;
-    readonly votes: number;
+    readonly voteCount: number;
     readonly " $refType": "questionDetails_question";
 };
 export type questionDetails_question$data = questionDetails_question;
@@ -45,7 +45,7 @@ const node: ReaderFragment = ({
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "answers",
+            "name": "answerCount",
             "storageKey": null
         },
         {
@@ -116,12 +116,12 @@ const node: ReaderFragment = ({
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "votes",
+            "name": "voteCount",
             "storageKey": null
         }
     ],
     "type": "Question",
     "abstractKey": null
 } as any);
-(node as any).hash = '6cc4bd29701b9b45a8ed9d157c7ea029';
+(node as any).hash = 'ef0e3852d1886050cd8dc3ff844f0943';
 export default node;

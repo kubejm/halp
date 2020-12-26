@@ -13,7 +13,7 @@ export default function Vote({ id }: Props) {
       query voteQuery($input: QuestionByIdInput!) {
         question(input: $input) {
           id
-          votes
+          voteCount
           hasUserUpvoted
           hasUserDownvoted
           isUserAuthor
@@ -37,7 +37,7 @@ export default function Vote({ id }: Props) {
         hasUserVoted={question.hasUserUpvoted}
         isUserAuthor={question.isUserAuthor}
       />
-      <div>{question.votes}</div>
+      <div>{question.voteCount}</div>
       <Downvote
         id={id}
         hasUserVoted={question.hasUserDownvoted}

@@ -12,7 +12,7 @@ export type voteQueryVariables = {
 export type voteQueryResponse = {
     readonly question: {
         readonly id: string;
-        readonly votes: number;
+        readonly voteCount: number;
         readonly hasUserUpvoted: boolean;
         readonly hasUserDownvoted: boolean;
         readonly isUserAuthor: boolean;
@@ -31,7 +31,7 @@ query voteQuery(
 ) {
   question(input: $input) {
     id
-    votes
+    voteCount
     hasUserUpvoted
     hasUserDownvoted
     isUserAuthor
@@ -72,7 +72,7 @@ const node: ConcreteRequest = (function () {
                     "alias": null,
                     "args": null,
                     "kind": "ScalarField",
-                    "name": "votes",
+                    "name": "voteCount",
                     "storageKey": null
                 },
                 {
@@ -118,14 +118,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "dc0b323e32ebdb684b7d4406138c0c69",
+            "cacheID": "9db24a55016b7ea9b4737c3a8420d6f7",
             "id": null,
             "metadata": {},
             "name": "voteQuery",
             "operationKind": "query",
-            "text": "query voteQuery(\n  $input: QuestionByIdInput!\n) {\n  question(input: $input) {\n    id\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n    isUserAuthor\n  }\n}\n"
+            "text": "query voteQuery(\n  $input: QuestionByIdInput!\n) {\n  question(input: $input) {\n    id\n    voteCount\n    hasUserUpvoted\n    hasUserDownvoted\n    isUserAuthor\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '132363fd2585d1990f62aaaa16f21478';
+(node as any).hash = 'fdc8c4b3447ec793cb8b3cbb0779eabd';
 export default node;

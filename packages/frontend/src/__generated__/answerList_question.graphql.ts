@@ -5,7 +5,7 @@
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type answerList_question = {
-    readonly questionAnswers: ReadonlyArray<{
+    readonly answers: ReadonlyArray<{
         readonly body: string;
         readonly user: {
             readonly username: string;
@@ -31,9 +31,9 @@ const node: ReaderFragment = ({
         {
             "alias": null,
             "args": null,
-            "concreteType": "QuestionAnswer",
+            "concreteType": "Answer",
             "kind": "LinkedField",
-            "name": "questionAnswers",
+            "name": "answers",
             "plural": true,
             "selections": [
                 {
@@ -75,5 +75,5 @@ const node: ReaderFragment = ({
     "type": "Question",
     "abstractKey": null
 } as any);
-(node as any).hash = '829aa2921383122d6b33c605759bdc1c';
+(node as any).hash = 'bd890fda733bde341f5c8c72e683e6c6';
 export default node;

@@ -4,14 +4,14 @@ import TagList from '../tag-list';
 
 interface Props {
   id: string;
-  answers?: number;
+  answerCount: number;
   username: string;
   createdAtRelative: string;
   excerpt: string;
   question: string;
   tags: readonly { readonly name: string }[];
-  views?: number;
-  votes?: number;
+  views: number;
+  voteCount: number;
 }
 
 export default function QuestionSummary(props: Props) {
@@ -19,11 +19,11 @@ export default function QuestionSummary(props: Props) {
     <div className="flex bg-white border-l border-b p-4 divide-x">
       <div className="pr-3 text-center">
         <div className="pt-2">
-          <div>{props.votes}</div>
+          <div>{props.voteCount}</div>
           <div className="text-xs text-gray-700">votes</div>
         </div>
         <div className="pt-4 text-gray-700">
-          <div>{props.answers}</div>
+          <div>{props.answerCount}</div>
           <div className="text-xs">answers</div>
         </div>
         <div className="pt-4 text-xs text-gray-600">

@@ -7,7 +7,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 @ObjectType()
 @Entity()
-export class QuestionAnswer extends Base<QuestionAnswer> {
+export class Answer extends Base<Answer> {
   @Field(() => Question)
   @ManyToOne(() => Question)
   question!: Question;

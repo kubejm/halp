@@ -1,11 +1,5 @@
 import { wrap, QueryOrder } from '@mikro-orm/core';
-import {
-  Question,
-  QuestionVote,
-  QuestionVoteAction,
-  QuestionAnswer,
-  Tag,
-} from '../entities';
+import { Question, QuestionVote, VoteAction, Answer, Tag } from '../entities';
 import { Context } from '../types';
 
 export enum QuestionOrderBy {
@@ -80,7 +74,7 @@ export async function viewQuestion(id: string, { ctx }: Context) {
   return question;
 }
 
-async function vote(id: string, action: QuestionVoteAction, { ctx }: Context) {
+async function vote(id: string, action: VoteAction, { ctx }: Context) {
   const question = await ctx.em.getRepository(Question).findOneOrFail({
     id,
   });
@@ -104,9 +98,9 @@ async function vote(id: string, action: QuestionVoteAction, { ctx }: Context) {
   }
 
   if (questionVote) {
-    question.questionVotes.remove(questionVote);
+    question.votes.remove(questionVote);
   } else {
-    question.questionVotes.add(
+    question.votes.add(
       Object.assign(new QuestionVote(), {
         action,
         question,
@@ -115,7 +109,7 @@ async function vote(id: string, action: QuestionVoteAction, { ctx }: Context) {
     );
   }
 
-  question.votes += action === QuestionVoteAction.UPVOTE ? 1 : -1;
+  question.voteCount += action === VoteAction.UPVOTE ? 1 : -1;
 
   await ctx.em.persist(question).flush();
 
@@ -123,11 +117,11 @@ async function vote(id: string, action: QuestionVoteAction, { ctx }: Context) {
 }
 
 export async function upvoteQuestion(id: string, context: Context) {
-  return vote(id, QuestionVoteAction.UPVOTE, context);
+  return vote(id, VoteAction.UPVOTE, context);
 }
 
 export async function downvoteQuestion(id: string, context: Context) {
-  return vote(id, QuestionVoteAction.DOWNVOTE, context);
+  return vote(id, VoteAction.DOWNVOTE, context);
 }
 
 export async function addQuestion(
@@ -174,15 +168,15 @@ export async function answerQuestion(
     id,
   });
 
-  question.questionAnswers.add(
-    Object.assign(new QuestionAnswer(), {
+  question.answers.add(
+    Object.assign(new Answer(), {
       body: answer,
       question,
       user: ctx.user,
     })
   );
 
-  question.answers += 1;
+  question.answerCount += 1;
 
   await ctx.em.persist(question).flush();
 

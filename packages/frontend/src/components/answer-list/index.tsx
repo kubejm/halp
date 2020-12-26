@@ -9,10 +9,10 @@ interface Props {
 }
 
 export default function AnswerList(props: Props) {
-  const { questionAnswers: answers } = useFragment(
+  const { answers } = useFragment(
     graphql`
       fragment answerList_question on Question {
-        questionAnswers {
+        answers {
           body
           user {
             username

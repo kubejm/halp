@@ -13,7 +13,7 @@ export default function Upvote({ id, hasUserVoted, isUserAuthor }: Props) {
   const [commit] = useMutation<UpvoteMutation>(graphql`
     mutation UpvoteMutation($input: QuestionByIdInput!) {
       upvoteQuestion(input: $input) {
-        votes
+        voteCount
         hasUserUpvoted
         hasUserDownvoted
       }

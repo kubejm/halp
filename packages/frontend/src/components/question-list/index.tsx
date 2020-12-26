@@ -12,7 +12,7 @@ export default function QuestionList(props: Props) {
     graphql`
       fragment questionList_questionsPage on QuestionsPage {
         questions {
-          answers
+          answerCount
           createdAtRelative
           excerpt
           id
@@ -24,7 +24,7 @@ export default function QuestionList(props: Props) {
             username
           }
           views
-          votes
+          voteCount
         }
       }
     `,
@@ -37,14 +37,14 @@ export default function QuestionList(props: Props) {
         <QuestionSummary
           key={question.id}
           id={question.id}
-          answers={question.answers}
+          answerCount={question.answerCount}
           createdAtRelative={question.createdAtRelative}
           username={question.user.username}
           excerpt={question.excerpt}
           question={question.question}
           tags={question.tags}
           views={question.views}
-          votes={question.votes}
+          voteCount={question.voteCount}
         />
       ))}
     </>

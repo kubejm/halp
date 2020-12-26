@@ -7,7 +7,7 @@ import {
 } from '@mikro-orm/core';
 import { Base } from './base.entity';
 import { Question } from './question.entity';
-import { QuestionAnswer } from './question-answer.entity';
+import { Answer } from './answer.entity';
 import { Field, ObjectType } from 'type-graphql';
 
 @ObjectType()
@@ -29,6 +29,6 @@ export class User extends Base<User> {
   @OneToMany(() => Question, (question) => question.user)
   questions = new Collection<Question>(this);
 
-  @OneToMany(() => QuestionAnswer, (questionAnswer) => questionAnswer.user)
-  questionAnswers = new Collection<QuestionAnswer>(this);
+  @OneToMany(() => Answer, (answer) => answer.user)
+  answers = new Collection<Answer>(this);
 }

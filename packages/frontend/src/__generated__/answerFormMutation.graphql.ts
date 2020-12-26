@@ -36,7 +36,7 @@ mutation answerFormMutation(
 }
 
 fragment answerList_question on Question {
-  questionAnswers {
+  answers {
     body
     user {
       username
@@ -49,7 +49,7 @@ fragment answerList_question on Question {
 
 fragment questionDetails_question on Question {
   id
-  answers
+  answerCount
   body
   createdAtRelative
   question
@@ -62,7 +62,7 @@ fragment questionDetails_question on Question {
     id
   }
   views
-  votes
+  voteCount
 }
 */
 
@@ -168,7 +168,7 @@ const node: ConcreteRequest = (function () {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "answers",
+                            "name": "answerCount",
                             "storageKey": null
                         },
                         (v3 /*: any*/),
@@ -211,15 +211,15 @@ const node: ConcreteRequest = (function () {
                             "alias": null,
                             "args": null,
                             "kind": "ScalarField",
-                            "name": "votes",
+                            "name": "voteCount",
                             "storageKey": null
                         },
                         {
                             "alias": null,
                             "args": null,
-                            "concreteType": "QuestionAnswer",
+                            "concreteType": "Answer",
                             "kind": "LinkedField",
-                            "name": "questionAnswers",
+                            "name": "answers",
                             "plural": true,
                             "selections": [
                                 (v3 /*: any*/),
@@ -235,12 +235,12 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "0243c5906cdfa5b05a4d333102620ead",
+            "cacheID": "6972999d56b6ab7646d0176e4ff7a70f",
             "id": null,
             "metadata": {},
             "name": "answerFormMutation",
             "operationKind": "mutation",
-            "text": "mutation answerFormMutation(\n  $input: AnswerQuestionInput!\n) {\n  answerQuestion(input: $input) {\n    id\n    ...questionDetails_question\n    ...answerList_question\n  }\n}\n\nfragment answerList_question on Question {\n  questionAnswers {\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n    id\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answers\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  votes\n}\n"
+            "text": "mutation answerFormMutation(\n  $input: AnswerQuestionInput!\n) {\n  answerQuestion(input: $input) {\n    id\n    ...questionDetails_question\n    ...answerList_question\n  }\n}\n\nfragment answerList_question on Question {\n  answers {\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n    id\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
         }
     } as any;
 })();

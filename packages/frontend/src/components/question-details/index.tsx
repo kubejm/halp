@@ -14,7 +14,7 @@ export default function QuestionDetails(props: Props) {
     graphql`
       fragment questionDetails_question on Question {
         id
-        answers
+        answerCount
         body
         createdAtRelative
         question
@@ -25,7 +25,7 @@ export default function QuestionDetails(props: Props) {
           username
         }
         views
-        votes
+        voteCount
       }
     `,
     props.question

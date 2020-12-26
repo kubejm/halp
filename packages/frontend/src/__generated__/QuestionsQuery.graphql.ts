@@ -39,7 +39,7 @@ query QuestionsQuery(
 
 fragment questionList_questionsPage on QuestionsPage {
   questions {
-    answers
+    answerCount
     createdAtRelative
     excerpt
     id
@@ -53,7 +53,7 @@ fragment questionList_questionsPage on QuestionsPage {
       id
     }
     views
-    votes
+    voteCount
   }
 }
 
@@ -156,7 +156,7 @@ const node: ConcreteRequest = (function () {
                                     "alias": null,
                                     "args": null,
                                     "kind": "ScalarField",
-                                    "name": "answers",
+                                    "name": "answerCount",
                                     "storageKey": null
                                 },
                                 {
@@ -230,7 +230,7 @@ const node: ConcreteRequest = (function () {
                                     "alias": null,
                                     "args": null,
                                     "kind": "ScalarField",
-                                    "name": "votes",
+                                    "name": "voteCount",
                                     "storageKey": null
                                 }
                             ],
@@ -249,12 +249,12 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "e01cd0651d0ac971e67fe070b7b18362",
+            "cacheID": "0fe04c16015d4712d7991028c524a3d4",
             "id": null,
             "metadata": {},
             "name": "QuestionsQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...questionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment questionList_questionsPage on QuestionsPage {\n  questions {\n    answers\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    votes\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
+            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...questionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment questionList_questionsPage on QuestionsPage {\n  questions {\n    answerCount\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    voteCount\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
         }
     } as any;
 })();
