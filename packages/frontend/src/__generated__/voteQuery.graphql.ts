@@ -3,11 +3,11 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type GetQuestionInput = {
+export type QuestionByIdInput = {
     id: string;
 };
 export type voteQueryVariables = {
-    input: GetQuestionInput;
+    input: QuestionByIdInput;
 };
 export type voteQueryResponse = {
     readonly question: {
@@ -27,7 +27,7 @@ export type voteQuery = {
 
 /*
 query voteQuery(
-  $input: GetQuestionInput!
+  $input: QuestionByIdInput!
 ) {
   question(input: $input) {
     id
@@ -118,14 +118,14 @@ const node: ConcreteRequest = (function () {
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "8de4873f083b62b4055f9ba710d86b56",
+            "cacheID": "dc0b323e32ebdb684b7d4406138c0c69",
             "id": null,
             "metadata": {},
             "name": "voteQuery",
             "operationKind": "query",
-            "text": "query voteQuery(\n  $input: GetQuestionInput!\n) {\n  question(input: $input) {\n    id\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n    isUserAuthor\n  }\n}\n"
+            "text": "query voteQuery(\n  $input: QuestionByIdInput!\n) {\n  question(input: $input) {\n    id\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n    isUserAuthor\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'cefb5f6dafda60c01cb08deb63ca468e';
+(node as any).hash = '132363fd2585d1990f62aaaa16f21478';
 export default node;

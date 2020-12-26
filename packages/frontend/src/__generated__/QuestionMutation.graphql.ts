@@ -4,11 +4,11 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type ViewQuestionInput = {
+export type QuestionByIdInput = {
     id: string;
 };
 export type QuestionMutationVariables = {
-    input: ViewQuestionInput;
+    input: QuestionByIdInput;
 };
 export type QuestionMutationResponse = {
     readonly viewQuestion: {
@@ -24,7 +24,7 @@ export type QuestionMutation = {
 
 /*
 mutation QuestionMutation(
-  $input: ViewQuestionInput!
+  $input: QuestionByIdInput!
 ) {
   viewQuestion(input: $input) {
     ...questionDetails_question
@@ -232,14 +232,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "8566e3eb55681796224e600a4e67a880",
+            "cacheID": "04bd99b7a9df224648ff4358873b7eec",
             "id": null,
             "metadata": {},
             "name": "QuestionMutation",
             "operationKind": "mutation",
-            "text": "mutation QuestionMutation(\n  $input: ViewQuestionInput!\n) {\n  viewQuestion(input: $input) {\n    ...questionDetails_question\n    ...answerList_question\n    id\n  }\n}\n\nfragment answerList_question on Question {\n  questionAnswers {\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n    id\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answers\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  votes\n}\n"
+            "text": "mutation QuestionMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...questionDetails_question\n    ...answerList_question\n    id\n  }\n}\n\nfragment answerList_question on Question {\n  questionAnswers {\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n    id\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answers\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  votes\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'be1f2f2f69ba0c8e9146995301516f99';
+(node as any).hash = '41b439ccbbc3909a3c04f4b8572fc85d';
 export default node;

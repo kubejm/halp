@@ -10,7 +10,7 @@ interface Props {
 export default function Vote({ id }: Props) {
   const { question } = useLazyLoadQuery<voteQuery>(
     graphql`
-      query voteQuery($input: GetQuestionInput!) {
+      query voteQuery($input: QuestionByIdInput!) {
         question(input: $input) {
           id
           votes

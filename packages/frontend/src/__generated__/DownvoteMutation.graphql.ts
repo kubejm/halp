@@ -3,11 +3,11 @@
 // @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
-export type DownvoteQuestionInput = {
+export type QuestionByIdInput = {
     id: string;
 };
 export type DownvoteMutationVariables = {
-    input: DownvoteQuestionInput;
+    input: QuestionByIdInput;
 };
 export type DownvoteMutationResponse = {
     readonly downvoteQuestion: {
@@ -25,7 +25,7 @@ export type DownvoteMutation = {
 
 /*
 mutation DownvoteMutation(
-  $input: DownvoteQuestionInput!
+  $input: QuestionByIdInput!
 ) {
   downvoteQuestion(input: $input) {
     votes
@@ -123,14 +123,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "9e7fa3a9cf68d2fb40a86f2724dc42dc",
+            "cacheID": "a803295d293e5b64b9541043f3580681",
             "id": null,
             "metadata": {},
             "name": "DownvoteMutation",
             "operationKind": "mutation",
-            "text": "mutation DownvoteMutation(\n  $input: DownvoteQuestionInput!\n) {\n  downvoteQuestion(input: $input) {\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n    id\n  }\n}\n"
+            "text": "mutation DownvoteMutation(\n  $input: QuestionByIdInput!\n) {\n  downvoteQuestion(input: $input) {\n    votes\n    hasUserUpvoted\n    hasUserDownvoted\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '687d443a5d1343c3e5109e37488ab41d';
+(node as any).hash = '7c6b46164a0b1700d3d9f11eaebd0326';
 export default node;

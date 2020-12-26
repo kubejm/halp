@@ -84,28 +84,7 @@ export class QuestionsPage {
 }
 
 @InputType()
-export class GetQuestionInput {
-  @Field()
-  @IsUUID()
-  id!: string;
-}
-
-@InputType()
-export class ViewQuestionInput {
-  @Field()
-  @IsUUID()
-  id!: string;
-}
-
-@InputType()
-export class UpvoteQuestionInput {
-  @Field()
-  @IsUUID()
-  id!: string;
-}
-
-@InputType()
-export class DownvoteQuestionInput {
+export class QuestionByIdInput {
   @Field()
   @IsUUID()
   id!: string;
@@ -151,13 +130,13 @@ export class QuestionResolver {
   }
 
   @Query(() => Question)
-  question(@Arg('input') input: GetQuestionInput, @Ctx() context: Context) {
+  question(@Arg('input') input: QuestionByIdInput, @Ctx() context: Context) {
     return questionService.getQuestion(input.id, context);
   }
 
   @Mutation(() => Question)
   viewQuestion(
-    @Arg('input') input: ViewQuestionInput,
+    @Arg('input') input: QuestionByIdInput,
     @Ctx() context: Context
   ) {
     return questionService.viewQuestion(input.id, context);
@@ -178,7 +157,7 @@ export class QuestionResolver {
 
   @Mutation(() => Question)
   async upvoteQuestion(
-    @Arg('input') input: UpvoteQuestionInput,
+    @Arg('input') input: QuestionByIdInput,
     @Ctx() context: Context
   ) {
     return questionService.upvoteQuestion(input.id, context);
@@ -186,7 +165,7 @@ export class QuestionResolver {
 
   @Mutation(() => Question)
   async downvoteQuestion(
-    @Arg('input') input: DownvoteQuestionInput,
+    @Arg('input') input: QuestionByIdInput,
     @Ctx() context: Context
   ) {
     return questionService.downvoteQuestion(input.id, context);

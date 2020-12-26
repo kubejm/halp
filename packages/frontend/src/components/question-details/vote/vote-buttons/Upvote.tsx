@@ -11,7 +11,7 @@ interface Props {
 
 export default function Upvote({ id, hasUserVoted, isUserAuthor }: Props) {
   const [commit] = useMutation<UpvoteMutation>(graphql`
-    mutation UpvoteMutation($input: UpvoteQuestionInput!) {
+    mutation UpvoteMutation($input: QuestionByIdInput!) {
       upvoteQuestion(input: $input) {
         votes
         hasUserUpvoted

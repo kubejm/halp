@@ -14,14 +14,6 @@ input AnswerQuestionInput {
   id: String!
 }
 
-input DownvoteQuestionInput {
-  id: String!
-}
-
-input GetQuestionInput {
-  id: String!
-}
-
 input GetQuestionsInput {
   orderBy: QuestionOrderBy
   page: Float
@@ -32,17 +24,17 @@ input GetQuestionsInput {
 type Mutation {
   addQuestion(input: AddQuestionInput!): Question!
   answerQuestion(input: AnswerQuestionInput!): Question!
-  downvoteQuestion(input: DownvoteQuestionInput!): Question!
+  downvoteQuestion(input: QuestionByIdInput!): Question!
   signIn(input: SignInInput!): Result!
   signOut: Result!
   signUp(input: SignUpInput!): Result!
-  upvoteQuestion(input: UpvoteQuestionInput!): Question!
-  viewQuestion(input: ViewQuestionInput!): Question!
+  upvoteQuestion(input: QuestionByIdInput!): Question!
+  viewQuestion(input: QuestionByIdInput!): Question!
 }
 
 type Query {
   profile: User!
-  question(input: GetQuestionInput!): Question!
+  question(input: QuestionByIdInput!): Question!
   questionCount: Float!
   questionsPage(input: GetQuestionsInput): QuestionsPage!
   tags: [Tag!]!
@@ -71,6 +63,10 @@ type QuestionAnswer {
   id: ID!
   question: Question!
   user: User!
+}
+
+input QuestionByIdInput {
+  id: String!
 }
 
 enum QuestionOrderBy {
@@ -107,16 +103,8 @@ type Tag {
   questions: [Question!]!
 }
 
-input UpvoteQuestionInput {
-  id: String!
-}
-
 type User {
   email: String!
   id: ID!
   username: String!
-}
-
-input ViewQuestionInput {
-  id: String!
 }

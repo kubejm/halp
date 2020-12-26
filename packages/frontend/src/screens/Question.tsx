@@ -17,7 +17,7 @@ export default function Question(props: QuestionScreenProps) {
 
   const { viewQuestion: question } = useLazyLoadQuery<QuestionMutation>(
     graphql`
-      mutation QuestionMutation($input: ViewQuestionInput!) {
+      mutation QuestionMutation($input: QuestionByIdInput!) {
         viewQuestion(input: $input) {
           ...questionDetails_question
           ...answerList_question
