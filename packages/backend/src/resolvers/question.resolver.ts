@@ -9,7 +9,7 @@ import {
   Resolver,
   registerEnumType,
 } from 'type-graphql';
-import { Question, Tag } from '../entities';
+import { Question } from '../entities';
 import { Context } from '../types';
 import { questionService } from '../services';
 import {
