@@ -5,7 +5,7 @@ import { signUpFormMutation } from '../../../__generated__/signUpFormMutation.gr
 import { useHistory } from 'react-router-dom';
 import { useStore } from '../../../store';
 import { ValidationError } from '../../../utils';
-import { Input } from '../../form';
+import { Input } from '../../shared';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 

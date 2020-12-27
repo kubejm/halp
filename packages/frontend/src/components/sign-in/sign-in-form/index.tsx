@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useStore } from '../../../store';
 import * as yup from 'yup';
-import { Input } from '../../form';
+import { Input } from '../../shared';
 import { ValidationError } from '../../../utils';
 
 const schema = yup.object().shape({

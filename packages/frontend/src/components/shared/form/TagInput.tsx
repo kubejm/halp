@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes, useState, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
-import { Tag } from '../shared';
+import Tag from '../tag';
 
 interface TagInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;

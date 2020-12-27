@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { questionFormMutation } from '../../../__generated__/questionFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
-import { Input, TagInput, TextArea } from '../../form';
+import { Input, TagInput, TextArea } from '../../shared';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ValidationError } from '../../../utils';
