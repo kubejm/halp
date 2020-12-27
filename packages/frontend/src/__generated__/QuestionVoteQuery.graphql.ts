@@ -6,10 +6,10 @@ import { ConcreteRequest } from "relay-runtime";
 export type QuestionByIdInput = {
     id: string;
 };
-export type voteQueryVariables = {
+export type QuestionVoteQueryVariables = {
     input: QuestionByIdInput;
 };
-export type voteQueryResponse = {
+export type QuestionVoteQueryResponse = {
     readonly question: {
         readonly id: string;
         readonly voteCount: number;
@@ -18,15 +18,15 @@ export type voteQueryResponse = {
         readonly isUserAuthor: boolean;
     };
 };
-export type voteQuery = {
-    readonly response: voteQueryResponse;
-    readonly variables: voteQueryVariables;
+export type QuestionVoteQuery = {
+    readonly response: QuestionVoteQueryResponse;
+    readonly variables: QuestionVoteQueryVariables;
 };
 
 
 
 /*
-query voteQuery(
+query QuestionVoteQuery(
   $input: QuestionByIdInput!
 ) {
   question(input: $input) {
@@ -105,7 +105,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "voteQuery",
+            "name": "QuestionVoteQuery",
             "selections": (v1 /*: any*/),
             "type": "Query",
             "abstractKey": null
@@ -114,18 +114,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "voteQuery",
+            "name": "QuestionVoteQuery",
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "9db24a55016b7ea9b4737c3a8420d6f7",
+            "cacheID": "f24d5c165bd81dc52356f8b5f6f9a38e",
             "id": null,
             "metadata": {},
-            "name": "voteQuery",
+            "name": "QuestionVoteQuery",
             "operationKind": "query",
-            "text": "query voteQuery(\n  $input: QuestionByIdInput!\n) {\n  question(input: $input) {\n    id\n    voteCount\n    hasUserUpvoted\n    hasUserDownvoted\n    isUserAuthor\n  }\n}\n"
+            "text": "query QuestionVoteQuery(\n  $input: QuestionByIdInput!\n) {\n  question(input: $input) {\n    id\n    voteCount\n    hasUserUpvoted\n    hasUserDownvoted\n    isUserAuthor\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'fdc8c4b3447ec793cb8b3cbb0779eabd';
+(node as any).hash = '8ca5426ba0ba6c1c7e3a26e256aab498';
 export default node;

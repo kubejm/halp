@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql, useFragment } from 'react-relay/hooks';
-import Vote from './vote';
+import { QuestionVote } from './vote';
 import TagList from '../tag-list';
 import { questionDetails_question$key } from '../../__generated__/questionDetails_question.graphql';
 
@@ -41,7 +41,7 @@ export default function QuestionDetails(props: Props) {
         </div>
       </div>
       <div className="flex">
-        <Vote id={props.id} />
+        <QuestionVote id={props.id} />
         <div className="flex-grow">
           <div className="text-sm">{question.body}</div>
           <div className="flex flex-row-reverse justify-between min-w-full mt-6">

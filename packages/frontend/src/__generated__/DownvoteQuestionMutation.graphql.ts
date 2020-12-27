@@ -6,28 +6,28 @@ import { ConcreteRequest } from "relay-runtime";
 export type QuestionByIdInput = {
     id: string;
 };
-export type UpvoteMutationVariables = {
+export type DownvoteQuestionMutationVariables = {
     input: QuestionByIdInput;
 };
-export type UpvoteMutationResponse = {
-    readonly upvoteQuestion: {
+export type DownvoteQuestionMutationResponse = {
+    readonly downvoteQuestion: {
         readonly voteCount: number;
         readonly hasUserUpvoted: boolean;
         readonly hasUserDownvoted: boolean;
     };
 };
-export type UpvoteMutation = {
-    readonly response: UpvoteMutationResponse;
-    readonly variables: UpvoteMutationVariables;
+export type DownvoteQuestionMutation = {
+    readonly response: DownvoteQuestionMutationResponse;
+    readonly variables: DownvoteQuestionMutationVariables;
 };
 
 
 
 /*
-mutation UpvoteMutation(
+mutation DownvoteQuestionMutation(
   $input: QuestionByIdInput!
 ) {
-  upvoteQuestion(input: $input) {
+  downvoteQuestion(input: $input) {
     voteCount
     hasUserUpvoted
     hasUserDownvoted
@@ -73,14 +73,14 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "UpvoteMutation",
+            "name": "DownvoteQuestionMutation",
             "selections": [
                 {
                     "alias": null,
                     "args": (v1 /*: any*/),
                     "concreteType": "Question",
                     "kind": "LinkedField",
-                    "name": "upvoteQuestion",
+                    "name": "downvoteQuestion",
                     "plural": false,
                     "selections": [
                         (v2 /*: any*/),
@@ -97,14 +97,14 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "UpvoteMutation",
+            "name": "DownvoteQuestionMutation",
             "selections": [
                 {
                     "alias": null,
                     "args": (v1 /*: any*/),
                     "concreteType": "Question",
                     "kind": "LinkedField",
-                    "name": "upvoteQuestion",
+                    "name": "downvoteQuestion",
                     "plural": false,
                     "selections": [
                         (v2 /*: any*/),
@@ -123,14 +123,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "d950120526f2a1c4671f9890896697ca",
+            "cacheID": "b982f509681ebcd2edefa1a5355c2760",
             "id": null,
             "metadata": {},
-            "name": "UpvoteMutation",
+            "name": "DownvoteQuestionMutation",
             "operationKind": "mutation",
-            "text": "mutation UpvoteMutation(\n  $input: QuestionByIdInput!\n) {\n  upvoteQuestion(input: $input) {\n    voteCount\n    hasUserUpvoted\n    hasUserDownvoted\n    id\n  }\n}\n"
+            "text": "mutation DownvoteQuestionMutation(\n  $input: QuestionByIdInput!\n) {\n  downvoteQuestion(input: $input) {\n    voteCount\n    hasUserUpvoted\n    hasUserDownvoted\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'bfedc5a778732fe37011cfc4ebc51ad4';
+(node as any).hash = 'bd907f1c42fe8e2c241ceefdce00179b';
 export default node;
