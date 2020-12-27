@@ -1,6 +1,10 @@
 import React from 'react';
 import { match, RouteComponentProps } from 'react-router-dom';
-import { QuestionSorter, QuestionList, QuestionPager } from '../components';
+import {
+  QuestionSorter,
+  QuestionList,
+  QuestionPageNavigation,
+} from '../components';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { QuestionsScreenQuery } from '../__generated__/QuestionsScreenQuery.graphql';
 import * as H from 'history';
@@ -42,7 +46,7 @@ export default function QuestionsScreen(props: ScreenProps) {
         questionsPage(input: $input) {
           ...QuestionSorter_questionsPage
           ...QuestionList_questionsPage
-          ...QuestionPager_questionsPage
+          ...QuestionPageNavigation_questionsPage
         }
       }
     `,
@@ -67,7 +71,10 @@ export default function QuestionsScreen(props: ScreenProps) {
         tag={tag}
       />
       <QuestionList questionsPage={questionsPage} />
-      <QuestionPager questionsPage={questionsPage} currentPage={page} />
+      <QuestionPageNavigation
+        questionsPage={questionsPage}
+        currentPage={page}
+      />
     </>
   );
 }

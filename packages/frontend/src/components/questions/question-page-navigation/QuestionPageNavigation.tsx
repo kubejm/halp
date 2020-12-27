@@ -1,11 +1,11 @@
 import React from 'react';
 import PageLink from './PageLink';
 import { graphql, useFragment } from 'react-relay/hooks';
-import { QuestionPager_questionsPage$key } from '../../../__generated__/QuestionPager_questionsPage.graphql';
+import { QuestionPageNavigation_questionsPage$key } from '../../../__generated__/QuestionPageNavigation_questionsPage.graphql';
 
 interface Props {
   currentPage: number;
-  questionsPage: QuestionPager_questionsPage$key;
+  questionsPage: QuestionPageNavigation_questionsPage$key;
 }
 
 const pageList = (currentPage: number, pageCount: number) => {
@@ -19,10 +19,10 @@ const pageList = (currentPage: number, pageCount: number) => {
   );
 };
 
-export default function QuestionPager({ currentPage, questionsPage }: Props) {
+export default function QuestionPageNavigation({ currentPage, questionsPage }: Props) {
   const { pageCount } = useFragment(
     graphql`
-      fragment QuestionPager_questionsPage on QuestionsPage {
+      fragment QuestionPageNavigation_questionsPage on QuestionsPage {
         pageCount
       }
     `,
