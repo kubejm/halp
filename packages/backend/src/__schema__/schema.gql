@@ -40,10 +40,12 @@ input GetQuestionsInput {
 type Mutation {
   addQuestion(input: AddQuestionInput!): Question!
   answerQuestion(input: AnswerQuestionInput!): Question!
+  downvoteAnswer(input: AnswerByIdInput!): Answer!
   downvoteQuestion(input: QuestionByIdInput!): Question!
   signIn(input: SignInInput!): Result!
   signOut: Result!
   signUp(input: SignUpInput!): Result!
+  upvoteAnswer(input: AnswerByIdInput!): Answer!
   upvoteQuestion(input: QuestionByIdInput!): Question!
   viewQuestion(input: QuestionByIdInput!): Question!
 }
