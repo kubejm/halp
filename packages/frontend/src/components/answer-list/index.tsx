@@ -13,6 +13,7 @@ export default function AnswerList(props: Props) {
     graphql`
       fragment answerList_question on Question {
         answers {
+          id
           body
           user {
             username
@@ -26,9 +27,10 @@ export default function AnswerList(props: Props) {
 
   return (
     <>
-      {answers.map((answer, index) => (
+      {answers.map((answer) => (
         <AnswerDetails
-          key={index}
+          key={answer.id}
+          id={answer.id}
           body={answer.body}
           username={answer.user.username}
           createdAtRelative={answer.createdAtRelative}

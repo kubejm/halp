@@ -6,6 +6,7 @@ import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type answerList_question = {
     readonly answers: ReadonlyArray<{
+        readonly id: string;
         readonly body: string;
         readonly user: {
             readonly username: string;
@@ -36,6 +37,13 @@ const node: ReaderFragment = ({
             "name": "answers",
             "plural": true,
             "selections": [
+                {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "id",
+                    "storageKey": null
+                },
                 {
                     "alias": null,
                     "args": null,
@@ -75,5 +83,5 @@ const node: ReaderFragment = ({
     "type": "Question",
     "abstractKey": null
 } as any);
-(node as any).hash = 'bd890fda733bde341f5c8c72e683e6c6';
+(node as any).hash = '9984e60fc76d7fdc7199ae6c01504316';
 export default node;

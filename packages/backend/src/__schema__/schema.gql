@@ -12,9 +12,17 @@ input AddQuestionInput {
 type Answer {
   body: String!
   createdAtRelative: String!
+  hasUserDownvoted: Boolean!
+  hasUserUpvoted: Boolean!
   id: ID!
+  isUserAuthor: Boolean!
   question: Question!
   user: User!
+  voteCount: Float!
+}
+
+input AnswerByIdInput {
+  id: String!
 }
 
 input AnswerQuestionInput {
@@ -41,6 +49,7 @@ type Mutation {
 }
 
 type Query {
+  answer(input: AnswerByIdInput!): Answer!
   profile: User!
   question(input: QuestionByIdInput!): Question!
   questionCount: Float!

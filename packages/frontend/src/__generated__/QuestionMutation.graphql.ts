@@ -35,13 +35,13 @@ mutation QuestionMutation(
 
 fragment answerList_question on Question {
   answers {
+    id
     body
     user {
       username
       id
     }
     createdAtRelative
-    id
   }
 }
 
@@ -219,10 +219,10 @@ const node: ConcreteRequest = (function () {
                             "name": "answers",
                             "plural": true,
                             "selections": [
+                                (v2 /*: any*/),
                                 (v3 /*: any*/),
                                 (v5 /*: any*/),
-                                (v4 /*: any*/),
-                                (v2 /*: any*/)
+                                (v4 /*: any*/)
                             ],
                             "storageKey": null
                         }
@@ -232,12 +232,12 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "a3206681b1958eb36642ec6420e23a0d",
+            "cacheID": "b28d54d02a1c9315a4a924e31078ad42",
             "id": null,
             "metadata": {},
             "name": "QuestionMutation",
             "operationKind": "mutation",
-            "text": "mutation QuestionMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...questionDetails_question\n    ...answerList_question\n    id\n  }\n}\n\nfragment answerList_question on Question {\n  answers {\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n    id\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
+            "text": "mutation QuestionMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...questionDetails_question\n    ...answerList_question\n    id\n  }\n}\n\nfragment answerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
         }
     } as any;
 })();
