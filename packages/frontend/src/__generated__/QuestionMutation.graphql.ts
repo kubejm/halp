@@ -12,7 +12,7 @@ export type QuestionMutationVariables = {
 };
 export type QuestionMutationResponse = {
     readonly viewQuestion: {
-        readonly " $fragmentRefs": FragmentRefs<"questionDetails_question" | "answerList_question">;
+        readonly " $fragmentRefs": FragmentRefs<"QuestionDetails_question" | "AnswerList_question">;
     };
 };
 export type QuestionMutation = {
@@ -27,13 +27,13 @@ mutation QuestionMutation(
   $input: QuestionByIdInput!
 ) {
   viewQuestion(input: $input) {
-    ...questionDetails_question
-    ...answerList_question
+    ...QuestionDetails_question
+    ...AnswerList_question
     id
   }
 }
 
-fragment answerList_question on Question {
+fragment AnswerList_question on Question {
   answers {
     id
     body
@@ -45,7 +45,7 @@ fragment answerList_question on Question {
   }
 }
 
-fragment questionDetails_question on Question {
+fragment QuestionDetails_question on Question {
   id
   answerCount
   body
@@ -132,12 +132,12 @@ const node: ConcreteRequest = (function () {
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "questionDetails_question"
+                            "name": "QuestionDetails_question"
                         },
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "answerList_question"
+                            "name": "AnswerList_question"
                         }
                     ],
                     "storageKey": null
@@ -232,14 +232,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "b28d54d02a1c9315a4a924e31078ad42",
+            "cacheID": "6ec74a2b0989880bd025c3a3077a3630",
             "id": null,
             "metadata": {},
             "name": "QuestionMutation",
             "operationKind": "mutation",
-            "text": "mutation QuestionMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...questionDetails_question\n    ...answerList_question\n    id\n  }\n}\n\nfragment answerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
+            "text": "mutation QuestionMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...QuestionDetails_question\n    ...AnswerList_question\n    id\n  }\n}\n\nfragment AnswerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment QuestionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '41b439ccbbc3909a3c04f4b8572fc85d';
+(node as any).hash = 'bd1836bd2291abba6846970eaebaddaf';
 export default node;

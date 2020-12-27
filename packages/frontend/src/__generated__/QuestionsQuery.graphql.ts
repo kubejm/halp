@@ -16,7 +16,7 @@ export type QuestionsQueryVariables = {
 };
 export type QuestionsQueryResponse = {
     readonly questionsPage: {
-        readonly " $fragmentRefs": FragmentRefs<"questionSorter_questionsPage" | "questionList_questionsPage" | "questionPager_questionsPage">;
+        readonly " $fragmentRefs": FragmentRefs<"QuestionSorter_questionsPage" | "QuestionList_questionsPage" | "QuestionPager_questionsPage">;
     };
 };
 export type QuestionsQuery = {
@@ -31,13 +31,13 @@ query QuestionsQuery(
   $input: GetQuestionsInput!
 ) {
   questionsPage(input: $input) {
-    ...questionSorter_questionsPage
-    ...questionList_questionsPage
-    ...questionPager_questionsPage
+    ...QuestionSorter_questionsPage
+    ...QuestionList_questionsPage
+    ...QuestionPager_questionsPage
   }
 }
 
-fragment questionList_questionsPage on QuestionsPage {
+fragment QuestionList_questionsPage on QuestionsPage {
   questions {
     answerCount
     createdAtRelative
@@ -57,11 +57,11 @@ fragment questionList_questionsPage on QuestionsPage {
   }
 }
 
-fragment questionPager_questionsPage on QuestionsPage {
+fragment QuestionPager_questionsPage on QuestionsPage {
   pageCount
 }
 
-fragment questionSorter_questionsPage on QuestionsPage {
+fragment QuestionSorter_questionsPage on QuestionsPage {
   questionCount
 }
 */
@@ -104,17 +104,17 @@ const node: ConcreteRequest = (function () {
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "questionSorter_questionsPage"
+                            "name": "QuestionSorter_questionsPage"
                         },
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "questionList_questionsPage"
+                            "name": "QuestionList_questionsPage"
                         },
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "questionPager_questionsPage"
+                            "name": "QuestionPager_questionsPage"
                         }
                     ],
                     "storageKey": null
@@ -249,14 +249,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "0fe04c16015d4712d7991028c524a3d4",
+            "cacheID": "60f980db4dc3e0951a37cdf93438e8b0",
             "id": null,
             "metadata": {},
             "name": "QuestionsQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...questionSorter_questionsPage\n    ...questionList_questionsPage\n    ...questionPager_questionsPage\n  }\n}\n\nfragment questionList_questionsPage on QuestionsPage {\n  questions {\n    answerCount\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    voteCount\n  }\n}\n\nfragment questionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment questionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
+            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionSorter_questionsPage\n    ...QuestionList_questionsPage\n    ...QuestionPager_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answerCount\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    voteCount\n  }\n}\n\nfragment QuestionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment QuestionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'c8d82e1940d7a55356dd1a984701175d';
+(node as any).hash = 'cedeae41a594cbd581a9589496b08f36';
 export default node;

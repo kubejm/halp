@@ -8,34 +8,34 @@ export type AnswerQuestionInput = {
     answer: string;
     id: string;
 };
-export type answerFormMutationVariables = {
+export type AnswerFormMutationVariables = {
     input: AnswerQuestionInput;
 };
-export type answerFormMutationResponse = {
+export type AnswerFormMutationResponse = {
     readonly answerQuestion: {
         readonly id: string;
-        readonly " $fragmentRefs": FragmentRefs<"questionDetails_question" | "answerList_question">;
+        readonly " $fragmentRefs": FragmentRefs<"QuestionDetails_question" | "AnswerList_question">;
     };
 };
-export type answerFormMutation = {
-    readonly response: answerFormMutationResponse;
-    readonly variables: answerFormMutationVariables;
+export type AnswerFormMutation = {
+    readonly response: AnswerFormMutationResponse;
+    readonly variables: AnswerFormMutationVariables;
 };
 
 
 
 /*
-mutation answerFormMutation(
+mutation AnswerFormMutation(
   $input: AnswerQuestionInput!
 ) {
   answerQuestion(input: $input) {
     id
-    ...questionDetails_question
-    ...answerList_question
+    ...QuestionDetails_question
+    ...AnswerList_question
   }
 }
 
-fragment answerList_question on Question {
+fragment AnswerList_question on Question {
   answers {
     id
     body
@@ -47,7 +47,7 @@ fragment answerList_question on Question {
   }
 }
 
-fragment questionDetails_question on Question {
+fragment QuestionDetails_question on Question {
   id
   answerCount
   body
@@ -121,7 +121,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "answerFormMutation",
+            "name": "AnswerFormMutation",
             "selections": [
                 {
                     "alias": null,
@@ -135,12 +135,12 @@ const node: ConcreteRequest = (function () {
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "questionDetails_question"
+                            "name": "QuestionDetails_question"
                         },
                         {
                             "args": null,
                             "kind": "FragmentSpread",
-                            "name": "answerList_question"
+                            "name": "AnswerList_question"
                         }
                     ],
                     "storageKey": null
@@ -153,7 +153,7 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "answerFormMutation",
+            "name": "AnswerFormMutation",
             "selections": [
                 {
                     "alias": null,
@@ -235,14 +235,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "d3c9abca6cb425ddd37896983081e6d6",
+            "cacheID": "d221658e357cc4f39e291e65810b650a",
             "id": null,
             "metadata": {},
-            "name": "answerFormMutation",
+            "name": "AnswerFormMutation",
             "operationKind": "mutation",
-            "text": "mutation answerFormMutation(\n  $input: AnswerQuestionInput!\n) {\n  answerQuestion(input: $input) {\n    id\n    ...questionDetails_question\n    ...answerList_question\n  }\n}\n\nfragment answerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment questionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
+            "text": "mutation AnswerFormMutation(\n  $input: AnswerQuestionInput!\n) {\n  answerQuestion(input: $input) {\n    id\n    ...QuestionDetails_question\n    ...AnswerList_question\n  }\n}\n\nfragment AnswerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment QuestionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'd750e9099ad698d61531eaf8acbf3d96';
+(node as any).hash = '6e22be0fd08e64162dee76107acbb7ee';
 export default node;

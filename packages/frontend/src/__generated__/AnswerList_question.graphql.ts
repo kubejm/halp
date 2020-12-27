@@ -4,7 +4,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type answerList_question = {
+export type AnswerList_question = {
     readonly answers: ReadonlyArray<{
         readonly id: string;
         readonly body: string;
@@ -13,12 +13,12 @@ export type answerList_question = {
         };
         readonly createdAtRelative: string;
     }>;
-    readonly " $refType": "answerList_question";
+    readonly " $refType": "AnswerList_question";
 };
-export type answerList_question$data = answerList_question;
-export type answerList_question$key = {
-    readonly " $data"?: answerList_question$data;
-    readonly " $fragmentRefs": FragmentRefs<"answerList_question">;
+export type AnswerList_question$data = AnswerList_question;
+export type AnswerList_question$key = {
+    readonly " $data"?: AnswerList_question$data;
+    readonly " $fragmentRefs": FragmentRefs<"AnswerList_question">;
 };
 
 
@@ -27,7 +27,7 @@ const node: ReaderFragment = ({
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "answerList_question",
+    "name": "AnswerList_question",
     "selections": [
         {
             "alias": null,
@@ -83,5 +83,5 @@ const node: ReaderFragment = ({
     "type": "Question",
     "abstractKey": null
 } as any);
-(node as any).hash = '9984e60fc76d7fdc7199ae6c01504316';
+(node as any).hash = '79eaacb51102e7a9afcf0c791bc044fc';
 export default node;

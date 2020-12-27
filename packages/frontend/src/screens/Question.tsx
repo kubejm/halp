@@ -19,8 +19,8 @@ export default function Question(props: QuestionScreenProps) {
     graphql`
       mutation QuestionMutation($input: QuestionByIdInput!) {
         viewQuestion(input: $input) {
-          ...questionDetails_question
-          ...answerList_question
+          ...QuestionDetails_question
+          ...AnswerList_question
         }
       }
     `,

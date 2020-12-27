@@ -1,3 +1,3 @@
-export { default as QuestionDetails } from './question-details';
-export { default as AnswerList } from './answer-list';
-export { default as AnswerForm } from './answer-form';
+export { QuestionDetails } from './question-details';
+export { AnswerList } from './answer-list';
+export { AnswerForm } from './answer-form';

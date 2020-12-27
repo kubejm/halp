@@ -4,14 +4,14 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type questionPager_questionsPage = {
+export type QuestionPager_questionsPage = {
     readonly pageCount: number;
-    readonly " $refType": "questionPager_questionsPage";
+    readonly " $refType": "QuestionPager_questionsPage";
 };
-export type questionPager_questionsPage$data = questionPager_questionsPage;
-export type questionPager_questionsPage$key = {
-    readonly " $data"?: questionPager_questionsPage$data;
-    readonly " $fragmentRefs": FragmentRefs<"questionPager_questionsPage">;
+export type QuestionPager_questionsPage$data = QuestionPager_questionsPage;
+export type QuestionPager_questionsPage$key = {
+    readonly " $data"?: QuestionPager_questionsPage$data;
+    readonly " $fragmentRefs": FragmentRefs<"QuestionPager_questionsPage">;
 };
 
 
@@ -20,7 +20,7 @@ const node: ReaderFragment = ({
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "questionPager_questionsPage",
+    "name": "QuestionPager_questionsPage",
     "selections": [
         {
             "alias": null,
@@ -33,5 +33,5 @@ const node: ReaderFragment = ({
     "type": "QuestionsPage",
     "abstractKey": null
 } as any);
-(node as any).hash = '6064e6925e5290fd74eaf4c65049cfa2';
+(node as any).hash = '1cad21ea2a58c7d62ac04ebef5b63a2b';
 export default node;

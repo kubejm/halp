@@ -1,1 +1,1 @@
-export { default as SignInForm } from './sign-in-form';
+export { SignInForm } from './sign-in-form';

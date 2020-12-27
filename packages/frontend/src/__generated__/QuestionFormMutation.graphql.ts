@@ -8,23 +8,23 @@ export type AddQuestionInput = {
     question: string;
     tags: Array<string>;
 };
-export type questionFormMutationVariables = {
+export type QuestionFormMutationVariables = {
     input: AddQuestionInput;
 };
-export type questionFormMutationResponse = {
+export type QuestionFormMutationResponse = {
     readonly addQuestion: {
         readonly id: string;
     };
 };
-export type questionFormMutation = {
-    readonly response: questionFormMutationResponse;
-    readonly variables: questionFormMutationVariables;
+export type QuestionFormMutation = {
+    readonly response: QuestionFormMutationResponse;
+    readonly variables: QuestionFormMutationVariables;
 };
 
 
 
 /*
-mutation questionFormMutation(
+mutation QuestionFormMutation(
   $input: AddQuestionInput!
 ) {
   addQuestion(input: $input) {
@@ -71,7 +71,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "questionFormMutation",
+            "name": "QuestionFormMutation",
             "selections": (v1 /*: any*/),
             "type": "Mutation",
             "abstractKey": null
@@ -80,18 +80,18 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "questionFormMutation",
+            "name": "QuestionFormMutation",
             "selections": (v1 /*: any*/)
         },
         "params": {
-            "cacheID": "513f1f39249cfb1f6d9546bbf2d5c9aa",
+            "cacheID": "fe5979d6cc45706f44eb47d68dd642d5",
             "id": null,
             "metadata": {},
-            "name": "questionFormMutation",
+            "name": "QuestionFormMutation",
             "operationKind": "mutation",
-            "text": "mutation questionFormMutation(\n  $input: AddQuestionInput!\n) {\n  addQuestion(input: $input) {\n    id\n  }\n}\n"
+            "text": "mutation QuestionFormMutation(\n  $input: AddQuestionInput!\n) {\n  addQuestion(input: $input) {\n    id\n  }\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '64e4f151306a4dd57794a48ac081b2da';
+(node as any).hash = 'b45247e03e9e156f815a769ff5d7fd79';
 export default node;

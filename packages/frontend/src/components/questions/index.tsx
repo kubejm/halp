@@ -1,3 +1,3 @@
-export { default as QuestionSorter } from './question-sorter';
-export { default as QuestionList } from './question-list';
-export { default as QuestionPager } from './question-pager';
+export { QuestionSorter } from './question-sorter';
+export { QuestionList } from './question-list';
+export { QuestionPager } from './question-pager';

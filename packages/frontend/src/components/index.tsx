@@ -1,4 +1,4 @@
-export { default as Layout } from './layout';
+export { Layout } from './layout';
 export { SignInForm } from './sign-in';
 export { SignUpForm } from './sign-up';
 export { QuestionForm } from './ask';

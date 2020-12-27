@@ -4,7 +4,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type questionDetails_question = {
+export type QuestionDetails_question = {
     readonly id: string;
     readonly answerCount: number;
     readonly body: string;
@@ -18,12 +18,12 @@ export type questionDetails_question = {
     };
     readonly views: number;
     readonly voteCount: number;
-    readonly " $refType": "questionDetails_question";
+    readonly " $refType": "QuestionDetails_question";
 };
-export type questionDetails_question$data = questionDetails_question;
-export type questionDetails_question$key = {
-    readonly " $data"?: questionDetails_question$data;
-    readonly " $fragmentRefs": FragmentRefs<"questionDetails_question">;
+export type QuestionDetails_question$data = QuestionDetails_question;
+export type QuestionDetails_question$key = {
+    readonly " $data"?: QuestionDetails_question$data;
+    readonly " $fragmentRefs": FragmentRefs<"QuestionDetails_question">;
 };
 
 
@@ -32,7 +32,7 @@ const node: ReaderFragment = ({
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "questionDetails_question",
+    "name": "QuestionDetails_question",
     "selections": [
         {
             "alias": null,
@@ -123,5 +123,5 @@ const node: ReaderFragment = ({
     "type": "Question",
     "abstractKey": null
 } as any);
-(node as any).hash = 'ef0e3852d1886050cd8dc3ff844f0943';
+(node as any).hash = 'e11acf7da84dfde30748d018f07760e2';
 export default node;

@@ -4,7 +4,7 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type questionList_questionsPage = {
+export type QuestionList_questionsPage = {
     readonly questions: ReadonlyArray<{
         readonly answerCount: number;
         readonly createdAtRelative: string;
@@ -20,12 +20,12 @@ export type questionList_questionsPage = {
         readonly views: number;
         readonly voteCount: number;
     }>;
-    readonly " $refType": "questionList_questionsPage";
+    readonly " $refType": "QuestionList_questionsPage";
 };
-export type questionList_questionsPage$data = questionList_questionsPage;
-export type questionList_questionsPage$key = {
-    readonly " $data"?: questionList_questionsPage$data;
-    readonly " $fragmentRefs": FragmentRefs<"questionList_questionsPage">;
+export type QuestionList_questionsPage$data = QuestionList_questionsPage;
+export type QuestionList_questionsPage$key = {
+    readonly " $data"?: QuestionList_questionsPage$data;
+    readonly " $fragmentRefs": FragmentRefs<"QuestionList_questionsPage">;
 };
 
 
@@ -34,7 +34,7 @@ const node: ReaderFragment = ({
     "argumentDefinitions": [],
     "kind": "Fragment",
     "metadata": null,
-    "name": "questionList_questionsPage",
+    "name": "QuestionList_questionsPage",
     "selections": [
         {
             "alias": null,
@@ -136,5 +136,5 @@ const node: ReaderFragment = ({
     "type": "QuestionsPage",
     "abstractKey": null
 } as any);
-(node as any).hash = 'fb8582e36b1313e618955f19ed52278e';
+(node as any).hash = 'f4505277f88b59fedb751bd9f3cd6fbe';
 export default node;
