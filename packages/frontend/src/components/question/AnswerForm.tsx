@@ -1,12 +1,12 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { FormProvider, useForm } from 'react-hook-form';
-import { TextArea } from '../../shared';
+import { TextArea } from '../shared';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { AnswerFormMutation } from '../../../__generated__/AnswerFormMutation.graphql';
-import { ValidationError } from '../../../utils';
+import { AnswerFormMutation } from '../../__generated__/AnswerFormMutation.graphql';
+import { ValidationError } from '../../utils';
 
 const schema = yup.object().shape({
   answer: yup.string().required(),

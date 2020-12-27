@@ -1,12 +1,12 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { questionFormMutation } from '../../../__generated__/questionFormMutation.graphql';
+import { QuestionFormMutation } from '../../__generated__/QuestionFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
-import { Input, TagInput, TextArea } from '../../shared';
+import { Input, TagInput, TextArea } from '../shared';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ValidationError } from '../../../utils';
+import { ValidationError } from '../../utils';
 
 const schema = yup.object().shape({
   question: yup.string().required(),
@@ -26,7 +26,7 @@ export default function QuestionForm() {
     shouldFocusError: false,
   });
 
-  const [commit, isInFlight] = useMutation<questionFormMutation>(graphql`
+  const [commit, isInFlight] = useMutation<QuestionFormMutation>(graphql`
     mutation QuestionFormMutation($input: AddQuestionInput!) {
       addQuestion(input: $input) {
         id

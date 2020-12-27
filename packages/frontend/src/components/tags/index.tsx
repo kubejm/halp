@@ -1,1 +1,1 @@
-export { TagGrid } from './tag-grid';
+export { default as TagGrid } from './TagGrid';

@@ -1,1 +1,1 @@
-export { QuestionForm } from './question-form';
+export { default as QuestionForm } from './QuestionForm';

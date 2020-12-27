@@ -1,17 +1,16 @@
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { graphql, useMutation } from 'react-relay/hooks';
-import { signUpFormMutation } from '../../../__generated__/signUpFormMutation.graphql';
+import { SignInFormMutation } from '../../__generated__/SignInFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
-import { useStore } from '../../../store';
-import { ValidationError } from '../../../utils';
-import { Input } from '../../shared';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useStore } from '../../store';
+import * as yup from 'yup';
+import { Input } from '../shared';
+import { ValidationError } from '../../utils';
 
 const schema = yup.object().shape({
   username: yup.string().required(),
-  email: yup.string().required(),
   password: yup.string().required(),
 });
 
@@ -21,9 +20,9 @@ export default function SignInForm() {
     shouldFocusError: false,
   });
 
-  const [commit, isInFlight] = useMutation<signUpFormMutation>(graphql`
-    mutation SignUpFormMutation($input: SignUpInput!) {
-      signUp(input: $input) {
+  const [commit, isInFlight] = useMutation<SignInFormMutation>(graphql`
+    mutation SignInFormMutation($input: SignInInput!) {
+      signIn(input: $input) {
         ok
       }
     }
@@ -37,7 +36,6 @@ export default function SignInForm() {
       variables: {
         input: {
           username: values.username,
-          email: values.email,
           password: values.password,
         },
       },
@@ -66,11 +64,10 @@ export default function SignInForm() {
               className="bg-white shadow-md rounded p-6"
             >
               <Input label="Username" name="username" />
-              <Input label="Email" name="email" />
               <Input label="Password" name="password" type="password" />
               <input
                 type="submit"
-                value="Sign Up"
+                value="Sign In"
                 className="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold p-3 cursor-pointer"
                 disabled={isInFlight}
               />

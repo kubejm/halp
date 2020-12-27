@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
-import { TagGridQuery } from '../../../__generated__/TagGridQuery.graphql';
-import { Tag } from '../../shared';
+import { TagGridQuery } from '../../__generated__/TagGridQuery.graphql';
+import { Tag } from '../shared';
 
 interface TagDescriptionProps {
   name: string;
