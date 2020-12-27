@@ -25,6 +25,8 @@ export default function QuestionSorter(props: QuestionSorterProps) {
     ? `Questions tagged '${props.tag}'`
     : 'Questions';
 
+  const basePath = window.location.pathname;
+
   return (
     <div className="flex flex-wrap bg-white border-l border-b p-4">
       <h1 className="text-xl min-w-full">{headerLabel}</h1>
@@ -38,19 +40,19 @@ export default function QuestionSorter(props: QuestionSorterProps) {
           <ul className="flex list-none rounded text-xs text-purple-500">
             <SortLink
               label="New"
-              to="/"
+              to={basePath}
               selected={props.orderBy === 'NEW'}
               className="rounded-l border-r-0"
             />
             <SortLink
               label="Active"
-              to="/?orderBy=active"
+              to={`${basePath}?orderBy=active`}
               selected={props.orderBy === 'ACTIVE'}
               className=" border-r-0"
             />
             <SortLink
               label="Most Votes"
-              to="/?orderBy=votes"
+              to={`${basePath}?orderBy=votes`}
               selected={props.orderBy === 'VOTES'}
               className="rounded-r"
             />
