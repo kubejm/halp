@@ -45,6 +45,7 @@ export default function QuestionPager({ currentPage, questionsPage }: Props) {
           )}
           {pageList(currentPage, pageCount).map((pageNumber) => (
             <PageLink
+              key={pageNumber}
               to={`/?page=${pageNumber}`}
               label={String(pageNumber)}
               selected={pageNumber === currentPage}
