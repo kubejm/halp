@@ -19,7 +19,7 @@ function SadIcon() {
   );
 }
 
-export default function FourOhFour() {
+export default function FourOhFourScreen() {
   return (
     <>
       <div className="flex">

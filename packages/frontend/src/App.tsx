@@ -4,13 +4,13 @@ import { relayEnvironment } from './utils';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { AuthenticatedRoute, Layout, UnauthenticatedRoute } from './components';
 import {
-  Ask,
-  FourOhFour,
-  Question,
-  Questions,
-  SignIn,
-  SignUp,
-  Tags,
+  AskScreen,
+  FourOhFourScreen,
+  QuestionScreen,
+  QuestionsScreen,
+  SignInScreen,
+  SignUpScreen,
+  TagsScreen,
 } from './screens';
 import { useStore } from './store';
 
@@ -22,14 +22,14 @@ export default function App() {
       <Router>
         <Layout>
           <Switch>
-            <Route exact path="/" component={Questions} />
-            <Route path="/question/:id" component={Question} />
-            <Route path="/tags" component={Tags} />
-            <Route path="/questions/tagged/:tag" component={Questions} />
-            <UnauthenticatedRoute path="/sign-in" component={SignIn} />
-            <UnauthenticatedRoute path="/sign-up" component={SignUp} />
-            <AuthenticatedRoute path="/ask" component={Ask} />
-            <Route component={FourOhFour} />
+            <Route exact path="/" component={QuestionsScreen} />
+            <Route path="/question/:id" component={QuestionScreen} />
+            <Route path="/tags" component={TagsScreen} />
+            <Route path="/questions/tagged/:tag" component={QuestionsScreen} />
+            <UnauthenticatedRoute path="/sign-in" component={SignInScreen} />
+            <UnauthenticatedRoute path="/sign-up" component={SignUpScreen} />
+            <AuthenticatedRoute path="/ask" component={AskScreen} />
+            <Route component={FourOhFourScreen} />
           </Switch>
         </Layout>
       </Router>

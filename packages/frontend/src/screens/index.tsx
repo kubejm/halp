@@ -1,7 +1,7 @@
-export { default as Questions } from './Questions';
-export { default as SignIn } from './SignIn';
-export { default as FourOhFour } from './FourOhFour';
-export { default as SignUp } from './SignUp';
-export { default as Ask } from './Ask';
-export { default as Question } from './Question';
-export { default as Tags } from './Tags';
+export { default as QuestionsScreen } from './QuestionsScreen';
+export { default as SignInScreen } from './SignInScreen';
+export { default as FourOhFourScreen } from './FourOhFourScreen';
+export { default as SignUpScreen } from './SignUpScreen';
+export { default as AskScreen } from './AskScreen';
+export { default as QuestionScreen } from './QuestionScreen';
+export { default as TagsScreen } from './TagsScreen';

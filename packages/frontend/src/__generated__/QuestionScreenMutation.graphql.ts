@@ -7,23 +7,23 @@ import { FragmentRefs } from "relay-runtime";
 export type QuestionByIdInput = {
     id: string;
 };
-export type QuestionMutationVariables = {
+export type QuestionScreenMutationVariables = {
     input: QuestionByIdInput;
 };
-export type QuestionMutationResponse = {
+export type QuestionScreenMutationResponse = {
     readonly viewQuestion: {
         readonly " $fragmentRefs": FragmentRefs<"QuestionDetails_question" | "AnswerList_question">;
     };
 };
-export type QuestionMutation = {
-    readonly response: QuestionMutationResponse;
-    readonly variables: QuestionMutationVariables;
+export type QuestionScreenMutation = {
+    readonly response: QuestionScreenMutationResponse;
+    readonly variables: QuestionScreenMutationVariables;
 };
 
 
 
 /*
-mutation QuestionMutation(
+mutation QuestionScreenMutation(
   $input: QuestionByIdInput!
 ) {
   viewQuestion(input: $input) {
@@ -119,7 +119,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "QuestionMutation",
+            "name": "QuestionScreenMutation",
             "selections": [
                 {
                     "alias": null,
@@ -150,7 +150,7 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "QuestionMutation",
+            "name": "QuestionScreenMutation",
             "selections": [
                 {
                     "alias": null,
@@ -232,14 +232,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "6ec74a2b0989880bd025c3a3077a3630",
+            "cacheID": "112ee74eadfc5ffab961ab30893acaa5",
             "id": null,
             "metadata": {},
-            "name": "QuestionMutation",
+            "name": "QuestionScreenMutation",
             "operationKind": "mutation",
-            "text": "mutation QuestionMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...QuestionDetails_question\n    ...AnswerList_question\n    id\n  }\n}\n\nfragment AnswerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment QuestionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
+            "text": "mutation QuestionScreenMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...QuestionDetails_question\n    ...AnswerList_question\n    id\n  }\n}\n\nfragment AnswerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment QuestionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'bd1836bd2291abba6846970eaebaddaf';
+(node as any).hash = '95924629b6c72ba055b5b8292e937eae';
 export default node;

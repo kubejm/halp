@@ -11,23 +11,23 @@ export type GetQuestionsInput = {
     pageSize?: number | null;
     tag?: string | null;
 };
-export type QuestionsQueryVariables = {
+export type QuestionsScreenQueryVariables = {
     input: GetQuestionsInput;
 };
-export type QuestionsQueryResponse = {
+export type QuestionsScreenQueryResponse = {
     readonly questionsPage: {
         readonly " $fragmentRefs": FragmentRefs<"QuestionSorter_questionsPage" | "QuestionList_questionsPage" | "QuestionPager_questionsPage">;
     };
 };
-export type QuestionsQuery = {
-    readonly response: QuestionsQueryResponse;
-    readonly variables: QuestionsQueryVariables;
+export type QuestionsScreenQuery = {
+    readonly response: QuestionsScreenQueryResponse;
+    readonly variables: QuestionsScreenQueryVariables;
 };
 
 
 
 /*
-query QuestionsQuery(
+query QuestionsScreenQuery(
   $input: GetQuestionsInput!
 ) {
   questionsPage(input: $input) {
@@ -91,7 +91,7 @@ const node: ConcreteRequest = (function () {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Fragment",
             "metadata": null,
-            "name": "QuestionsQuery",
+            "name": "QuestionsScreenQuery",
             "selections": [
                 {
                     "alias": null,
@@ -127,7 +127,7 @@ const node: ConcreteRequest = (function () {
         "operation": {
             "argumentDefinitions": (v0 /*: any*/),
             "kind": "Operation",
-            "name": "QuestionsQuery",
+            "name": "QuestionsScreenQuery",
             "selections": [
                 {
                     "alias": null,
@@ -249,14 +249,14 @@ const node: ConcreteRequest = (function () {
             ]
         },
         "params": {
-            "cacheID": "60f980db4dc3e0951a37cdf93438e8b0",
+            "cacheID": "eeb82de2c98b0d86e79992111630d153",
             "id": null,
             "metadata": {},
-            "name": "QuestionsQuery",
+            "name": "QuestionsScreenQuery",
             "operationKind": "query",
-            "text": "query QuestionsQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionSorter_questionsPage\n    ...QuestionList_questionsPage\n    ...QuestionPager_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answerCount\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    voteCount\n  }\n}\n\nfragment QuestionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment QuestionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
+            "text": "query QuestionsScreenQuery(\n  $input: GetQuestionsInput!\n) {\n  questionsPage(input: $input) {\n    ...QuestionSorter_questionsPage\n    ...QuestionList_questionsPage\n    ...QuestionPager_questionsPage\n  }\n}\n\nfragment QuestionList_questionsPage on QuestionsPage {\n  questions {\n    answerCount\n    createdAtRelative\n    excerpt\n    id\n    question\n    tags {\n      name\n      id\n    }\n    user {\n      username\n      id\n    }\n    views\n    voteCount\n  }\n}\n\nfragment QuestionPager_questionsPage on QuestionsPage {\n  pageCount\n}\n\nfragment QuestionSorter_questionsPage on QuestionsPage {\n  questionCount\n}\n"
         }
     } as any;
 })();
-(node as any).hash = 'cedeae41a594cbd581a9589496b08f36';
+(node as any).hash = '63d689188f708d5be134912b05603885';
 export default node;
