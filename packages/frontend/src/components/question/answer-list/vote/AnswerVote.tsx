@@ -1,5 +1,5 @@
 import React from 'react';
-import { Vote } from '../../../vote';
+import { Vote } from '../../../shared';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { AnswerVoteQuery } from '../../../../__generated__/AnswerVoteQuery.graphql';
 import UpvoteAnswer from './UpvoteAnswer';

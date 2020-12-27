@@ -5,8 +5,7 @@ export { QuestionForm } from './ask';
 export { QuestionDetails, AnswerList, AnswerForm } from './question';
 export { QuestionList, QuestionPager, QuestionSorter } from './questions';
 export { TagGrid } from './tags';
-export { default as TagList } from './tag-list';
-export { Vote, Upvote, Downvote } from './vote';
+export { TagList, Vote, Upvote, Downvote } from './shared';
 export {
   AuthenticatedRoute,
   ConditionalRoute,

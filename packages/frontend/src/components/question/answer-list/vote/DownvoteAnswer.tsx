@@ -1,5 +1,5 @@
 import React from 'react';
-import { Downvote } from '../../../vote';
+import { Downvote } from '../../../shared';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { DownvoteAnswerMutation } from '../../../../__generated__/DownvoteAnswerMutation.graphql';
 

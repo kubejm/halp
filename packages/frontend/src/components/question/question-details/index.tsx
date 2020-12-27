@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, useFragment } from 'react-relay/hooks';
 import { QuestionVote } from './vote';
-import TagList from '../../tag-list';
+import { TagList } from '../../shared';
 import { questionDetails_question$key } from '../../../__generated__/questionDetails_question.graphql';
 
 interface Props {
