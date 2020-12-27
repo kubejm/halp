@@ -1,7 +1,9 @@
 import React from 'react';
-import Vote from '../vote';
+import { Vote } from '../../vote';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
-import { AnswerVoteQuery } from '../../__generated__/AnswerVoteQuery.graphql';
+import { AnswerVoteQuery } from '../../../__generated__/AnswerVoteQuery.graphql';
+import UpvoteAnswer from './UpvoteAnswer';
+import DownvoteAnswer from './DownvoteAnswer';
 
 interface Props {
   id: string;
@@ -32,11 +34,21 @@ export default function AnswerVote({ id }: Props) {
 
   return (
     <Vote
-      hasUserDownvoted={answer.hasUserDownvoted}
-      hasUserUpvoted={answer.hasUserUpvoted}
-      id={id}
-      isUserAuthor={answer.isUserAuthor}
       voteCount={answer.voteCount}
+      upvoteComponent={
+        <UpvoteAnswer
+          id={id}
+          hasUserUpvoted={answer.hasUserUpvoted}
+          isUserAuthor={answer.isUserAuthor}
+        />
+      }
+      downvoteComponent={
+        <DownvoteAnswer
+          id={id}
+          hasUserDownvoted={answer.hasUserDownvoted}
+          isUserAuthor={answer.isUserAuthor}
+        />
+      }
     />
   );
 }

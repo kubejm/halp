@@ -10,7 +10,7 @@ export { default as QuestionPager } from './question-pager';
 export { default as QuestionSorter } from './question-sorter';
 export { default as TagGrid } from './tag-grid';
 export { default as TagList } from './tag-list';
-export { default as Vote } from './vote';
+export { Vote, Upvote, Downvote } from './vote';
 export {
   AuthenticatedRoute,
   ConditionalRoute,

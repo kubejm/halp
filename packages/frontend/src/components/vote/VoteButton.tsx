@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { useStore } from '../../../store';
+import { useStore } from '../../store';
 
 interface Props {
   children?: React.ReactNode;

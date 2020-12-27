@@ -1,5 +1,5 @@
 import React from 'react';
-import AnswerVote from './AnswerVote';
+import { AnswerVote } from './vote';
 
 interface Props {
   id: string;

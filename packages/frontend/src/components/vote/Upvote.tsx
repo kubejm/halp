@@ -2,16 +2,16 @@ import React from 'react';
 import VoteButton from './VoteButton';
 
 interface Props {
-  hasUserVoted: boolean;
+  hasUserUpvoted: boolean;
   isUserAuthor: boolean;
   handleClick: () => void;
 }
 
-export default function Downvote(props: Props) {
+export default function Upvote(props: Props) {
   return (
     <VoteButton
       onClick={props.handleClick}
-      hasUserVoted={props.hasUserVoted}
+      hasUserVoted={props.hasUserUpvoted}
       isUserAuthor={props.isUserAuthor}
     >
       <svg
@@ -24,8 +24,8 @@ export default function Downvote(props: Props) {
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeWidth={props.hasUserVoted ? 3 : 2}
-          d="M19 9l-7 7-7-7"
+          strokeWidth={props.hasUserUpvoted ? 3 : 2}
+          d="M5 15l7-7 7 7"
         ></path>
       </svg>
     </VoteButton>
