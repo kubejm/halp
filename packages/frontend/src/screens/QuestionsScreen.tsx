@@ -7,6 +7,7 @@ import {
 } from '../components';
 import { graphql, useLazyLoadQuery } from 'react-relay/hooks';
 import { QuestionsScreenQuery } from '../__generated__/QuestionsScreenQuery.graphql';
+import { OrderQuestionsBy } from '../types';
 import * as H from 'history';
 
 interface ScreenParams {
@@ -18,27 +19,22 @@ interface ScreenProps extends RouteComponentProps {
   match: match<ScreenParams>;
 }
 
-enum OrderBy {
-  active = 'ACTIVE',
-  new = 'NEW',
-  votes = 'VOTES',
-}
-
-type OrderByKey = keyof typeof OrderBy;
+type OrderByKey = keyof typeof OrderQuestionsBy;
 
 function getOrderBy(query: string) {
-  const orderByKey = Object.keys(OrderBy).find(
-    (key) => key === query
+  const orderByKey = Object.keys(OrderQuestionsBy).find(
+    (key) => key === query.toUpperCase()
   ) as OrderByKey;
-  return OrderBy[orderByKey];
+  return OrderQuestionsBy[orderByKey];
 }
 
 export default function QuestionsScreen(props: ScreenProps) {
   const query = new URLSearchParams(props.location.search);
-  const orderByQuery = query.get('orderBy') || 'new';
-  const orderBy = getOrderBy(orderByQuery);
   const page = Number(query.get('page')) || 1;
   const tag = props.match.params.tag;
+
+  const orderByQuery = query.get('orderBy') || 'new';
+  const orderBy = getOrderBy(orderByQuery);
 
   const { questionsPage } = useLazyLoadQuery<QuestionsScreenQuery>(
     graphql`

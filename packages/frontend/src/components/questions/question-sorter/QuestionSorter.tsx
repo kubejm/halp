@@ -2,6 +2,7 @@ import React from 'react';
 import SortLink from './SortLink';
 import { graphql, useFragment } from 'react-relay/hooks';
 import { QuestionSorter_questionsPage$key } from '../../../__generated__/QuestionSorter_questionsPage.graphql';
+import { OrderQuestionsBy } from '../../../types';
 
 interface QuestionSorterProps {
   orderBy: string;
@@ -10,7 +11,6 @@ interface QuestionSorterProps {
 }
 
 // TODO: more intelligent way to set border right to 0
-// TODO: share enums
 export default function QuestionSorter(props: QuestionSorterProps) {
   const { questionCount } = useFragment(
     graphql`
@@ -41,19 +41,19 @@ export default function QuestionSorter(props: QuestionSorterProps) {
             <SortLink
               label="New"
               to={basePath}
-              selected={props.orderBy === 'NEW'}
+              selected={props.orderBy === OrderQuestionsBy.NEW}
               className="rounded-l border-r-0"
             />
             <SortLink
               label="Active"
               to={`${basePath}?orderBy=active`}
-              selected={props.orderBy === 'ACTIVE'}
+              selected={props.orderBy === OrderQuestionsBy.ACTIVE}
               className=" border-r-0"
             />
             <SortLink
               label="Most Votes"
               to={`${basePath}?orderBy=votes`}
-              selected={props.orderBy === 'VOTES'}
+              selected={props.orderBy === OrderQuestionsBy.VOTES}
               className="rounded-r"
             />
           </ul>
