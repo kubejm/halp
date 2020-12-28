@@ -12,6 +12,7 @@ export type QuestionScreenMutationVariables = {
 };
 export type QuestionScreenMutationResponse = {
     readonly viewQuestion: {
+        readonly isUserAuthor: boolean;
         readonly " $fragmentRefs": FragmentRefs<"QuestionDetails_question" | "AnswerList_question">;
     };
 };
@@ -29,6 +30,7 @@ mutation QuestionScreenMutation(
   viewQuestion(input: $input) {
     ...QuestionDetails_question
     ...AnswerList_question
+    isUserAuthor
     id
   }
 }
@@ -81,21 +83,27 @@ const node: ConcreteRequest = (function () {
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "id",
+        "name": "isUserAuthor",
         "storageKey": null
     } as any), v3 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "body",
+        "name": "id",
         "storageKey": null
     } as any), v4 = ({
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "createdAtRelative",
+        "name": "body",
         "storageKey": null
     } as any), v5 = ({
+        "alias": null,
+        "args": null,
+        "kind": "ScalarField",
+        "name": "createdAtRelative",
+        "storageKey": null
+    } as any), v6 = ({
         "alias": null,
         "args": null,
         "concreteType": "User",
@@ -110,7 +118,7 @@ const node: ConcreteRequest = (function () {
                 "name": "username",
                 "storageKey": null
             },
-            (v2 /*: any*/)
+            (v3 /*: any*/)
         ],
         "storageKey": null
     } as any);
@@ -129,6 +137,7 @@ const node: ConcreteRequest = (function () {
                     "name": "viewQuestion",
                     "plural": false,
                     "selections": [
+                        (v2 /*: any*/),
                         {
                             "args": null,
                             "kind": "FragmentSpread",
@@ -160,7 +169,7 @@ const node: ConcreteRequest = (function () {
                     "name": "viewQuestion",
                     "plural": false,
                     "selections": [
-                        (v2 /*: any*/),
+                        (v3 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -168,8 +177,8 @@ const node: ConcreteRequest = (function () {
                             "name": "answerCount",
                             "storageKey": null
                         },
-                        (v3 /*: any*/),
                         (v4 /*: any*/),
+                        (v5 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -192,11 +201,11 @@ const node: ConcreteRequest = (function () {
                                     "name": "name",
                                     "storageKey": null
                                 },
-                                (v2 /*: any*/)
+                                (v3 /*: any*/)
                             ],
                             "storageKey": null
                         },
-                        (v5 /*: any*/),
+                        (v6 /*: any*/),
                         {
                             "alias": null,
                             "args": null,
@@ -219,27 +228,28 @@ const node: ConcreteRequest = (function () {
                             "name": "answers",
                             "plural": true,
                             "selections": [
-                                (v2 /*: any*/),
                                 (v3 /*: any*/),
-                                (v5 /*: any*/),
-                                (v4 /*: any*/)
+                                (v4 /*: any*/),
+                                (v6 /*: any*/),
+                                (v5 /*: any*/)
                             ],
                             "storageKey": null
-                        }
+                        },
+                        (v2 /*: any*/)
                     ],
                     "storageKey": null
                 }
             ]
         },
         "params": {
-            "cacheID": "112ee74eadfc5ffab961ab30893acaa5",
+            "cacheID": "d0b73b0bdc2bd7e5f636425c3b382a5b",
             "id": null,
             "metadata": {},
             "name": "QuestionScreenMutation",
             "operationKind": "mutation",
-            "text": "mutation QuestionScreenMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...QuestionDetails_question\n    ...AnswerList_question\n    id\n  }\n}\n\nfragment AnswerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment QuestionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
+            "text": "mutation QuestionScreenMutation(\n  $input: QuestionByIdInput!\n) {\n  viewQuestion(input: $input) {\n    ...QuestionDetails_question\n    ...AnswerList_question\n    isUserAuthor\n    id\n  }\n}\n\nfragment AnswerList_question on Question {\n  answers {\n    id\n    body\n    user {\n      username\n      id\n    }\n    createdAtRelative\n  }\n}\n\nfragment QuestionDetails_question on Question {\n  id\n  answerCount\n  body\n  createdAtRelative\n  question\n  tags {\n    name\n    id\n  }\n  user {\n    username\n    id\n  }\n  views\n  voteCount\n}\n"
         }
     } as any;
 })();
-(node as any).hash = '95924629b6c72ba055b5b8292e937eae';
+(node as any).hash = '929de96b036fa3fc0eb58cd8a17a13b2';
 export default node;
