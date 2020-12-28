@@ -5,6 +5,7 @@ import { Context } from '../types';
 export enum QuestionOrderBy {
   NEW = 'new',
   ACTIVE = 'active',
+  VIEWS = 'views',
   VOTES = 'votes',
 }
 
@@ -30,11 +31,14 @@ export async function getQuestions(
 
   const findOptions = {
     orderBy: {
+      ...(orderBy === QuestionOrderBy.ACTIVE && {
+        updatedAt: QueryOrder.DESC,
+      }),
       ...(orderBy === QuestionOrderBy.NEW && {
         createdAt: QueryOrder.DESC,
       }),
-      ...(orderBy === QuestionOrderBy.ACTIVE && {
-        updatedAt: QueryOrder.DESC,
+      ...(orderBy === QuestionOrderBy.VIEWS && {
+        views: QueryOrder.DESC,
       }),
       ...(orderBy === QuestionOrderBy.VOTES && {
         votes: QueryOrder.DESC,

@@ -42,18 +42,24 @@ export default function QuestionSorter(props: QuestionSorterProps) {
               label="Active"
               to={basePath}
               selected={props.orderBy === OrderQuestionsBy.ACTIVE}
+              className="rounded-l border-r-0"
+            />
+            <SortLink
+              label="Most Views"
+              to={`${basePath}?orderBy=views`}
+              selected={props.orderBy === OrderQuestionsBy.VIEWS}
+              className=" border-r-0"
+            />
+            <SortLink
+              label="Most Votes"
+              to={`${basePath}?orderBy=votes`}
+              selected={props.orderBy === OrderQuestionsBy.VOTES}
               className=" border-r-0"
             />
             <SortLink
               label="New"
               to={`${basePath}?orderBy=new`}
               selected={props.orderBy === OrderQuestionsBy.NEW}
-              className="rounded-l border-r-0"
-            />
-            <SortLink
-              label="Most Votes"
-              to={`${basePath}?orderBy=votes`}
-              selected={props.orderBy === OrderQuestionsBy.VOTES}
               className="rounded-r"
             />
           </ul>

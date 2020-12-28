@@ -83,6 +83,7 @@ input QuestionByIdInput {
 enum QuestionOrderBy {
   ACTIVE
   NEW
+  VIEWS
   VOTES
 }
 
