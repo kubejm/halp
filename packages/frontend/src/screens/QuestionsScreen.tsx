@@ -33,7 +33,7 @@ export default function QuestionsScreen(props: ScreenProps) {
   const page = Number(query.get('page')) || 1;
   const tag = props.match.params.tag;
 
-  const orderByQuery = query.get('orderBy') || 'new';
+  const orderByQuery = query.get('orderBy') || 'active';
   const orderBy = getOrderBy(orderByQuery);
 
   const { questionsPage } = useLazyLoadQuery<QuestionsScreenQuery>(

@@ -39,16 +39,16 @@ export default function QuestionSorter(props: QuestionSorterProps) {
         <div>
           <ul className="flex list-none rounded text-xs text-purple-500">
             <SortLink
-              label="New"
-              to={basePath}
-              selected={props.orderBy === OrderQuestionsBy.NEW}
-              className="rounded-l border-r-0"
-            />
-            <SortLink
               label="Active"
-              to={`${basePath}?orderBy=active`}
+              to={basePath}
               selected={props.orderBy === OrderQuestionsBy.ACTIVE}
               className=" border-r-0"
+            />
+            <SortLink
+              label="New"
+              to={`${basePath}?orderBy=new`}
+              selected={props.orderBy === OrderQuestionsBy.NEW}
+              className="rounded-l border-r-0"
             />
             <SortLink
               label="Most Votes"
