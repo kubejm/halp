@@ -4,7 +4,7 @@
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type QuestionOrderBy = "ACTIVE" | "NEW" | "VOTES" | "%future added value";
+export type QuestionOrderBy = "ACTIVE" | "NEW" | "VIEWS" | "VOTES" | "%future added value";
 export type GetQuestionsInput = {
     orderBy?: QuestionOrderBy | null;
     page?: number | null;

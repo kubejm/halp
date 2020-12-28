@@ -58,7 +58,6 @@ export default function QuestionsScreen(props: ScreenProps) {
     }
   );
 
-  // TODO: base path for sorter
   return (
     <>
       <QuestionSorter
