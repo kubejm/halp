@@ -36,14 +36,16 @@ export default function TagGrid() {
   );
 
   return (
-    <div className="grid gap-4 grid-cols-3">
-      {tags.map((tag, index) => (
-        <TagDescription
-          key={index}
-          name={tag.name}
-          questionCount={tag.questionCount}
-        />
-      ))}
+    <div className="bg-white border-l border-b p-4">
+      <div className="grid gap-4 grid-cols-3">
+        {tags.map((tag, index) => (
+          <TagDescription
+            key={index}
+            name={tag.name}
+            questionCount={tag.questionCount}
+          />
+        ))}
+      </div>
     </div>
   );
 }

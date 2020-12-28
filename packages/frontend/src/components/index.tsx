@@ -8,7 +8,7 @@ export {
   QuestionPageNavigation,
   QuestionSorter,
 } from './questions';
-export { TagGrid } from './tags';
+export { TagsHeader, TagGrid } from './tags';
 export { TagList, Vote, Upvote, Downvote } from './shared';
 export {
   AuthenticatedRoute,
