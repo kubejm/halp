@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function SortLink(props: Props) {
-  const defaultStyles = 'py-2 px-3 border';
+  const defaultStyles = 'py-2 px-3 border focus:outline-none';
   const selectedStyles = 'text-white bg-purple-500';
   const hoverStyles =
     'hover:bg-purple-400 hover:text-white hover:border-purple-200 transition duration-300 ease-in-out';
