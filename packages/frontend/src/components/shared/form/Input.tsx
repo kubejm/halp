@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes } from 'react';
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
+import { ErrorMessage } from './shared';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -26,9 +27,7 @@ export default function Input({ name, label, className, ...rest }: InputProps) {
           ref={register}
         />
       </label>
-      {errorMessage && (
-        <span className="text-sm text-red-600">{errorMessage}</span>
-      )}
+      <ErrorMessage errorMessage={errorMessage} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes, useState, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import clsx from 'clsx';
 import { Tag } from '../../shared';
+import { ErrorMessage } from './shared';
 
 interface TagInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -75,9 +76,7 @@ export default function TagInput({
           </li>
         ))}
       </ul>
-      {errorMessage && (
-        <span className="text-sm text-red-600">{errorMessage}</span>
-      )}
+      <ErrorMessage errorMessage={errorMessage} />
     </div>
   );
 }
