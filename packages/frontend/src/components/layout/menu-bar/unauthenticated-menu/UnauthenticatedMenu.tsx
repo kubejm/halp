@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// TODO: abstract buttons out into shared styles
 export default function UnauthenticatedMenu() {
   return (
     <nav className="flex flex-row items-center text-sm">
