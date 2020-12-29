@@ -26,7 +26,6 @@ async function fetchRelay(params: RequestParameters, variables: Variables) {
   // class-validator and relay do not play nice
   // work around to accommodate, so validation errors flow through easily
   if (Array.isArray(json.errors) && json.errors.length > 0) {
-    // TODO: clean this up
     const errorCode = json.errors[0]?.extensions?.code;
     if (errorCode === 'UNAUTHENTICATED') {
       // TODO: throw authentication error
