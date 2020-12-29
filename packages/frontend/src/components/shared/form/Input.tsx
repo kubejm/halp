@@ -1,7 +1,7 @@
 import React, { InputHTMLAttributes } from 'react';
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
-import { ErrorMessage } from './shared';
+import { FormInput } from './shared';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -13,21 +13,17 @@ export default function Input({ name, label, className, ...rest }: InputProps) {
   const errorMessage = errors[name]?.message;
 
   return (
-    <div className={clsx('mb-6', className)}>
-      <label className="block text-gray-700 text-sm font-bold mb-1">
-        {label}
-        <input
-          {...rest}
-          name={name}
-          className={clsx(
-            'border p-2 mt-3 w-full',
-            errorMessage && 'border-red-500'
-          )}
-          autoComplete="off"
-          ref={register}
-        />
-      </label>
-      <ErrorMessage errorMessage={errorMessage} />
-    </div>
+    <FormInput label={label} errorMessage={errorMessage}>
+      <input
+        {...rest}
+        name={name}
+        className={clsx(
+          'border p-2 mt-3 w-full',
+          errorMessage && 'border-red-500'
+        )}
+        autoComplete="off"
+        ref={register}
+      />
+    </FormInput>
   );
 }

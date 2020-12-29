@@ -1,7 +1,7 @@
 import React, { TextareaHTMLAttributes } from 'react';
 import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
-import { ErrorMessage } from './shared';
+import { FormInput } from './shared';
 
 interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   name: string;
@@ -18,20 +18,16 @@ export default function TextArea({
   const errorMessage = errors[name]?.message;
 
   return (
-    <div className={clsx('mb-6', className)}>
-      <label className="block text-gray-700 text-sm font-bold mb-1">
-        {label}
-        <textarea
-          {...rest}
-          name={name}
-          className={clsx(
-            'border p-2 mt-3 w-full',
-            errorMessage && 'border-red-500'
-          )}
-          ref={register}
-        />
-      </label>
-      <ErrorMessage errorMessage={errorMessage} />
-    </div>
+    <FormInput label={label} errorMessage={errorMessage}>
+      <textarea
+        {...rest}
+        name={name}
+        className={clsx(
+          'border p-2 mt-3 w-full',
+          errorMessage && 'border-red-500'
+        )}
+        ref={register}
+      />
+    </FormInput>
   );
 }
