@@ -4,7 +4,7 @@ import { graphql, useMutation } from 'react-relay/hooks';
 import { SignUpFormMutation } from '../../__generated__/SignUpFormMutation.graphql';
 import { useHistory } from 'react-router-dom';
 import { useStore } from '../../store';
-import { ValidationError } from '../../utils';
+import { handleFormError } from '../../utils';
 import { Input } from '../shared';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -42,12 +42,7 @@ export default function SignInForm() {
         },
       },
       onError(error) {
-        if (error instanceof ValidationError) {
-          formMethods.setError(error.property, {
-            type: 'server',
-            message: error.constraint,
-          });
-        }
+        handleFormError(formMethods, error);
       },
       onCompleted() {
         authenticate();

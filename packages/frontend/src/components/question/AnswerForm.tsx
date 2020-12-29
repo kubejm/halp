@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { graphql, useMutation } from 'react-relay/hooks';
 import { AnswerFormMutation } from '../../__generated__/AnswerFormMutation.graphql';
-import { ValidationError } from '../../utils';
+import { handleFormError } from '../../utils';
 
 const schema = yup.object().shape({
   answer: yup.string().required(),
@@ -47,12 +47,7 @@ export default function AnswerForm(props: Props) {
         },
       },
       onError(error) {
-        if (error instanceof ValidationError) {
-          formMethods.setError(error.property, {
-            type: 'server',
-            message: error.constraint,
-          });
-        }
+        handleFormError(formMethods, error);
       },
       onCompleted() {
         history.push(`/question/${props.questionId}`);

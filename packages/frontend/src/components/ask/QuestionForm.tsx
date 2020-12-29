@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Input, TagInput, TextArea } from '../shared';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ValidationError } from '../../utils';
+import { handleFormError } from '../../utils';
 
 const schema = yup.object().shape({
   question: yup.string().required(),
@@ -35,7 +35,6 @@ export default function QuestionForm() {
   `);
   const history = useHistory();
 
-  // TODO: can onError be abstracted out?
   const onSubmit = (values: QuestionFormInput) => {
     commit({
       variables: {
@@ -46,12 +45,7 @@ export default function QuestionForm() {
         },
       },
       onError(error) {
-        if (error instanceof ValidationError) {
-          formMethods.setError(error.property, {
-            type: 'server',
-            message: error.constraint,
-          });
-        }
+        handleFormError(formMethods, error);
       },
       onCompleted() {
         history.push('/');

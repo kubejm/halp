@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useStore } from '../../store';
 import * as yup from 'yup';
 import { Input } from '../shared';
-import { ValidationError } from '../../utils';
+import { handleFormError } from '../../utils';
 
 const schema = yup.object().shape({
   username: yup.string().required(),
@@ -40,12 +40,7 @@ export default function SignInForm() {
         },
       },
       onError(error) {
-        if (error instanceof ValidationError) {
-          formMethods.setError(error.property, {
-            type: 'server',
-            message: error.constraint,
-          });
-        }
+        handleFormError(formMethods, error);
       },
       onCompleted() {
         authenticate();
