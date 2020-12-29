@@ -8,7 +8,6 @@ interface TagInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-// TODO: clean up redundancy in this component
 export default function TagInput({
   name,
   label,
