@@ -6,8 +6,7 @@ import {
   Store,
   Variables,
 } from 'relay-runtime';
-import AuthorizationError from './authorization.error';
-import ValidationError from './validation.error';
+import { AuthorizationError, ValidationError } from './errors';
 import auth from './auth';
 
 async function fetchRelay(params: RequestParameters, variables: Variables) {
