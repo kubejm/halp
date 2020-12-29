@@ -6,7 +6,8 @@ import {
   Store,
   Variables,
 } from 'relay-runtime';
-import ValidationError from './validation-error';
+import AuthorizationError from './authorization.error';
+import ValidationError from './validation.error';
 import auth from './auth';
 
 async function fetchRelay(params: RequestParameters, variables: Variables) {
@@ -28,8 +29,8 @@ async function fetchRelay(params: RequestParameters, variables: Variables) {
   if (Array.isArray(json.errors) && json.errors.length > 0) {
     const errorCode = json.errors[0]?.extensions?.code;
     if (errorCode === 'UNAUTHENTICATED') {
-      // TODO: throw authentication error
       auth.signOut();
+      throw new AuthorizationError();
     }
 
     const validationErrors =
