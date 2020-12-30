@@ -19,7 +19,10 @@ const pageList = (currentPage: number, pageCount: number) => {
   );
 };
 
-export default function QuestionPageNavigation({ currentPage, questionsPage }: Props) {
+export default function QuestionPageNavigation({
+  currentPage,
+  questionsPage,
+}: Props) {
   const { pageCount } = useFragment(
     graphql`
       fragment QuestionPageNavigation_questionsPage on QuestionsPage {
