@@ -34,12 +34,14 @@ services:
       - "traefik.http.routers.backend.rule=Host(`halp.localhost`) && PathPrefix(`/graphql`)"
 
   frontend:
-    image: node:14.12.0
+    build: ./packages/frontend
     expose:
       - 80
-    command: yarn workspace frontend dev
     volumes:
-      - .:/opt/app/frontend:rw
-    working_dir: /opt/app/frontend
+      - ./packages/frontend:/opt/app
+      - node_modules:/opt/app/node_modules
     labels:
       - "traefik.http.routers.frontend.rule=Host(`halp.localhost`)"
+
+volumes:
+  node_modules:
