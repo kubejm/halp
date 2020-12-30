@@ -18,7 +18,7 @@ services:
       POSTGRES_PASSWORD: halp
 
   backend:
-    image: node:14.12.0
+    build: ./packages/backend
     expose:
       - 4000
     environment:
@@ -26,10 +26,9 @@ services:
       POSTGRES_PORT: 5432
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: halp
-    command: yarn workspace backend dev
     volumes:
-      - .:/opt/app/backend:rw
-    working_dir: /opt/app/backend
+      - ./packages/backend:/opt/app
+      - frontend_node_modules:/opt/app/node_modules
     labels:
       - "traefik.http.routers.backend.rule=Host(`halp.localhost`) && PathPrefix(`/graphql`)"
 
@@ -39,9 +38,10 @@ services:
       - 80
     volumes:
       - ./packages/frontend:/opt/app
-      - node_modules:/opt/app/node_modules
+      - backend_node_modules:/opt/app/node_modules
     labels:
       - "traefik.http.routers.frontend.rule=Host(`halp.localhost`)"
 
 volumes:
-  node_modules:
+  frontend_node_modules:
+  backend_node_modules:
