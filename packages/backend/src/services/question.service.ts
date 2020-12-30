@@ -133,7 +133,10 @@ export async function addQuestion(
   input: Question,
   tags: string[] = []
 ) {
-  // TODO: error handling
+  if (!ctx.user?.id) {
+    throw new Error('must be logged in to ask a question');
+  }
+
   const question = Object.assign(input, {
     user: ctx.user,
   });
@@ -168,6 +171,10 @@ export async function answerQuestion(
   answer: string,
   { ctx }: Context
 ) {
+  if (!ctx.user?.id) {
+    throw new Error('must be logged in to answer a question');
+  }
+
   const question = await ctx.em.getRepository(Question).findOneOrFail({
     id,
   });
