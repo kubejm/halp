@@ -28,7 +28,7 @@ services:
       POSTGRES_PASSWORD: halp
     volumes:
       - ./packages/backend:/opt/app
-      - frontend_node_modules:/opt/app/node_modules
+      - backend_node_modules:/opt/app/node_modules
     labels:
       - "traefik.http.routers.backend.rule=Host(`halp.localhost`) && PathPrefix(`/graphql`)"
 
@@ -38,10 +38,10 @@ services:
       - 80
     volumes:
       - ./packages/frontend:/opt/app
-      - backend_node_modules:/opt/app/node_modules
+      - frontend_node_modules:/opt/app/node_modules
     labels:
       - "traefik.http.routers.frontend.rule=Host(`halp.localhost`)"
 
 volumes:
-  frontend_node_modules:
   backend_node_modules:
+  frontend_node_modules:
