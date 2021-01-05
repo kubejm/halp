@@ -1,11 +1,12 @@
 FROM node:15-alpine
 
-WORKDIR /opt/app
+ARG APP=/home/node/app
+WORKDIR $APP
 
-COPY package*.json /opt/app/
+COPY package*.json $APP/
 
 RUN ["npm", "install"]
 
-COPY . /opt/app
+COPY . $APP/
 
 CMD ["npm", "run", "dev"]
