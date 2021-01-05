@@ -35,7 +35,7 @@ services:
   frontend:
     build: ./packages/frontend
     expose:
-      - 80
+      - 3000
     volumes:
       - ./packages/frontend:/opt/app
       - frontend_node_modules:/opt/app/node_modules
