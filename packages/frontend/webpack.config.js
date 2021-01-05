@@ -4,6 +4,7 @@ const { EnvironmentPlugin } = require('webpack');
 const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production';
+const sockPort = process.env.DEV_SOCK_PORT;
 
 module.exports = {
   mode: isProd ? 'production' : 'development',
@@ -68,6 +69,6 @@ module.exports = {
     historyApiFallback: true,
     host: '0.0.0.0',
     port: 3000,
-    sockPort: 80,
+    sockPort,
   },
 };
