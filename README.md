@@ -2,6 +2,8 @@
 
 Rudimentary Stack Overflow clone
 
+<img src="https://raw.githubusercontent.com/kubejm/halp/master/demo.png" />
+
 ## How to run
 
 1. Run `make install`
