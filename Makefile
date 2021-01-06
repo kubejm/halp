@@ -1,7 +1,7 @@
 BACKEND_EXEC = docker-compose exec backend
 
 run:
-	docker-compose up --remove-orphans --build
+	docker-compose up --remove-orphans --build -V
 
 db-create:
 	$(BACKEND_EXEC) npm run db:create
