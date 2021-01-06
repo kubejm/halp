@@ -2,6 +2,7 @@ import React from 'react';
 import PageLink from './PageLink';
 import { graphql, useFragment } from 'react-relay/hooks';
 import { QuestionPageNavigation_questionsPage$key } from '../../../__generated__/QuestionPageNavigation_questionsPage.graphql';
+import queryString from 'query-string';
 
 interface Props {
   currentPage: number;
@@ -17,6 +18,16 @@ const pageList = (currentPage: number, pageCount: number) => {
   return [previousPrevious, previous, currentPage, next, nextNext].filter(
     (pageNumber) => pageNumber > 0 && pageNumber <= pageCount
   );
+};
+
+const buildUrl = function (page: number) {
+  const basePath = window.location.pathname;
+  const params = queryString.parse(location.search);
+
+  return `${basePath}?${queryString.stringify({
+    ...params,
+    page,
+  })}`;
 };
 
 export default function QuestionPageNavigation({
@@ -41,7 +52,7 @@ export default function QuestionPageNavigation({
         <ul className="flex list-none rounded text-xs text-purple-500">
           {hasPrevious && (
             <PageLink
-              to={`/?page=${currentPage - 1}`}
+              to={buildUrl(currentPage - 1)}
               label="Prev"
               selected={false}
             />
@@ -49,14 +60,14 @@ export default function QuestionPageNavigation({
           {pageList(currentPage, pageCount).map((pageNumber) => (
             <PageLink
               key={pageNumber}
-              to={`/?page=${pageNumber}`}
+              to={buildUrl(pageNumber)}
               label={String(pageNumber)}
               selected={pageNumber === currentPage}
             />
           ))}
           {hasNext && (
             <PageLink
-              to={`/?page=${currentPage + 1}`}
+              to={buildUrl(currentPage + 1)}
               label="Next"
               selected={false}
             />
