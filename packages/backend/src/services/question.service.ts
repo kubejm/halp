@@ -41,7 +41,7 @@ export async function getQuestions(
         views: QueryOrder.DESC,
       }),
       ...(orderBy === QuestionOrderBy.VOTES && {
-        votes: QueryOrder.DESC,
+        voteCount: QueryOrder.DESC,
       }),
     },
     limit: pageSize,
