@@ -2,7 +2,7 @@
 
 Rudimentary Stack Overflow clone
 
-<img src="https://raw.githubusercontent.com/kubejm/halp/master/demo.png" width="280" height="200" />
+<img src="https://raw.githubusercontent.com/kubejm/halp/master/demo.png" />
 
 ## How to run
 
